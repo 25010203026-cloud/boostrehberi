@@ -25,7 +25,7 @@
         .logout-btn:hover { background: #E74C3C; color: #FFF; }
         .admin-badge { background: #E74C3C; color: #FFF; font-size: 10px; padding: 2px 6px; border-radius: 4px; margin-left: 5px; display: none;}
 
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px 50px 20px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px 50px 20px; }
 
         /* VİTRİN BÖLÜMÜ */
         #showcaseSection { display: block; animation: fadeIn 0.4s; }
@@ -40,13 +40,9 @@
         .forum-btn { background: linear-gradient(90deg, #1ABC9C, #3498DB); border: none; color: #FFF; padding: 15px 30px; border-radius: 8px; font-size: 16px; font-weight: 800; transition: 0.3s; box-shadow: 0 5px 15px rgba(26, 188, 156, 0.3); }
         .forum-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(26, 188, 156, 0.5); }
 
-        /* İKİYE BÖLÜNMÜŞ ANA SAYFA DÜZENİ */
-        .split-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; align-items: start;}
-        @media (max-width: 900px) { .split-layout { grid-template-columns: 1fr; } }
-        
+        /* RAKİPLER GİBİ FERAH DÜZEN (ALT ALTA BÖLÜMLER) */
         .section-title { font-size: 26px; color: #FFF; border-bottom: 2px solid #333; padding-bottom: 10px; margin-bottom: 25px; display: flex; align-items: center; gap: 10px; }
-        .games-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        @media (max-width: 1200px) { .games-grid { grid-template-columns: 1fr; } }
+        .games-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; margin-bottom: 60px; }
 
         .game-card { background-color: rgba(20, 25, 30, 0.8); border: 1px solid #333; border-radius: 12px; padding: 25px; transition: 0.3s; display: flex; flex-direction: column; position: relative; overflow: hidden; }
         .game-card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; }
@@ -65,7 +61,7 @@
         .game-card h3 { color: #FFF; font-size: 20px; margin: 0 0 10px 0; }
         .game-card p { color: #8892B0; font-size: 13px; margin: 0 0 20px 0; flex-grow: 1; line-height: 1.5;}
         
-        .play-btn { background-color: #1A1A1A; color: #FFF; text-align: center; text-decoration: none; padding: 10px; border-radius: 6px; font-weight: 700; border: 1px solid #444; transition: 0.3s; font-size: 14px;}
+        .play-btn { background-color: #1A1A1A; color: #FFF; text-align: center; text-decoration: none; padding: 12px; border-radius: 6px; font-weight: 700; border: 1px solid #444; transition: 0.3s; font-size: 14px;}
         .game-card .play-btn:hover { background-color: #1ABC9C; color: #000; border-color: #1ABC9C;}
         .game-card.tr-yama .play-btn:hover { background-color: #3498DB; color: #FFF; border-color: #3498DB;}
         
@@ -145,7 +141,7 @@
         <div id="showcaseSection">
             <section class="hero">
                 <h1>Oyunlarda <span>Sınırları</span> Zorla</h1>
-                <p>FPS artırma taktikleri, güncel modlar ve virüssüz Türkçe Yama arşivi.</p>
+                <p>FPS artırma taktikleri, güncel modlar ve %100 virüssüz Türkçe Yama arşivi.</p>
             </section>
 
             <div class="forum-banner">
@@ -156,70 +152,64 @@
                 <button class="forum-btn" onclick="goToForum()">Forum'a Gir ➔</button>
             </div>
 
-            <div class="split-layout">
-                
-                <div class="left-column">
-                    <h2 class="section-title">🚀 Performans & Modlar</h2>
-                    <div class="games-grid">
-                        <div class="game-card mc">
-                            <div class="badge mod">FPS Modları</div>
-                            <div class="game-icon">⛏️</div>
-                            <h3>Minecraft</h3>
-                            <p>FPS uçuran Sodium ayarları ve efsanevi mod paketleri.</p>
-                            <a href="minecraft.html" class="play-btn">Rehbere Git</a>
-                        </div>
-                        <div class="game-card gta">
-                            <div class="badge mod">Optimizasyon</div>
-                            <div class="game-icon">🔫</div>
-                            <h3>GTA 5</h3>
-                            <p>Ban riski olmayan grafik modları ve FiveM FPS configleri.</p>
-                            <a href="gta5.html" class="play-btn">Rehbere Git</a>
-                        </div>
-                        <div class="game-card fm">
-                            <div class="badge mod">Yamalar & Editör</div>
-                            <div class="game-icon">⚽</div>
-                            <h3>Football Manager</h3>
-                            <p>Orijinal isim yaması, vergi kaldırma ve Wonderkid listeleri.</p>
-                            <a href="fm.html" class="play-btn">Taktik Tahtası</a>
-                        </div>
-                        <div class="game-card ac">
-                            <div class="badge mod">Trafik Modu</div>
-                            <div class="game-icon">🏎️</div>
-                            <h3>Assetto Corsa</h3>
-                            <p>Japonya otoyolu trafik modu ve siyah ekran kesin çözümü.</p>
-                            <a href="assetto.html" class="play-btn">Garaja Gir</a>
-                        </div>
-                    </div>
+            <h2 class="section-title">🚀 Performans & Modlar</h2>
+            <div class="games-grid">
+                <div class="game-card mc">
+                    <div class="badge mod">FPS Modları</div>
+                    <div class="game-icon">⛏️</div>
+                    <h3>Minecraft</h3>
+                    <p>FPS uçuran Sodium ayarları ve efsanevi mod paketleri.</p>
+                    <a href="minecraft.html" class="play-btn">Kurulum & Rehber</a>
                 </div>
-
-                <div class="right-column">
-                    <h2 class="section-title">🇹🇷 Türkçe Yama Arşivi</h2>
-                    <div class="games-grid">
-                        <div class="game-card tr-yama">
-                            <div class="badge yama">%100 Çeviri</div>
-                            <div class="game-icon">🗡️</div>
-                            <h3>AC Odyssey</h3>
-                            <p>Tüm DLC'ler dahil, Türkçe font uyumlu eksiksiz yama paketi.</p>
-                            <a href="ac-odyssey-yama.html" class="play-btn">Yamayı İndir</a>
-                        </div>
-                        <div class="game-card tr-yama">
-                            <div class="badge yama">Kutusuz Font</div>
-                            <div class="game-icon">🤠</div>
-                            <h3>RDR 2</h3>
-                            <p>Kare kutucuk hatası çözülmüş, en güncel Red Dead Redemption 2 yaması.</p>
-                            <a href="rdr2-yama.html" class="play-btn">Yamayı İndir</a>
-                        </div>
-                        <div class="game-card tr-yama">
-                            <div class="badge yama">V2.0 Uyumlu</div>
-                            <div class="game-icon">🦾</div>
-                            <h3>Cyberpunk 2077</h3>
-                            <p>Phantom Liberty genişleme paketi dahil tam sürüm çeviri.</p>
-                            <a href="cp2077-yama.html" class="play-btn">Yamayı İndir</a>
-                        </div>
-                    </div>
+                <div class="game-card gta">
+                    <div class="badge mod">Optimizasyon</div>
+                    <div class="game-icon">🔫</div>
+                    <h3>GTA 5</h3>
+                    <p>Ban riski olmayan grafik modları ve FiveM FPS configleri.</p>
+                    <a href="gta5.html" class="play-btn">Kurulum & Rehber</a>
                 </div>
+                <div class="game-card fm">
+                    <div class="badge mod">Yamalar & Editör</div>
+                    <div class="game-icon">⚽</div>
+                    <h3>Football Manager</h3>
+                    <p>Orijinal isim yaması, vergi kaldırma ve Wonderkid listeleri.</p>
+                    <a href="fm.html" class="play-btn">Kurulum & Rehber</a>
+                </div>
+                <div class="game-card ac">
+                    <div class="badge mod">Trafik Modu</div>
+                    <div class="game-icon">🏎️</div>
+                    <h3>Assetto Corsa</h3>
+                    <p>Japonya otoyolu trafik modu ve siyah ekran kesin çözümü.</p>
+                    <a href="assetto.html" class="play-btn">Kurulum & Rehber</a>
+                </div>
+            </div>
 
-            </div> </div>
+            <h2 class="section-title" style="margin-top: 50px;">🇹🇷 Türkçe Yama Arşivi</h2>
+            <div class="games-grid">
+                <div class="game-card tr-yama">
+                    <div class="badge yama">%100 Çeviri</div>
+                    <div class="game-icon">🗡️</div>
+                    <h3>AC Odyssey</h3>
+                    <p>Tüm DLC'ler dahil, Türkçe font uyumlu eksiksiz yama paketi ve kurulum talimatları.</p>
+                    <a href="ac-odyssey-yama.html" class="play-btn">İndirme & Kurulum Rehberi</a>
+                </div>
+                <div class="game-card tr-yama">
+                    <div class="badge yama">Kutusuz Font</div>
+                    <div class="game-icon">🤠</div>
+                    <h3>RDR 2</h3>
+                    <p>Kare kutucuk hatası çözülmüş, en güncel Red Dead Redemption 2 yaması.</p>
+                    <a href="rdr2-yama.html" class="play-btn">İndirme & Kurulum Rehberi</a>
+                </div>
+                <div class="game-card tr-yama">
+                    <div class="badge yama">V2.0 Uyumlu</div>
+                    <div class="game-icon">🦾</div>
+                    <h3>Cyberpunk 2077</h3>
+                    <p>Phantom Liberty genişleme paketi dahil tam sürüm çeviri.</p>
+                    <a href="cp2077-yama.html" class="play-btn">İndirme & Kurulum Rehberi</a>
+                </div>
+            </div>
+
+        </div>
 
         <div id="forumSection">
             <div class="forum-header">
@@ -358,7 +348,6 @@
         onSnapshot(query(collection(db, "forum_mesajlari"), orderBy("tarih", "desc")), (snap) => {
             let c = document.getElementById('threadContainer'); 
             
-            // Sabit (Pinned) Admin Mesajı
             let sabitKonu = `
             <div class="thread-card pinned">
                 <div class="thread-main">
