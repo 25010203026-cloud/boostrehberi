@@ -8,38 +8,24 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap');
 
-        body, a, button, input, textarea, select {
-            cursor: url('https://cdn.custom-cursor.com/db/cursor/32/minecraft_diamond_pickaxe_cursor.png'), auto !important;
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background: linear-gradient(rgba(15, 20, 25, 0.85), rgba(15, 20, 25, 0.95)), url('arkaplan.jpg') center/cover fixed;
-            color: #E0E0E0; margin: 0; padding: 0; overflow-x: hidden;
-        }
+        body, a, button, input, textarea, select { cursor: url('https://cdn.custom-cursor.com/db/cursor/32/minecraft_diamond_pickaxe_cursor.png'), auto !important; }
+        body { font-family: 'Montserrat', sans-serif; background: linear-gradient(rgba(15, 20, 25, 0.85), rgba(15, 20, 25, 0.95)), url('arkaplan.jpg') center/cover fixed; color: #E0E0E0; margin: 0; padding: 0; overflow-x: hidden; }
 
         /* HEADER */
-        header { 
-            background-color: rgba(17, 21, 29, 0.95); padding: 20px 50px; 
-            display: flex; justify-content: space-between; align-items: center; 
-            border-bottom: 2px solid #1ABC9C; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(10px);
-        }
+        header { background-color: rgba(17, 21, 29, 0.95); padding: 20px 50px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #1ABC9C; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(10px); }
         .logo { font-size: 28px; font-weight: 900; color: #FFFFFF; text-decoration: none; letter-spacing: 1px;}
         .logo span { color: #1ABC9C; }
-        
         .header-right { display: flex; align-items: center; gap: 20px; }
         .contact-btn { color: #AAB7B8; text-decoration: none; font-size: 14px; font-weight: 700; transition: 0.3s; display: flex; align-items: center; gap: 5px;}
         .contact-btn:hover { color: #FFF; }
-
         .login-btn { background: transparent; border: 2px solid #1ABC9C; color: #1ABC9C; padding: 10px 20px; border-radius: 8px; font-weight: 700; font-size: 14px; transition: 0.3s; }
         .login-btn:hover { background: #1ABC9C; color: #111; box-shadow: 0 0 15px rgba(26, 188, 156, 0.5); }
-        
         .user-profile { display: none; align-items: center; gap: 10px; color: #2ECC71; font-weight: 700; }
         .logout-btn { background: transparent; border: 1px solid #E74C3C; color: #E74C3C; padding: 5px 10px; border-radius: 4px; font-size: 12px; transition: 0.3s;}
         .logout-btn:hover { background: #E74C3C; color: #FFF; }
         .admin-badge { background: #E74C3C; color: #FFF; font-size: 10px; padding: 2px 6px; border-radius: 4px; margin-left: 5px; display: none;}
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px 50px 20px; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 20px 50px 20px; }
 
         /* VİTRİN BÖLÜMÜ */
         #showcaseSection { display: block; animation: fadeIn 0.4s; }
@@ -54,34 +40,40 @@
         .forum-btn { background: linear-gradient(90deg, #1ABC9C, #3498DB); border: none; color: #FFF; padding: 15px 30px; border-radius: 8px; font-size: 16px; font-weight: 800; transition: 0.3s; box-shadow: 0 5px 15px rgba(26, 188, 156, 0.3); }
         .forum-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(26, 188, 156, 0.5); }
 
-        .section-title { font-size: 28px; color: #FFF; border-bottom: 2px solid #333; padding-bottom: 10px; margin-bottom: 30px; display: flex; align-items: center; gap: 10px; }
-        .games-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-bottom: 60px; }
+        /* İKİYE BÖLÜNMÜŞ ANA SAYFA DÜZENİ */
+        .split-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; align-items: start;}
+        @media (max-width: 900px) { .split-layout { grid-template-columns: 1fr; } }
         
-        .game-card { background-color: rgba(20, 25, 30, 0.8); border: 1px solid #333; border-radius: 12px; padding: 30px; transition: 0.3s; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+        .section-title { font-size: 26px; color: #FFF; border-bottom: 2px solid #333; padding-bottom: 10px; margin-bottom: 25px; display: flex; align-items: center; gap: 10px; }
+        .games-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 1200px) { .games-grid { grid-template-columns: 1fr; } }
+
+        .game-card { background-color: rgba(20, 25, 30, 0.8); border: 1px solid #333; border-radius: 12px; padding: 25px; transition: 0.3s; display: flex; flex-direction: column; position: relative; overflow: hidden; }
         .game-card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; }
         
-        /* Mod & FPS Renkleri */
+        /* Renkler */
         .game-card.mc::before { background-color: #2ECC71; }
+        .game-card.fm::before { background-color: #6D28D9; }
+        .game-card.ac::before { background-color: #E74C3C; }
         .game-card.gta::before { background-color: #F39C12; }
-        
-        /* Yama Renkleri */
-        .game-card.tr-yama::before { background-color: #E74C3C; }
+        .game-card.tr-yama::before { background-color: #3498DB; }
 
-        .game-card:hover { transform: translateY(-10px); background-color: rgba(30, 35, 45, 0.9); border-color: #1ABC9C; box-shadow: 0 10px 20px rgba(26, 188, 156, 0.2); }
-        .game-card.tr-yama:hover { border-color: #E74C3C; box-shadow: 0 10px 20px rgba(231, 76, 60, 0.2); }
+        .game-card:hover { transform: translateY(-5px); background-color: rgba(30, 35, 45, 0.9); border-color: #1ABC9C; box-shadow: 0 10px 20px rgba(26, 188, 156, 0.2); }
+        .game-card.tr-yama:hover { border-color: #3498DB; box-shadow: 0 10px 20px rgba(52, 152, 219, 0.2); }
         
-        .game-icon { font-size: 40px; margin-bottom: 15px; }
-        .game-card h3 { color: #FFF; font-size: 22px; margin: 0 0 10px 0; }
-        .game-card p { color: #8892B0; font-size: 14px; margin: 0 0 25px 0; flex-grow: 1; }
+        .game-icon { font-size: 35px; margin-bottom: 10px; }
+        .game-card h3 { color: #FFF; font-size: 20px; margin: 0 0 10px 0; }
+        .game-card p { color: #8892B0; font-size: 13px; margin: 0 0 20px 0; flex-grow: 1; line-height: 1.5;}
         
-        .play-btn { background-color: #1A1A1A; color: #FFF; text-align: center; text-decoration: none; padding: 12px; border-radius: 6px; font-weight: 700; border: 1px solid #444; transition: 0.3s; }
+        .play-btn { background-color: #1A1A1A; color: #FFF; text-align: center; text-decoration: none; padding: 10px; border-radius: 6px; font-weight: 700; border: 1px solid #444; transition: 0.3s; font-size: 14px;}
         .game-card .play-btn:hover { background-color: #1ABC9C; color: #000; border-color: #1ABC9C;}
-        .game-card.tr-yama .play-btn:hover { background-color: #E74C3C; color: #FFF; border-color: #E74C3C;}
+        .game-card.tr-yama .play-btn:hover { background-color: #3498DB; color: #FFF; border-color: #3498DB;}
         
-        .badge-mod { display: inline-block; background: rgba(46, 204, 113, 0.1); color: #2ECC71; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; margin-bottom: 10px; border: 1px solid #2ECC71; }
-        .badge-yama { display: inline-block; background: rgba(231, 76, 60, 0.1); color: #E74C3C; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; margin-bottom: 10px; border: 1px solid #E74C3C; }
+        .badge { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; margin-bottom: 10px; border: 1px solid; }
+        .badge.mod { background: rgba(46, 204, 113, 0.1); color: #2ECC71; border-color: #2ECC71; }
+        .badge.yama { background: rgba(52, 152, 219, 0.1); color: #3498DB; border-color: #3498DB; }
 
-        /* FORUM BÖLÜMÜ (DOKUNULMADI) */
+        /* FORUM BÖLÜMÜ */
         #forumSection { display: none; padding-top: 40px; animation: fadeIn 0.4s; }
         .forum-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px; border-bottom: 1px solid #2C3E50; padding-bottom: 20px;}
         .forum-header h1 { font-size: 32px; color: #FFF; margin: 0; font-weight: 800; display: flex; align-items: center; gap: 10px;}
@@ -94,7 +86,7 @@
         .forum-grid { display: grid; grid-template-columns: 260px 1fr; gap: 30px; align-items: start; }
         .forum-sidebar { background-color: rgba(20, 25, 30, 0.8); padding: 20px; border-radius: 12px; border: 1px solid #2C3E50; position: sticky; top: 90px; }
         .forum-sidebar-title { color: #8892B0; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; font-weight: 700; }
-        .cat-btn { background: transparent; color: #AAB7B8; border: none; width: 100%; text-align: left; padding: 12px 15px; border-radius: 8px; font-size: 14px; font-weight: 600; transition: 0.2s; margin-bottom: 5px; display: flex; justify-content: space-between; align-items: center;}
+        .cat-btn { background: transparent; color: #AAB7B8; border: none; width: 100%; text-align: left; padding: 12px 15px; border-radius: 8px; font-size: 14px; font-weight: 600; transition: 0.2s; margin-bottom: 5px;}
         .cat-btn:hover { background: rgba(255,255,255,0.05); color: #FFF; }
         .cat-btn.active { background: rgba(26, 188, 156, 0.1); color: #1ABC9C; border-left: 3px solid #1ABC9C; }
 
@@ -110,7 +102,6 @@
         .thread-author { color: #1ABC9C; font-weight: 700; }
         .thread-actions { display: flex; gap: 10px; margin-top: 10px; align-items: center;}
         .reply-btn { background: rgba(26, 188, 156, 0.1); color: #1ABC9C; border: 1px solid #1ABC9C; padding: 6px 12px; border-radius: 4px; font-size: 12px; font-weight: 700; transition: 0.2s;}
-        
         .admin-delete-btn { background: rgba(231, 76, 60, 0.1); color: #E74C3C; border: 1px solid #E74C3C; padding: 6px 12px; border-radius: 4px; font-size: 12px; font-weight: 700; transition: 0.2s; display: none; cursor: pointer;}
         .replies-container { background: rgba(0, 0, 0, 0.3); border-left: 2px solid #3498DB; padding: 15px; border-radius: 8px; margin-top: 10px; display: flex; flex-direction: column; gap: 10px;}
         .reply-item { display: flex; gap: 10px; align-items: flex-start; border-bottom: 1px solid #333; padding-bottom: 10px;}
@@ -118,22 +109,22 @@
         .reply-avatar { width: 30px; height: 30px; border-radius: 50%; border: 1px solid #3498DB; overflow: hidden; flex-shrink: 0;}
         .reply-avatar img { width: 100%; height: 100%; object-fit: cover; }
         .reply-content { flex-grow: 1; font-size: 13px; color: #DDD;}
-        .reply-author { color: #3498DB; font-weight: 700; font-size: 12px; margin-bottom: 3px; display: block;}
+        .reply-author { color: #3498DB; font-weight: 700; font-size: 12px; display: block;}
         .pinned { border-left: 4px solid #F1C40F !important; }
 
-        /* MODALLAR (DOKUNULMADI) */
+        /* MODALLAR */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); z-index: 1000; justify-content: center; align-items: center; }
-        .modal-box { background: #11151D; width: 400px; border-radius: 12px; border: 1px solid #1ABC9C; padding: 30px; box-shadow: 0 15px 30px rgba(0,0,0,0.5); position: relative; animation: slideDown 0.3s ease-out; text-align: center;}
+        .modal-box { background: #11151D; width: 400px; border-radius: 12px; border: 1px solid #1ABC9C; padding: 30px; position: relative; text-align: center;}
         .modal-box.large { width: 600px; text-align: left;}
-        @keyframes slideDown { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         .close-btn { position: absolute; top: 15px; right: 20px; font-size: 24px; color: #888; background: none; border: none; font-weight: bold; padding: 0;}
-        .google-btn { background: #FFF; color: #444; font-weight: 800; border: none; padding: 15px; border-radius: 6px; font-size: 16px; margin-top: 20px; transition: 0.3s; width: 100%; display: flex; align-items: center; justify-content: center; gap: 15px;}
+        .google-btn { background: #FFF; color: #444; font-weight: 800; border: none; padding: 15px; border-radius: 6px; font-size: 16px; margin-top: 20px; width: 100%; display: flex; align-items: center; justify-content: center; gap: 15px;}
         .google-btn img { width: 24px; }
         .input-group { margin-bottom: 15px; text-align: left; }
         .input-group label { font-size: 12px; color: #AAB7B8; font-weight: 600; margin-bottom: 5px; display: block; }
         .input-group input, .input-group select, .input-group textarea { width: 100%; padding: 12px; background: #1A202C; border: 1px solid #333; border-radius: 6px; color: #FFF; font-family: 'Montserrat'; box-sizing: border-box; outline: none;}
         .input-group textarea { height: 120px; resize: none; }
-        .submit-btn { background: #1ABC9C; color: #000; font-weight: 800; border: none; padding: 15px; border-radius: 6px; font-size: 16px; margin-top: 10px; transition: 0.3s; width: 100%; }
+        .submit-btn { background: #1ABC9C; color: #000; font-weight: 800; border: none; padding: 15px; border-radius: 6px; font-size: 16px; margin-top: 10px; width: 100%; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -154,55 +145,81 @@
         <div id="showcaseSection">
             <section class="hero">
                 <h1>Oyunlarda <span>Sınırları</span> Zorla</h1>
-                <p>FPS artırma taktikleri, güncel modlar ve virüssüz Türkiye'nin en büyük Türkçe Yama arşivi.</p>
+                <p>FPS artırma taktikleri, güncel modlar ve virüssüz Türkçe Yama arşivi.</p>
             </section>
 
             <div class="forum-banner">
                 <div class="forum-text">
                     <h2>👑 VIP Oyuncu Forumu</h2>
-                    <p>Sorunlarını paylaş, yamaları ilk sen indir ve topluluğa katıl.</p>
+                    <p>Sorunlarını çöz, yamaları ilk sen indir ve dev topluluğa katıl.</p>
                 </div>
                 <button class="forum-btn" onclick="goToForum()">Forum'a Gir ➔</button>
             </div>
 
-            <h2 class="section-title">🚀 Performans ve Mod Merkezi</h2>
-            <div class="games-grid">
-                <div class="game-card mc">
-                    <div class="badge-mod">FPS Boost & Mod</div>
-                    <div class="game-icon">⛏️</div>
-                    <h3>Minecraft</h3>
-                    <p>Oyun motorunu değiştiren FPS modları, sınırsız farmlar ve teknik rehberler.</p>
-                    <a href="minecraft.html" class="play-btn">Rehberleri İncele</a>
-                </div>
+            <div class="split-layout">
                 
-                <div class="game-card gta">
-                    <div class="badge-mod">Optimizasyon</div>
-                    <div class="game-icon">🔫</div>
-                    <h3>GTA 5 & FiveM</h3>
-                    <p>Oyunu bozmadan mod kurma, ban riski olmayan config dosyaları.</p>
-                    <a href="gta5.html" class="play-btn">Rehberleri İncele</a>
+                <div class="left-column">
+                    <h2 class="section-title">🚀 Performans & Modlar</h2>
+                    <div class="games-grid">
+                        <div class="game-card mc">
+                            <div class="badge mod">FPS Modları</div>
+                            <div class="game-icon">⛏️</div>
+                            <h3>Minecraft</h3>
+                            <p>FPS uçuran Sodium ayarları ve efsanevi mod paketleri.</p>
+                            <a href="minecraft.html" class="play-btn">Rehbere Git</a>
+                        </div>
+                        <div class="game-card gta">
+                            <div class="badge mod">Optimizasyon</div>
+                            <div class="game-icon">🔫</div>
+                            <h3>GTA 5</h3>
+                            <p>Ban riski olmayan grafik modları ve FiveM FPS configleri.</p>
+                            <a href="gta5.html" class="play-btn">Rehbere Git</a>
+                        </div>
+                        <div class="game-card fm">
+                            <div class="badge mod">Yamalar & Editör</div>
+                            <div class="game-icon">⚽</div>
+                            <h3>Football Manager</h3>
+                            <p>Orijinal isim yaması, vergi kaldırma ve Wonderkid listeleri.</p>
+                            <a href="fm.html" class="play-btn">Taktik Tahtası</a>
+                        </div>
+                        <div class="game-card ac">
+                            <div class="badge mod">Trafik Modu</div>
+                            <div class="game-icon">🏎️</div>
+                            <h3>Assetto Corsa</h3>
+                            <p>Japonya otoyolu trafik modu ve siyah ekran kesin çözümü.</p>
+                            <a href="assetto.html" class="play-btn">Garaja Gir</a>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
-            <h2 class="section-title">🇹🇷 Türkçe Yama Arşivi</h2>
-            <div class="games-grid">
-                <div class="game-card tr-yama">
-                    <div class="badge-yama">%100 Çeviri & Virüssüz</div>
-                    <div class="game-icon">🗡️</div>
-                    <h3>Assassin's Creed Odyssey</h3>
-                    <p>Tüm DLC'ler dahil, menü ve diyaloglar tamamen Türkçe. Kurulum rehberi içeride.</p>
-                    <a href="ac-odyssey-yama.html" class="play-btn">Yamayı İndir</a>
+                <div class="right-column">
+                    <h2 class="section-title">🇹🇷 Türkçe Yama Arşivi</h2>
+                    <div class="games-grid">
+                        <div class="game-card tr-yama">
+                            <div class="badge yama">%100 Çeviri</div>
+                            <div class="game-icon">🗡️</div>
+                            <h3>AC Odyssey</h3>
+                            <p>Tüm DLC'ler dahil, Türkçe font uyumlu eksiksiz yama paketi.</p>
+                            <a href="ac-odyssey-yama.html" class="play-btn">Yamayı İndir</a>
+                        </div>
+                        <div class="game-card tr-yama">
+                            <div class="badge yama">Kutusuz Font</div>
+                            <div class="game-icon">🤠</div>
+                            <h3>RDR 2</h3>
+                            <p>Kare kutucuk hatası çözülmüş, en güncel Red Dead Redemption 2 yaması.</p>
+                            <a href="rdr2-yama.html" class="play-btn">Yamayı İndir</a>
+                        </div>
+                        <div class="game-card tr-yama">
+                            <div class="badge yama">V2.0 Uyumlu</div>
+                            <div class="game-icon">🦾</div>
+                            <h3>Cyberpunk 2077</h3>
+                            <p>Phantom Liberty genişleme paketi dahil tam sürüm çeviri.</p>
+                            <a href="cp2077-yama.html" class="play-btn">Yamayı İndir</a>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="game-card tr-yama">
-                    <div class="badge-yama">Güncel Sürüm</div>
-                    <div class="game-icon">🤠</div>
-                    <h3>Red Dead Redemption 2</h3>
-                    <p>Font sorunu çözülmüş, kutucuk hatası vermeyen kusursuz RDR 2 Türkçe Yaması.</p>
-                    <a href="rdr2-yama.html" class="play-btn">Yamayı İndir</a>
-                </div>
-            </div>
-        </div>
+            </div> </div>
 
         <div id="forumSection">
             <div class="forum-header">
@@ -218,8 +235,11 @@
                     <div class="forum-sidebar-title">Kategoriler</div>
                     <button class="cat-btn active">🌐 Tümü</button>
                     <button class="cat-btn">💬 Genel Tartışma</button>
-                    <button class="cat-btn">⛏️ Minecraft Destek</button>
-                    <button class="cat-btn">🇹🇷 Türkçe Yama İstek</button>
+                    <button class="cat-btn">⛏️ Minecraft</button>
+                    <button class="cat-btn">⚽ Football Manager</button>
+                    <button class="cat-btn">🏎️ Assetto Corsa</button>
+                    <button class="cat-btn">🔫 GTA 5</button>
+                    <button class="cat-btn">🇹🇷 Türkçe Yama Destek</button>
                 </div>
                 <div class="main-panel"><div class="thread-list" id="threadContainer"></div></div>
             </div>
@@ -242,12 +262,15 @@
                 <label>Kategori Seçimi</label>
                 <select id="topicCat">
                     <option value="💬 Genel Tartışma">💬 Genel Tartışma</option>
-                    <option value="⛏️ Minecraft Destek">⛏️ Minecraft Destek</option>
-                    <option value="🇹🇷 Türkçe Yama İstek">🇹🇷 Türkçe Yama İstek</option>
+                    <option value="⛏️ Minecraft">⛏️ Minecraft</option>
+                    <option value="⚽ Football Manager">⚽ Football Manager</option>
+                    <option value="🏎️ Assetto Corsa">🏎️ Assetto Corsa</option>
+                    <option value="🔫 GTA 5">🔫 GTA 5</option>
+                    <option value="🇹🇷 Türkçe Yama Destek">🇹🇷 Türkçe Yama Destek</option>
                 </select>
             </div>
-            <div class="input-group"><label>Konu Başlığı</label><input type="text" id="topicTitle" placeholder="Örn: Sorunumu nasıl çözebilirim?"></div>
-            <div class="input-group"><label>İçerik (Mesajınız)</label><textarea id="topicBody" placeholder="Buraya yazın..."></textarea></div>
+            <div class="input-group"><label>Konu Başlığı</label><input type="text" id="topicTitle" placeholder="Başlık girin"></div>
+            <div class="input-group"><label>İçerik (Mesajınız)</label><textarea id="topicBody" placeholder="Buraya yazın... (Küfür yasaktır)"></textarea></div>
             <button class="submit-btn" onclick="submitTopicToDatabase()">Foruma Gönder</button>
         </div>
     </div>
@@ -276,6 +299,16 @@
 
         window.isUserLoggedIn = false; window.currentUsername = ""; window.currentUserPhoto = "";
         const ADMIN_EMAIL = "mustafacanyilmazpc@gmail.com"; window.isAdmin = false;
+
+        const yasakliKelimeler = ["salak", "aptal", "gerizekalı", "mal", "kötükelime", "lan"]; 
+        window.sansurle = (metin) => {
+            let temizMetin = metin;
+            yasakliKelimeler.forEach(kelime => {
+                const regex = new RegExp(kelime, "gi");
+                temizMetin = temizMetin.replace(regex, "***");
+            });
+            return temizMetin;
+        };
 
         window.openAuthModal = () => { document.getElementById('authModal').style.display = 'flex'; };
         window.closeAuthModal = () => { document.getElementById('authModal').style.display = 'none'; };
@@ -308,29 +341,46 @@
             if(!window.isUserLoggedIn) return;
             let t = document.getElementById('topicTitle').value, b = document.getElementById('topicBody').value, c = document.getElementById('topicCat').value;
             if(t.trim()==="") return;
+            t = window.sansurle(t); b = window.sansurle(b);
             await addDoc(collection(db, "forum_mesajlari"), { baslik: t, icerik: b, kategori: c, yazar: window.currentUsername, fotograf: window.currentUserPhoto, tarih: serverTimestamp(), cevaplar: [] });
             document.getElementById('topicTitle').value = ""; document.getElementById('topicBody').value = ""; window.closeTopicModal();
         };
 
         window.submitReply = async () => {
             let id = document.getElementById('replyThreadId').value, txt = document.getElementById('replyBody').value; if(txt.trim()==="") return;
+            txt = window.sansurle(txt);
             await updateDoc(doc(db, "forum_mesajlari", id), { cevaplar: arrayUnion({ yazar: window.currentUsername, fotograf: window.currentUserPhoto, metin: txt }) });
             document.getElementById('replyBody').value = ""; window.closeReplyModal();
         };
 
-        window.deleteThread = async (id) => { if(window.isAdmin && confirm("Silinsin mi?")) await deleteDoc(doc(db, "forum_mesajlari", id)); };
+        window.deleteThread = async (id) => { if(window.isAdmin && confirm("Emin misin patron?")) await deleteDoc(doc(db, "forum_mesajlari", id)); };
 
         onSnapshot(query(collection(db, "forum_mesajlari"), orderBy("tarih", "desc")), (snap) => {
-            let c = document.getElementById('threadContainer'); c.innerHTML = "";
+            let c = document.getElementById('threadContainer'); 
+            
+            // Sabit (Pinned) Admin Mesajı
+            let sabitKonu = `
+            <div class="thread-card pinned">
+                <div class="thread-main">
+                    <div class="thread-avatar" style="border-color: #F1C40F; color: #F1C40F;">👑</div>
+                    <div class="thread-content">
+                        <h3 class="thread-title"><span style="background: #F1C40F; color: #000; padding:2px 5px; font-size:12px; border-radius:3px;">SABİT</span> 📌 Hoş Geldiniz! Forum Kuralları</h3>
+                        <div class="thread-body">Yeni üyelerimiz, yama isteklerinizi veya oyun modlarındaki sorunları doğru kategoriye açın. İyi oyunlar!</div>
+                        <div class="thread-meta"><span class="thread-author">Admin_Mustafa</span> • Kurucu • Kategori: Genel Tartışma</div>
+                    </div>
+                </div>
+            </div>`;
+            c.innerHTML = sabitKonu;
+
             snap.forEach((d) => {
                 let data = d.data(), id = d.id;
                 let html = `<div class="thread-card">
                     <div class="thread-main">
-                        <div class="thread-avatar"><img src="${data.fotograf}"></div>
+                        <div class="thread-avatar"><img src="${data.fotograf || 'https://via.placeholder.com/50'}"></div>
                         <div class="thread-content">
                             <h3 class="thread-title">${data.baslik}</h3><div class="thread-body">${data.icerik}</div>
                             <div class="thread-meta"><span>${data.yazar}</span> • Kategori: ${data.kategori}</div>
-                            <div class="thread-actions"><button class="reply-btn" onclick="openReplyModal('${id}')">Cevap Yaz</button><button class="admin-delete-btn" style="${window.isAdmin?'display:block;':'display:none;'}" onclick="deleteThread('${id}')">SİL</button></div>
+                            <div class="thread-actions"><button class="reply-btn" onclick="openReplyModal('${id}')">💬 Cevap Yaz</button><button class="admin-delete-btn" style="${window.isAdmin?'display:block;':'display:none;'}" onclick="deleteThread('${id}')">🗑️ Sil (Admin)</button></div>
                         </div>
                     </div>`;
                 if(data.cevaplar && data.cevaplar.length>0) {
