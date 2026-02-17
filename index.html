@@ -14,17 +14,14 @@
         body {
             font-family: 'Montserrat', sans-serif;
             background: linear-gradient(rgba(15, 20, 25, 0.85), rgba(15, 20, 25, 0.95)), url('arkaplan.jpg') center/cover fixed;
-            color: #E0E0E0;
-            margin: 0; padding: 0;
-            overflow-x: hidden;
+            color: #E0E0E0; margin: 0; padding: 0; overflow-x: hidden;
         }
 
         /* HEADER */
         header { 
             background-color: rgba(17, 21, 29, 0.95); padding: 20px 50px; 
             display: flex; justify-content: space-between; align-items: center; 
-            border-bottom: 2px solid #1ABC9C; position: sticky; top: 0; z-index: 100;
-            backdrop-filter: blur(10px);
+            border-bottom: 2px solid #1ABC9C; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(10px);
         }
         .logo { font-size: 28px; font-weight: 900; color: #FFFFFF; text-decoration: none; letter-spacing: 1px;}
         .logo span { color: #1ABC9C; }
@@ -39,7 +36,7 @@
 
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px 50px 20px; }
 
-        /* ================= VİTRİN BÖLÜMÜ (OYUNLAR) ================= */
+        /* VİTRİN BÖLÜMÜ (OYUNLAR) */
         #showcaseSection { display: block; animation: fadeIn 0.4s; }
 
         .hero { text-align: center; padding: 80px 20px 50px 20px; }
@@ -47,18 +44,10 @@
         .hero h1 span { color: #1ABC9C; }
         .hero p { font-size: 18px; color: #AAB7B8; max-width: 700px; margin: 0 auto; line-height: 1.6; }
 
-        .forum-banner {
-            background: linear-gradient(135deg, rgba(26, 188, 156, 0.1), rgba(109, 40, 217, 0.1));
-            border: 1px solid rgba(26, 188, 156, 0.3); border-radius: 12px;
-            padding: 30px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 50px;
-        }
+        .forum-banner { background: linear-gradient(135deg, rgba(26, 188, 156, 0.1), rgba(109, 40, 217, 0.1)); border: 1px solid rgba(26, 188, 156, 0.3); border-radius: 12px; padding: 30px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 50px; }
         .forum-text h2 { margin: 0 0 10px 0; color: #FFF; font-size: 24px; display: flex; align-items: center; gap: 10px;}
         .forum-text p { margin: 0; color: #AAB7B8; font-size: 15px; }
-        .forum-btn {
-            background: linear-gradient(90deg, #1ABC9C, #3498DB); border: none; color: #FFF;
-            padding: 15px 30px; border-radius: 8px; font-size: 16px; font-weight: 800;
-            transition: 0.3s; box-shadow: 0 5px 15px rgba(26, 188, 156, 0.3);
-        }
+        .forum-btn { background: linear-gradient(90deg, #1ABC9C, #3498DB); border: none; color: #FFF; padding: 15px 30px; border-radius: 8px; font-size: 16px; font-weight: 800; transition: 0.3s; box-shadow: 0 5px 15px rgba(26, 188, 156, 0.3); }
         .forum-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(26, 188, 156, 0.5); }
 
         .section-title { font-size: 28px; color: #FFF; border-bottom: 2px solid #333; padding-bottom: 10px; margin-bottom: 30px; }
@@ -70,11 +59,13 @@
         .game-card.fm::before { background-color: #6D28D9; }
         .game-card.ac::before { background-color: #E74C3C; }
         .game-card.lol::before { background-color: #F1C40F; }
+        .game-card.gta::before { background-color: #2ECC71; }
 
         .game-card:hover { transform: translateY(-10px); background-color: rgba(30, 35, 45, 0.9); }
         .game-card.mc:hover { border-color: #2ECC71; box-shadow: 0 10px 20px rgba(46, 204, 113, 0.2); }
         .game-card.fm:hover { border-color: #6D28D9; box-shadow: 0 10px 20px rgba(109, 40, 217, 0.2); }
         .game-card.ac:hover { border-color: #E74C3C; box-shadow: 0 10px 20px rgba(231, 76, 60, 0.2); }
+        .game-card.gta:hover { border-color: #2ECC71; box-shadow: 0 10px 20px rgba(46, 204, 113, 0.2); }
         
         .game-icon { font-size: 40px; margin-bottom: 15px; }
         .game-card h3 { color: #FFF; font-size: 22px; margin: 0 0 10px 0; }
@@ -84,13 +75,13 @@
         .game-card.mc .play-btn:hover { background-color: #2ECC71; color: #000; border-color: #2ECC71;}
         .game-card.fm .play-btn:hover { background-color: #6D28D9; color: #FFF; border-color: #6D28D9;}
         .game-card.ac .play-btn:hover { background-color: #E74C3C; color: #FFF; border-color: #E74C3C;}
+        .game-card.gta .play-btn:hover { background-color: #2ECC71; color: #000; border-color: #2ECC71;}
         
         .locked-btn { background-color: #1A1A1A; color: #555; text-align: center; padding: 12px; border-radius: 6px; font-weight: 700; border: 1px dashed #333; pointer-events: none; }
         .free-download-badge { display: inline-block; background: rgba(46, 204, 113, 0.1); color: #2ECC71; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; margin-bottom: 10px; border: 1px solid #2ECC71; }
 
-        /* ================= FORUM BÖLÜMÜ (İÇ İÇE) ================= */
+        /* FORUM BÖLÜMÜ */
         #forumSection { display: none; padding-top: 40px; animation: fadeIn 0.4s; }
-        
         .forum-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px; border-bottom: 1px solid #2C3E50; padding-bottom: 20px;}
         .forum-header h1 { font-size: 32px; color: #FFF; margin: 0; font-weight: 800; display: flex; align-items: center; gap: 10px;}
         .forum-actions { display: flex; gap: 15px; }
@@ -100,7 +91,6 @@
         .new-topic-btn:hover { background: #16A085; transform: translateY(-2px);}
 
         .forum-grid { display: grid; grid-template-columns: 260px 1fr; gap: 30px; align-items: start; }
-        
         .forum-sidebar { background-color: rgba(20, 25, 30, 0.8); padding: 20px; border-radius: 12px; border: 1px solid #2C3E50; position: sticky; top: 90px; }
         .forum-sidebar-title { color: #8892B0; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; font-weight: 700; }
         .cat-btn { background: transparent; color: #AAB7B8; border: none; width: 100%; text-align: left; padding: 12px 15px; border-radius: 8px; font-size: 14px; font-weight: 600; transition: 0.2s; margin-bottom: 5px; display: flex; justify-content: space-between; align-items: center;}
@@ -124,23 +114,20 @@
 
         .pinned { border-left: 4px solid #F1C40F !important; }
 
-        /* ================= MODAL PENCERELER (GİRİŞ & KONU AÇMA) ================= */
+        /* MODAL PENCERELER */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); z-index: 1000; justify-content: center; align-items: center; }
-        .modal-box { background: #11151D; width: 400px; border-radius: 12px; border: 1px solid #1ABC9C; padding: 30px; box-shadow: 0 15px 30px rgba(0,0,0,0.5); position: relative; animation: slideDown 0.3s ease-out; }
-        .modal-box.large { width: 600px; }
+        .modal-box { background: #11151D; width: 400px; border-radius: 12px; border: 1px solid #1ABC9C; padding: 30px; box-shadow: 0 15px 30px rgba(0,0,0,0.5); position: relative; animation: slideDown 0.3s ease-out; text-align: center;}
+        .modal-box.large { width: 600px; text-align: left;}
         @keyframes slideDown { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         
         .close-btn { position: absolute; top: 15px; right: 20px; font-size: 24px; color: #888; background: none; border: none; font-weight: bold; padding: 0;}
         .close-btn:hover { color: #FFF; }
 
-        .modal-tabs { display: flex; margin-bottom: 20px; border-bottom: 1px solid #333; }
-        .modal-tab { flex: 1; text-align: center; padding: 10px; color: #888; font-weight: 700; background: none; border: none; border-bottom: 2px solid transparent;}
-        .modal-tab.active { color: #1ABC9C; border-bottom: 2px solid #1ABC9C; }
-        
-        .auth-form { display: none; }
-        .auth-form.active { display: flex; flex-direction: column; gap: 15px; }
-        
-        .input-group { margin-bottom: 15px; }
+        .google-btn { background: #FFF; color: #444; font-weight: 800; border: none; padding: 15px; border-radius: 6px; font-size: 16px; margin-top: 20px; transition: 0.3s; width: 100%; display: flex; align-items: center; justify-content: center; gap: 15px; box-shadow: 0 4px 10px rgba(255,255,255,0.1);}
+        .google-btn:hover { background: #f1f1f1; transform: scale(1.02); }
+        .google-btn img { width: 24px; }
+
+        .input-group { margin-bottom: 15px; text-align: left; }
         .input-group label { font-size: 12px; color: #AAB7B8; font-weight: 600; margin-bottom: 5px; display: block; }
         .input-group input, .input-group select, .input-group textarea { width: 100%; padding: 12px; background: #1A202C; border: 1px solid #333; border-radius: 6px; color: #FFF; font-family: 'Montserrat'; box-sizing: border-box; outline: none; transition: 0.3s; }
         .input-group input:focus, .input-group select:focus, .input-group textarea:focus { border-color: #1ABC9C; }
@@ -161,14 +148,14 @@
             <button id="loginBtn" class="login-btn" onclick="openAuthModal()">Giriş Yap / Üye Ol</button>
             
             <div id="userProfile" class="user-profile">
-                <span>👤 Hoş geldin, <span id="usernameDisplay">Patron</span></span>
-                <button class="logout-btn" onclick="logout()">Çıkış Yap</button>
+                <img id="userPhoto" src="" alt="Profil" style="width: 30px; height: 30px; border-radius: 50%; border: 2px solid #2ECC71;">
+                <span>Hoş geldin, <span id="usernameDisplay">Patron</span></span>
+                <button class="logout-btn" onclick="logoutFirebase()">Çıkış Yap</button>
             </div>
         </div>
     </header>
 
     <div class="container">
-        
         <div id="showcaseSection">
             <section class="hero">
                 <h1>Oyunlarda <span>Maksimum</span> Performans</h1>
@@ -202,25 +189,20 @@
                     <a href="fm.html" class="play-btn">Taktik Tahtasına Geç</a>
                 </div>
 
-                <div class="game-card ac" style="border-left-color: #E74C3C;">
+                <div class="game-card ac">
                     <div class="free-download-badge">İndirmeler Ücretsiz & Açık</div>
                     <div class="game-icon">🏎️</div>
                     <h3>Assetto Corsa</h3>
                     <p>Oyun motorunu yenileme (CSP), tek tıkla araba/harita kurma ve Japonya otoyolunda trafik makas modu rehberi.</p>
-                    <a href="assetto.html" class="play-btn" style="background:#E74C3C; border-color:#E74C3C;">Garaja Gir</a>
+                    <a href="assetto.html" class="play-btn">Garaja Gir</a>
                 </div>
-                <div class="game-card" style="border-left-color: #2ECC71;">
+
+                <div class="game-card gta">
                     <div class="free-download-badge">İndirmeler Ücretsiz & Açık</div>
                     <div class="game-icon">🔫</div>
                     <h3>Grand Theft Auto V</h3>
                     <p>Oyunu bozmadan mod kurma (OpenIV), ScriptHookV hata çözümü, gerçek araba paketleri ve FiveM Roleplay giriş rehberi.</p>
                     <a href="gta5.html" class="play-btn" style="background:#2ECC71; color:#000; border-color:#2ECC71;">Los Santos'a İn</a>
-                </div>
-                <div class="game-card lol">
-                    <div class="game-icon">⚔️</div>
-                    <h3>League of Legends</h3>
-                    <p>Ping düşürme ayarları, istemci (client) optimizasyonu ve FPS drop sorunlarına kesin çözümler.</p>
-                    <div class="locked-btn">İnşaat Halinde (Yakında)</div>
                 </div>
 
             </div>
@@ -236,7 +218,6 @@
             </div>
 
             <div class="forum-grid">
-                
                 <div class="forum-sidebar">
                     <div class="forum-sidebar-title">Kategoriler</div>
                     <button class="cat-btn active">🌐 Tümü</button>
@@ -244,12 +225,11 @@
                     <button class="cat-btn">⛏️ Minecraft</button>
                     <button class="cat-btn">⚽ Football Manager</button>
                     <button class="cat-btn">🏎️ Assetto Corsa</button>
-                    <button class="cat-btn">⚔️ League of Legends</button>
+                    <button class="cat-btn">🔫 GTA 5</button>
                 </div>
 
                 <div class="main-panel">
                     <div class="thread-list" id="threadContainer">
-                        
                         <div class="thread-card pinned">
                             <div class="thread-avatar" style="border-color: #F1C40F;">👑</div>
                             <div class="thread-content">
@@ -263,50 +243,22 @@
                                 <div class="stat-box"><span class="stat-num">0</span><span class="stat-lbl">Cevap</span></div>
                             </div>
                         </div>
-
                         </div>
                 </div>
             </div>
         </div>
-
     </div>
 
     <div id="authModal" class="modal-overlay">
         <div class="modal-box">
             <button class="close-btn" onclick="closeAuthModal()">×</button>
+            <h2 style="color: #FFF; margin-top: 0;">BoostRehberi'ne Katıl</h2>
+            <p style="color: #AAB7B8; font-size: 14px;">VIP Foruma girmek ve dosyaları indirmek için hızlıca giriş yap.</p>
             
-            <div class="modal-tabs">
-                <button class="modal-tab active" onclick="switchTab('login')" id="tab-login">Giriş Yap</button>
-                <button class="modal-tab" onclick="switchTab('register')" id="tab-register">Kayıt Ol</button>
-            </div>
-
-            <div id="form-login" class="auth-form active">
-                <div class="input-group">
-                    <label>Kullanıcı Adı veya E-Posta</label>
-                    <input type="text" id="loginUser" placeholder="Oyuncu_Adı">
-                </div>
-                <div class="input-group">
-                    <label>Şifre</label>
-                    <input type="password" placeholder="••••••••">
-                </div>
-                <button class="submit-btn" onclick="simulateLogin()">Sisteme Gir</button>
-            </div>
-
-            <div id="form-register" class="auth-form">
-                <div class="input-group">
-                    <label>Kullanıcı Adı</label>
-                    <input type="text" id="regUser" placeholder="Efsanevi_Nickin">
-                </div>
-                <div class="input-group">
-                    <label>E-Posta Adresi</label>
-                    <input type="email" placeholder="mail@ornek.com">
-                </div>
-                <div class="input-group">
-                    <label>Şifre Belirle</label>
-                    <input type="password" placeholder="••••••••">
-                </div>
-                <button class="submit-btn" onclick="simulateRegister()">Aramıza Katıl</button>
-            </div>
+            <button class="google-btn" onclick="loginWithGoogle()">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google">
+                Google ile Güvenli Giriş Yap
+            </button>
         </div>
     </div>
 
@@ -322,7 +274,7 @@
                     <option value="MC">⛏️ Minecraft</option>
                     <option value="FM">⚽ Football Manager</option>
                     <option value="AC">🏎️ Assetto Corsa</option>
-                    <option value="LOL">⚔️ League of Legends</option>
+                    <option value="GTA">🔫 GTA 5</option>
                 </select>
             </div>
 
@@ -340,116 +292,131 @@
         </div>
     </div>
 
-    <script>
-        let isUserLoggedIn = false;
-        let currentUsername = "";
+    <script type="module">
+        // Firebase Modüllerini İçe Aktar
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
 
-        /* --- ÜYELİK SİSTEMİ --- */
-        function openAuthModal() { document.getElementById('authModal').style.display = 'flex'; }
-        function closeAuthModal() { document.getElementById('authModal').style.display = 'none'; }
+        // Senin BoostRehberi Altın Anahtarların!
+        const firebaseConfig = {
+            apiKey: "AIzaSyC7NhVifwWUaKikHE3QrkKwjhnLdaW48OY",
+            authDomain: "boostrehberi.firebaseapp.com",
+            projectId: "boostrehberi",
+            storageBucket: "boostrehberi.firebasestorage.app",
+            messagingSenderId: "775353055674",
+            appId: "1:775353055674:web:47d8d22d3a5e976b834583",
+            measurementId: "G-L358ES2HFV"
+        };
 
-        function switchTab(tabName) {
-            document.getElementById('tab-login').classList.remove('active');
-            document.getElementById('tab-register').classList.remove('active');
-            document.getElementById('form-login').classList.remove('active');
-            document.getElementById('form-register').classList.remove('active');
-            
-            document.getElementById('tab-' + tabName).classList.add('active');
-            document.getElementById('form-' + tabName).classList.add('active');
-        }
+        // Kilitleri Açıyoruz
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
 
-        function simulateLogin() {
-            let user = document.getElementById('loginUser').value;
-            if(user === "") user = "Oyuncu";
-            completeLogin(user);
-        }
+        // Evrensel (Global) Değişkenler ve Fonksiyonlar
+        window.isUserLoggedIn = false;
+        window.currentUsername = "";
+        
+        window.openAuthModal = () => { document.getElementById('authModal').style.display = 'flex'; };
+        window.closeAuthModal = () => { document.getElementById('authModal').style.display = 'none'; };
+        
+        // GOOGLE İLE GİRİŞ FONKSİYONU
+        window.loginWithGoogle = () => {
+            signInWithPopup(auth, provider).then((result) => {
+                // Giriş Başarılı!
+                window.closeAuthModal();
+            }).catch((error) => {
+                alert("Giriş yaparken bir hata oluştu: " + error.message);
+            });
+        };
 
-        function simulateRegister() {
-            let user = document.getElementById('regUser').value;
-            if(user === "") user = "Yeni_Oyuncu";
-            alert("Aramıza hoş geldin " + user + "! Kaydın başarıyla oluşturuldu.");
-            completeLogin(user);
-        }
+        // ÇIKIŞ YAPMA FONKSİYONU
+        window.logoutFirebase = () => {
+            signOut(auth).then(() => {
+                alert("Güvenli bir şekilde çıkış yapıldı.");
+                window.goToGames();
+            }).catch((error) => {
+                console.error(error);
+            });
+        };
 
-        function completeLogin(username) {
-            isUserLoggedIn = true;
-            currentUsername = username;
-            document.getElementById('usernameDisplay').innerText = username;
-            document.getElementById('loginBtn').style.display = 'none';
-            document.getElementById('userProfile').style.display = 'flex';
-            closeAuthModal();
-        }
+        // KULLANICI DURUMUNU DİNLEME (Sürekli Kontrol Eder)
+        onAuthStateChanged(auth, (user) => {
+            const loginBtn = document.getElementById('loginBtn');
+            const userProfile = document.getElementById('userProfile');
+            const usernameDisplay = document.getElementById('usernameDisplay');
+            const userPhoto = document.getElementById('userPhoto');
 
-        function logout() {
-            isUserLoggedIn = false;
-            currentUsername = "";
-            document.getElementById('loginBtn').style.display = 'block';
-            document.getElementById('userProfile').style.display = 'none';
-            goToGames(); // Çıkış yapınca adamı forumdan atıp vitrine geri yolluyoruz
-            alert("Sistemden çıkış yapıldı.");
-        }
+            if (user) {
+                // Sisteme biri girdiğinde burası çalışır
+                window.isUserLoggedIn = true;
+                window.currentUsername = user.displayName;
+                
+                // İsmi ve resmi Google'dan çeker
+                usernameDisplay.innerText = user.displayName;
+                userPhoto.src = user.photoURL; 
+                
+                loginBtn.style.display = 'none';
+                userProfile.style.display = 'flex';
+            } else {
+                // Giriş yapılmadıysa veya çıkış yapıldıysa burası çalışır
+                window.isUserLoggedIn = false;
+                window.currentUsername = "";
+                
+                loginBtn.style.display = 'block';
+                userProfile.style.display = 'none';
+            }
+        });
 
         /* --- VİTRİN / FORUM GEÇİŞ SİSTEMİ --- */
-        function goToForum() {
-            if(isUserLoggedIn) {
-                // Oyunları gizle, Forumu göster
+        window.goToForum = () => {
+            if(window.isUserLoggedIn) {
                 document.getElementById('showcaseSection').style.display = 'none';
                 document.getElementById('forumSection').style.display = 'block';
                 window.scrollTo({top: 0, behavior: 'smooth'}); 
             } else {
-                alert("VIP Foruma girmek için dükkana üye olman gerekiyor patron!");
-                openAuthModal();
+                window.openAuthModal();
             }
-        }
+        };
 
-        function goToGames() {
-            // Forumu gizle, Oyunları göster
+        window.goToGames = () => {
             document.getElementById('forumSection').style.display = 'none';
             document.getElementById('showcaseSection').style.display = 'block';
             window.scrollTo({top: 0, behavior: 'smooth'}); 
-        }
+        };
 
-        /* --- FORUM KONU AÇMA SİSTEMİ --- */
-        function openTopicModal() { document.getElementById('topicModal').style.display = 'flex'; }
-        function closeTopicModal() { document.getElementById('topicModal').style.display = 'none'; }
+        /* --- FORUM KONU AÇMA SİSTEMİ (Şimdilik Görsel) --- */
+        window.openTopicModal = () => { document.getElementById('topicModal').style.display = 'flex'; };
+        window.closeTopicModal = () => { document.getElementById('topicModal').style.display = 'none'; };
 
-        function submitTopic() {
+        window.submitTopic = () => {
             let title = document.getElementById('topicTitle').value;
             let cat = document.getElementById('topicCat').options[document.getElementById('topicCat').selectedIndex].text;
             
-            if(title.trim() === "") {
-                alert("Lütfen bir başlık girin!");
-                return;
-            }
+            if(title.trim() === "") { alert("Lütfen bir başlık girin!"); return; }
 
-            // Yeni konuyu HTML olarak oluşturup sabit konunun hemen altına ekleme
             let newThreadHTML = `
             <div class="thread-card" style="border-color: #1ABC9C; animation: fadeIn 0.5s;">
                 <div class="thread-avatar" style="background: #1ABC9C; color: #000;">👤</div>
                 <div class="thread-content">
                     <h3 class="thread-title"><span style="background: #1ABC9C; color: #000;">YENİ</span> ${title}</h3>
                     <div class="thread-meta">
-                        <span class="thread-author">${currentUsername}</span> • 📅 Az Önce • 📍 Kategori: ${cat}
+                        <span class="thread-author">${window.currentUsername}</span> • 📅 Az Önce • 📍 Kategori: ${cat}
                     </div>
                 </div>
                 <div class="thread-stats">
                     <div class="stat-box"><span class="stat-num">0</span><span class="stat-lbl">Görüntülenme</span></div>
                     <div class="stat-box"><span class="stat-num">0</span><span class="stat-lbl">Cevap</span></div>
                 </div>
-            </div>
-            `;
+            </div>`;
 
             let container = document.getElementById('threadContainer');
-            // İlk çocuk (Sabit Konu) sonrasına ekler
             container.children[0].insertAdjacentHTML('afterend', newThreadHTML);
             
-            // Temizlik
             document.getElementById('topicTitle').value = "";
             document.getElementById('topicBody').value = "";
-            closeTopicModal();
-            
-            alert("Konun başarıyla eklendi patron!");
-        }
+            window.closeTopicModal();
+        };
     </script>
 </body>
 </html>
