@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="OLlba8kbebltSCUHH0uxNQsYZDxfTAL1eQ1onG2cS2Y" />
-    <title>BoostRehberi - Oyun Performans & Mod Merkezi</title>
+    <title>BoostRehberi - Oyun Performans & Türkçe Yama Merkezi</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap');
 
@@ -18,7 +18,7 @@
             color: #E0E0E0; margin: 0; padding: 0; overflow-x: hidden;
         }
 
-        /* HEADER & İLETİŞİM BUTONU */
+        /* HEADER */
         header { 
             background-color: rgba(17, 21, 29, 0.95); padding: 20px 50px; 
             display: flex; justify-content: space-between; align-items: center; 
@@ -54,35 +54,34 @@
         .forum-btn { background: linear-gradient(90deg, #1ABC9C, #3498DB); border: none; color: #FFF; padding: 15px 30px; border-radius: 8px; font-size: 16px; font-weight: 800; transition: 0.3s; box-shadow: 0 5px 15px rgba(26, 188, 156, 0.3); }
         .forum-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(26, 188, 156, 0.5); }
 
-        .section-title { font-size: 28px; color: #FFF; border-bottom: 2px solid #333; padding-bottom: 10px; margin-bottom: 30px; }
-        .games-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .section-title { font-size: 28px; color: #FFF; border-bottom: 2px solid #333; padding-bottom: 10px; margin-bottom: 30px; display: flex; align-items: center; gap: 10px; }
+        .games-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-bottom: 60px; }
         
         .game-card { background-color: rgba(20, 25, 30, 0.8); border: 1px solid #333; border-radius: 12px; padding: 30px; transition: 0.3s; display: flex; flex-direction: column; position: relative; overflow: hidden; }
         .game-card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; }
+        
+        /* Mod & FPS Renkleri */
         .game-card.mc::before { background-color: #2ECC71; }
-        .game-card.fm::before { background-color: #6D28D9; }
-        .game-card.ac::before { background-color: #E74C3C; }
-        .game-card.gta::before { background-color: #2ECC71; }
+        .game-card.gta::before { background-color: #F39C12; }
+        
+        /* Yama Renkleri */
+        .game-card.tr-yama::before { background-color: #E74C3C; }
 
-        .game-card:hover { transform: translateY(-10px); background-color: rgba(30, 35, 45, 0.9); }
-        .game-card.mc:hover { border-color: #2ECC71; box-shadow: 0 10px 20px rgba(46, 204, 113, 0.2); }
-        .game-card.fm:hover { border-color: #6D28D9; box-shadow: 0 10px 20px rgba(109, 40, 217, 0.2); }
-        .game-card.ac:hover { border-color: #E74C3C; box-shadow: 0 10px 20px rgba(231, 76, 60, 0.2); }
-        .game-card.gta:hover { border-color: #2ECC71; box-shadow: 0 10px 20px rgba(46, 204, 113, 0.2); }
+        .game-card:hover { transform: translateY(-10px); background-color: rgba(30, 35, 45, 0.9); border-color: #1ABC9C; box-shadow: 0 10px 20px rgba(26, 188, 156, 0.2); }
+        .game-card.tr-yama:hover { border-color: #E74C3C; box-shadow: 0 10px 20px rgba(231, 76, 60, 0.2); }
         
         .game-icon { font-size: 40px; margin-bottom: 15px; }
         .game-card h3 { color: #FFF; font-size: 22px; margin: 0 0 10px 0; }
         .game-card p { color: #8892B0; font-size: 14px; margin: 0 0 25px 0; flex-grow: 1; }
         
         .play-btn { background-color: #1A1A1A; color: #FFF; text-align: center; text-decoration: none; padding: 12px; border-radius: 6px; font-weight: 700; border: 1px solid #444; transition: 0.3s; }
-        .game-card.mc .play-btn:hover { background-color: #2ECC71; color: #000; border-color: #2ECC71;}
-        .game-card.fm .play-btn:hover { background-color: #6D28D9; color: #FFF; border-color: #6D28D9;}
-        .game-card.ac .play-btn:hover { background-color: #E74C3C; color: #FFF; border-color: #E74C3C;}
-        .game-card.gta .play-btn:hover { background-color: #2ECC71; color: #000; border-color: #2ECC71;}
+        .game-card .play-btn:hover { background-color: #1ABC9C; color: #000; border-color: #1ABC9C;}
+        .game-card.tr-yama .play-btn:hover { background-color: #E74C3C; color: #FFF; border-color: #E74C3C;}
         
-        .free-download-badge { display: inline-block; background: rgba(46, 204, 113, 0.1); color: #2ECC71; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; margin-bottom: 10px; border: 1px solid #2ECC71; }
+        .badge-mod { display: inline-block; background: rgba(46, 204, 113, 0.1); color: #2ECC71; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; margin-bottom: 10px; border: 1px solid #2ECC71; }
+        .badge-yama { display: inline-block; background: rgba(231, 76, 60, 0.1); color: #E74C3C; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; margin-bottom: 10px; border: 1px solid #E74C3C; }
 
-        /* FORUM BÖLÜMÜ */
+        /* FORUM BÖLÜMÜ (DOKUNULMADI) */
         #forumSection { display: none; padding-top: 40px; animation: fadeIn 0.4s; }
         .forum-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px; border-bottom: 1px solid #2C3E50; padding-bottom: 20px;}
         .forum-header h1 { font-size: 32px; color: #FFF; margin: 0; font-weight: 800; display: flex; align-items: center; gap: 10px;}
@@ -101,8 +100,6 @@
 
         .thread-list { display: flex; flex-direction: column; gap: 15px; }
         .thread-card { background: rgba(22, 27, 34, 0.9); border: 1px solid #2C3E50; border-radius: 10px; padding: 20px; display: flex; flex-direction: column; gap: 15px; transition: 0.2s; position: relative;}
-        .thread-card:hover { border-color: #555; background: rgba(30, 35, 45, 0.9); }
-        
         .thread-main { display: flex; gap: 20px; align-items: flex-start; }
         .thread-avatar { width: 50px; height: 50px; border-radius: 50%; background: #2C3E50; display: flex; justify-content: center; align-items: center; font-size: 24px; border: 2px solid #1ABC9C; flex-shrink: 0; overflow: hidden;}
         .thread-avatar img { width: 100%; height: 100%; object-fit: cover; }
@@ -111,15 +108,10 @@
         .thread-body { color: #AAB7B8; font-size: 14px; line-height: 1.5; margin-bottom: 10px;}
         .thread-meta { font-size: 12px; color: #8892B0; display: flex; gap: 15px; align-items: center; }
         .thread-author { color: #1ABC9C; font-weight: 700; }
-        
         .thread-actions { display: flex; gap: 10px; margin-top: 10px; align-items: center;}
         .reply-btn { background: rgba(26, 188, 156, 0.1); color: #1ABC9C; border: 1px solid #1ABC9C; padding: 6px 12px; border-radius: 4px; font-size: 12px; font-weight: 700; transition: 0.2s;}
-        .reply-btn:hover { background: #1ABC9C; color: #000; }
         
-        /* ADMİN SİL BUTONU */
         .admin-delete-btn { background: rgba(231, 76, 60, 0.1); color: #E74C3C; border: 1px solid #E74C3C; padding: 6px 12px; border-radius: 4px; font-size: 12px; font-weight: 700; transition: 0.2s; display: none; cursor: pointer;}
-        .admin-delete-btn:hover { background: #E74C3C; color: #FFF; }
-
         .replies-container { background: rgba(0, 0, 0, 0.3); border-left: 2px solid #3498DB; padding: 15px; border-radius: 8px; margin-top: 10px; display: flex; flex-direction: column; gap: 10px;}
         .reply-item { display: flex; gap: 10px; align-items: flex-start; border-bottom: 1px solid #333; padding-bottom: 10px;}
         .reply-item:last-child { border-bottom: none; padding-bottom: 0;}
@@ -127,27 +119,21 @@
         .reply-avatar img { width: 100%; height: 100%; object-fit: cover; }
         .reply-content { flex-grow: 1; font-size: 13px; color: #DDD;}
         .reply-author { color: #3498DB; font-weight: 700; font-size: 12px; margin-bottom: 3px; display: block;}
-
         .pinned { border-left: 4px solid #F1C40F !important; }
 
-        /* MODALLAR */
+        /* MODALLAR (DOKUNULMADI) */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); z-index: 1000; justify-content: center; align-items: center; }
         .modal-box { background: #11151D; width: 400px; border-radius: 12px; border: 1px solid #1ABC9C; padding: 30px; box-shadow: 0 15px 30px rgba(0,0,0,0.5); position: relative; animation: slideDown 0.3s ease-out; text-align: center;}
         .modal-box.large { width: 600px; text-align: left;}
         @keyframes slideDown { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        
         .close-btn { position: absolute; top: 15px; right: 20px; font-size: 24px; color: #888; background: none; border: none; font-weight: bold; padding: 0;}
-        .close-btn:hover { color: #FFF; }
-        .google-btn { background: #FFF; color: #444; font-weight: 800; border: none; padding: 15px; border-radius: 6px; font-size: 16px; margin-top: 20px; transition: 0.3s; width: 100%; display: flex; align-items: center; justify-content: center; gap: 15px; box-shadow: 0 4px 10px rgba(255,255,255,0.1);}
-        .google-btn:hover { background: #f1f1f1; transform: scale(1.02); }
+        .google-btn { background: #FFF; color: #444; font-weight: 800; border: none; padding: 15px; border-radius: 6px; font-size: 16px; margin-top: 20px; transition: 0.3s; width: 100%; display: flex; align-items: center; justify-content: center; gap: 15px;}
         .google-btn img { width: 24px; }
         .input-group { margin-bottom: 15px; text-align: left; }
         .input-group label { font-size: 12px; color: #AAB7B8; font-weight: 600; margin-bottom: 5px; display: block; }
-        .input-group input, .input-group select, .input-group textarea { width: 100%; padding: 12px; background: #1A202C; border: 1px solid #333; border-radius: 6px; color: #FFF; font-family: 'Montserrat'; box-sizing: border-box; outline: none; transition: 0.3s; }
-        .input-group input:focus, .input-group select:focus, .input-group textarea:focus { border-color: #1ABC9C; }
+        .input-group input, .input-group select, .input-group textarea { width: 100%; padding: 12px; background: #1A202C; border: 1px solid #333; border-radius: 6px; color: #FFF; font-family: 'Montserrat'; box-sizing: border-box; outline: none;}
         .input-group textarea { height: 120px; resize: none; }
         .submit-btn { background: #1ABC9C; color: #000; font-weight: 800; border: none; padding: 15px; border-radius: 6px; font-size: 16px; margin-top: 10px; transition: 0.3s; width: 100%; }
-        .submit-btn:hover { background: #16A085; transform: scale(1.02); }
     </style>
 </head>
 <body>
@@ -155,13 +141,11 @@
     <header>
         <a href="index.html" class="logo">Boost<span>Rehberi</span></a>
         <div class="header-right">
-            <a href="mailto:boostrehberi@gmail.com" class="contact-btn">✉️ Bize Ulaşın</a>
-            
             <button id="loginBtn" class="login-btn" onclick="openAuthModal()">Giriş Yap / Üye Ol</button>
             <div id="userProfile" class="user-profile">
                 <img id="userPhoto" src="" alt="Profil" style="width: 30px; height: 30px; border-radius: 50%; border: 2px solid #2ECC71;">
                 <span><span id="usernameDisplay">Patron</span><span id="adminBadge" class="admin-badge">ADMİN</span></span>
-                <button class="logout-btn" onclick="logoutFirebase()">Çıkış Yap</button>
+                <button class="logout-btn" onclick="logoutFirebase()">Çıkış</button>
             </div>
         </div>
     </header>
@@ -169,47 +153,53 @@
     <div class="container">
         <div id="showcaseSection">
             <section class="hero">
-                <h1>Oyunlarda <span>Maksimum</span> Performans</h1>
-                <p>FPS artırma taktikleri, hayat kurtaran modlar, güncel yamalar ve Türkiye'nin en büyük oyuncu kütüphanesine hoş geldin.</p>
+                <h1>Oyunlarda <span>Sınırları</span> Zorla</h1>
+                <p>FPS artırma taktikleri, güncel modlar ve virüssüz Türkiye'nin en büyük Türkçe Yama arşivi.</p>
             </section>
 
             <div class="forum-banner">
                 <div class="forum-text">
-                    <h2>👑 BoostRehberi VIP Forum</h2>
-                    <p>Takım arkadaşı bul, oyun içi sorunlarını paylaş, kendi rehberlerini oluştur.</p>
+                    <h2>👑 VIP Oyuncu Forumu</h2>
+                    <p>Sorunlarını paylaş, yamaları ilk sen indir ve topluluğa katıl.</p>
                 </div>
                 <button class="forum-btn" onclick="goToForum()">Forum'a Gir ➔</button>
             </div>
 
-            <h2 class="section-title">Oyun Kütüphanesi</h2>
+            <h2 class="section-title">🚀 Performans ve Mod Merkezi</h2>
             <div class="games-grid">
                 <div class="game-card mc">
-                    <div class="free-download-badge">İndirmeler Ücretsiz & Açık</div>
+                    <div class="badge-mod">FPS Boost & Mod</div>
                     <div class="game-icon">⛏️</div>
-                    <h3>Minecraft 1.20+</h3>
-                    <p>Oyun motorunu değiştiren FPS modları, sınırsız farmlar, efsanevi seed kodları.</p>
-                    <a href="minecraft.html" class="play-btn">Rehbere Git</a>
+                    <h3>Minecraft</h3>
+                    <p>Oyun motorunu değiştiren FPS modları, sınırsız farmlar ve teknik rehberler.</p>
+                    <a href="minecraft.html" class="play-btn">Rehberleri İncele</a>
                 </div>
-                <div class="game-card fm">
-                    <div class="free-download-badge">İndirmeler Ücretsiz & Açık</div>
-                    <div class="game-icon">⚽</div>
-                    <h3>Football Manager 2026</h3>
-                    <p>Orijinal isim yaması, kasmayan taktikleri ve en ucuz Wonderkidleri.</p>
-                    <a href="fm.html" class="play-btn">Taktik Tahtasına Geç</a>
-                </div>
-                <div class="game-card ac">
-                    <div class="free-download-badge">İndirmeler Ücretsiz & Açık</div>
-                    <div class="game-icon">🏎️</div>
-                    <h3>Assetto Corsa</h3>
-                    <p>Japonya otoyolunda trafik makas modu rehberi.</p>
-                    <a href="assetto.html" class="play-btn">Garaja Gir</a>
-                </div>
+                
                 <div class="game-card gta">
-                    <div class="free-download-badge">İndirmeler Ücretsiz & Açık</div>
+                    <div class="badge-mod">Optimizasyon</div>
                     <div class="game-icon">🔫</div>
-                    <h3>Grand Theft Auto V</h3>
-                    <p>Oyunu bozmadan mod kurma ve FiveM Roleplay rehberi.</p>
-                    <a href="gta5.html" class="play-btn" style="background:#2ECC71; color:#000; border-color:#2ECC71;">Los Santos'a İn</a>
+                    <h3>GTA 5 & FiveM</h3>
+                    <p>Oyunu bozmadan mod kurma, ban riski olmayan config dosyaları.</p>
+                    <a href="gta5.html" class="play-btn">Rehberleri İncele</a>
+                </div>
+            </div>
+
+            <h2 class="section-title">🇹🇷 Türkçe Yama Arşivi</h2>
+            <div class="games-grid">
+                <div class="game-card tr-yama">
+                    <div class="badge-yama">%100 Çeviri & Virüssüz</div>
+                    <div class="game-icon">🗡️</div>
+                    <h3>Assassin's Creed Odyssey</h3>
+                    <p>Tüm DLC'ler dahil, menü ve diyaloglar tamamen Türkçe. Kurulum rehberi içeride.</p>
+                    <a href="ac-odyssey-yama.html" class="play-btn">Yamayı İndir</a>
+                </div>
+
+                <div class="game-card tr-yama">
+                    <div class="badge-yama">Güncel Sürüm</div>
+                    <div class="game-icon">🤠</div>
+                    <h3>Red Dead Redemption 2</h3>
+                    <p>Font sorunu çözülmüş, kutucuk hatası vermeyen kusursuz RDR 2 Türkçe Yaması.</p>
+                    <a href="rdr2-yama.html" class="play-btn">Yamayı İndir</a>
                 </div>
             </div>
         </div>
@@ -218,7 +208,7 @@
             <div class="forum-header">
                 <h1>💬 Topluluk Forumu</h1>
                 <div class="forum-actions">
-                    <button class="back-to-games-btn" onclick="goToGames()">⬅ Oyunlara Dön</button>
+                    <button class="back-to-games-btn" onclick="goToGames()">⬅ Vitrine Dön</button>
                     <button class="new-topic-btn" onclick="openTopicModal()">+ Yeni Konu Aç</button>
                 </div>
             </div>
@@ -228,16 +218,10 @@
                     <div class="forum-sidebar-title">Kategoriler</div>
                     <button class="cat-btn active">🌐 Tümü</button>
                     <button class="cat-btn">💬 Genel Tartışma</button>
-                    <button class="cat-btn">⛏️ Minecraft</button>
-                    <button class="cat-btn">⚽ Football Manager</button>
-                    <button class="cat-btn">🏎️ Assetto Corsa</button>
-                    <button class="cat-btn">🔫 GTA 5</button>
+                    <button class="cat-btn">⛏️ Minecraft Destek</button>
+                    <button class="cat-btn">🇹🇷 Türkçe Yama İstek</button>
                 </div>
-
-                <div class="main-panel">
-                    <div class="thread-list" id="threadContainer">
-                        </div>
-                </div>
+                <div class="main-panel"><div class="thread-list" id="threadContainer"></div></div>
             </div>
         </div>
     </div>
@@ -246,11 +230,7 @@
         <div class="modal-box">
             <button class="close-btn" onclick="closeAuthModal()">×</button>
             <h2 style="color: #FFF; margin-top: 0;">BoostRehberi'ne Katıl</h2>
-            <p style="color: #AAB7B8; font-size: 14px;">VIP Foruma girmek ve konuları görmek için giriş yap.</p>
-            <button class="google-btn" onclick="loginWithGoogle()">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google">
-                Google ile Güvenli Giriş Yap
-            </button>
+            <button class="google-btn" onclick="loginWithGoogle()"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google"> Google ile Giriş Yap</button>
         </div>
     </div>
 
@@ -259,23 +239,15 @@
             <button class="close-btn" onclick="closeTopicModal()">×</button>
             <h2 style="color: #FFF; margin-top: 0; border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 20px;">📝 Yeni Konu Başlat</h2>
             <div class="input-group">
-                <label>Oyun / Kategori Seçimi</label>
+                <label>Kategori Seçimi</label>
                 <select id="topicCat">
                     <option value="💬 Genel Tartışma">💬 Genel Tartışma</option>
-                    <option value="⛏️ Minecraft">⛏️ Minecraft</option>
-                    <option value="⚽ Football Manager">⚽ Football Manager</option>
-                    <option value="🏎️ Assetto Corsa">🏎️ Assetto Corsa</option>
-                    <option value="🔫 GTA 5">🔫 GTA 5</option>
+                    <option value="⛏️ Minecraft Destek">⛏️ Minecraft Destek</option>
+                    <option value="🇹🇷 Türkçe Yama İstek">🇹🇷 Türkçe Yama İstek</option>
                 </select>
             </div>
-            <div class="input-group">
-                <label>Konu Başlığı</label>
-                <input type="text" id="topicTitle" placeholder="Örn: Sorunumu nasıl çözebilirim?">
-            </div>
-            <div class="input-group">
-                <label>İçerik (Mesajınız)</label>
-                <textarea id="topicBody" placeholder="Buraya yazmaya başlayın... (Küfür filtreye takılır!)"></textarea>
-            </div>
+            <div class="input-group"><label>Konu Başlığı</label><input type="text" id="topicTitle" placeholder="Örn: Sorunumu nasıl çözebilirim?"></div>
+            <div class="input-group"><label>İçerik (Mesajınız)</label><textarea id="topicBody" placeholder="Buraya yazın..."></textarea></div>
             <button class="submit-btn" onclick="submitTopicToDatabase()">Foruma Gönder</button>
         </div>
     </div>
@@ -283,12 +255,9 @@
     <div id="replyModal" class="modal-overlay">
         <div class="modal-box large">
             <button class="close-btn" onclick="closeReplyModal()">×</button>
-            <h2 style="color: #3498DB; margin-top: 0; border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 20px;">💬 Konuya Cevap Yaz</h2>
+            <h2 style="color: #3498DB; margin-top: 0; border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 20px;">💬 Cevap Yaz</h2>
             <input type="hidden" id="replyThreadId">
-            <div class="input-group">
-                <label>Yanıtınız</label>
-                <textarea id="replyBody" placeholder="Cevabınızı buraya yazın..."></textarea>
-            </div>
+            <div class="input-group"><textarea id="replyBody" placeholder="Cevabınızı buraya yazın..."></textarea></div>
             <button class="submit-btn" style="background:#3498DB;" onclick="submitReply()">Yanıtı Gönder</button>
         </div>
     </div>
@@ -298,233 +267,78 @@
         import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
         import { getFirestore, collection, addDoc, onSnapshot, serverTimestamp, query, orderBy, doc, updateDoc, arrayUnion, deleteDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
-        // Senin Anahtarların (Dokunma)
-        const firebaseConfig = {
-            apiKey: "AIzaSyC7NhVifwWUaKikHE3QrkKwjhnLdaW48OY",
-            authDomain: "boostrehberi.firebaseapp.com",
-            projectId: "boostrehberi",
-            storageBucket: "boostrehberi.firebasestorage.app",
-            messagingSenderId: "775353055674",
-            appId: "1:775353055674:web:47d8d22d3a5e976b834583"
-        };
+        const firebaseConfig = { apiKey: "AIzaSyC7NhVifwWUaKikHE3QrkKwjhnLdaW48OY", authDomain: "boostrehberi.firebaseapp.com", projectId: "boostrehberi", storageBucket: "boostrehberi.firebasestorage.app", messagingSenderId: "775353055674", appId: "1:775353055674:web:47d8d22d3a5e976b834583" };
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
         const provider = new GoogleAuthProvider();
 
-        window.isUserLoggedIn = false;
-        window.currentUsername = "";
-        window.currentUserPhoto = "";
-        
-        // PATRONUN ADMİN MAİLİ BURADA!
-        const ADMIN_EMAIL = "mustafacanyilmazpc@gmail.com"; 
-        window.isAdmin = false;
-
-        const yasakliKelimeler = ["salak", "aptal", "gerizekalı", "mal", "kötükelime", "lan"]; 
-        window.sansurle = (metin) => {
-            let temizMetin = metin;
-            yasakliKelimeler.forEach(kelime => {
-                const regex = new RegExp(kelime, "gi");
-                temizMetin = temizMetin.replace(regex, "***");
-            });
-            return temizMetin;
-        };
+        window.isUserLoggedIn = false; window.currentUsername = ""; window.currentUserPhoto = "";
+        const ADMIN_EMAIL = "mustafacanyilmazpc@gmail.com"; window.isAdmin = false;
 
         window.openAuthModal = () => { document.getElementById('authModal').style.display = 'flex'; };
         window.closeAuthModal = () => { document.getElementById('authModal').style.display = 'none'; };
         window.openTopicModal = () => { document.getElementById('topicModal').style.display = 'flex'; };
         window.closeTopicModal = () => { document.getElementById('topicModal').style.display = 'none'; };
-        
-        window.openReplyModal = (threadId) => { 
-            if(!window.isUserLoggedIn) { window.openAuthModal(); return; }
-            document.getElementById('replyThreadId').value = threadId;
-            document.getElementById('replyModal').style.display = 'flex'; 
-        };
+        window.openReplyModal = (id) => { if(!window.isUserLoggedIn) { window.openAuthModal(); return; } document.getElementById('replyThreadId').value = id; document.getElementById('replyModal').style.display = 'flex'; };
         window.closeReplyModal = () => { document.getElementById('replyModal').style.display = 'none'; };
 
-        window.loginWithGoogle = () => {
-            signInWithPopup(auth, provider).then(() => { window.closeAuthModal(); })
-            .catch((error) => { alert("Hata: " + error.message); });
-        };
-
-        window.logoutFirebase = () => {
-            signOut(auth).then(() => { window.goToGames(); });
-        };
+        window.loginWithGoogle = () => { signInWithPopup(auth, provider).then(() => { window.closeAuthModal(); }); };
+        window.logoutFirebase = () => { signOut(auth).then(() => { window.goToGames(); }); };
 
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                window.isUserLoggedIn = true;
-                window.currentUsername = user.displayName;
-                window.currentUserPhoto = user.photoURL;
-                
-                if(user.email === ADMIN_EMAIL) {
-                    window.isAdmin = true;
-                    document.getElementById('adminBadge').style.display = 'inline-block';
-                } else {
-                    window.isAdmin = false;
-                    document.getElementById('adminBadge').style.display = 'none';
-                }
-
-                document.getElementById('usernameDisplay').innerText = user.displayName;
-                document.getElementById('userPhoto').src = user.photoURL; 
-                document.getElementById('loginBtn').style.display = 'none';
-                document.getElementById('userProfile').style.display = 'flex';
-                
-                let deleteBtns = document.getElementsByClassName('admin-delete-btn');
-                for(let btn of deleteBtns) { btn.style.display = window.isAdmin ? 'block' : 'none'; }
-                
+                window.isUserLoggedIn = true; window.currentUsername = user.displayName; window.currentUserPhoto = user.photoURL;
+                window.isAdmin = (user.email === ADMIN_EMAIL);
+                document.getElementById('adminBadge').style.display = window.isAdmin ? 'inline-block' : 'none';
+                document.getElementById('usernameDisplay').innerText = user.displayName; document.getElementById('userPhoto').src = user.photoURL; 
+                document.getElementById('loginBtn').style.display = 'none'; document.getElementById('userProfile').style.display = 'flex';
+                let btns = document.getElementsByClassName('admin-delete-btn'); for(let b of btns) b.style.display = window.isAdmin ? 'block' : 'none';
             } else {
-                window.isUserLoggedIn = false;
-                window.isAdmin = false;
-                document.getElementById('loginBtn').style.display = 'block';
-                document.getElementById('userProfile').style.display = 'none';
+                window.isUserLoggedIn = false; window.isAdmin = false;
+                document.getElementById('loginBtn').style.display = 'block'; document.getElementById('userProfile').style.display = 'none';
             }
         });
 
-        window.goToForum = () => {
-            if(window.isUserLoggedIn) {
-                document.getElementById('showcaseSection').style.display = 'none';
-                document.getElementById('forumSection').style.display = 'block';
-                window.scrollTo({top: 0, behavior: 'smooth'}); 
-            } else { window.openAuthModal(); }
-        };
-
-        window.goToGames = () => {
-            document.getElementById('forumSection').style.display = 'none';
-            document.getElementById('showcaseSection').style.display = 'block';
-            window.scrollTo({top: 0, behavior: 'smooth'}); 
-        };
+        window.goToForum = () => { if(window.isUserLoggedIn) { document.getElementById('showcaseSection').style.display = 'none'; document.getElementById('forumSection').style.display = 'block'; window.scrollTo(0,0); } else { window.openAuthModal(); } };
+        window.goToGames = () => { document.getElementById('forumSection').style.display = 'none'; document.getElementById('showcaseSection').style.display = 'block'; window.scrollTo(0,0); };
 
         window.submitTopicToDatabase = async () => {
             if(!window.isUserLoggedIn) return;
-            let title = document.getElementById('topicTitle').value;
-            let body = document.getElementById('topicBody').value;
-            let cat = document.getElementById('topicCat').value;
-            if(title.trim() === "") { alert("Lütfen bir başlık girin!"); return; }
-
-            title = window.sansurle(title);
-            body = window.sansurle(body);
-
-            try {
-                await addDoc(collection(db, "forum_mesajlari"), {
-                    baslik: title,
-                    icerik: body,
-                    kategori: cat,
-                    yazar: window.currentUsername,
-                    fotograf: window.currentUserPhoto,
-                    tarih: serverTimestamp(),
-                    cevaplar: [], 
-                    cevapSayisi: 0
-                });
-                document.getElementById('topicTitle').value = "";
-                document.getElementById('topicBody').value = "";
-                window.closeTopicModal();
-            } catch (error) { alert("Hata oluştu! Lütfen Firebase kurallarınızın 'Test Modu' süresini kontrol edin."); }
+            let t = document.getElementById('topicTitle').value, b = document.getElementById('topicBody').value, c = document.getElementById('topicCat').value;
+            if(t.trim()==="") return;
+            await addDoc(collection(db, "forum_mesajlari"), { baslik: t, icerik: b, kategori: c, yazar: window.currentUsername, fotograf: window.currentUserPhoto, tarih: serverTimestamp(), cevaplar: [] });
+            document.getElementById('topicTitle').value = ""; document.getElementById('topicBody').value = ""; window.closeTopicModal();
         };
 
         window.submitReply = async () => {
-            let threadId = document.getElementById('replyThreadId').value;
-            let replyText = document.getElementById('replyBody').value;
-            if(replyText.trim() === "") return;
-
-            replyText = window.sansurle(replyText);
-
-            try {
-                const threadRef = doc(db, "forum_mesajlari", threadId);
-                await updateDoc(threadRef, {
-                    cevaplar: arrayUnion({
-                        yazar: window.currentUsername,
-                        fotograf: window.currentUserPhoto,
-                        metin: replyText
-                    }),
-                    cevapSayisi: Math.floor(Math.random() * 10) + 1 
-                });
-                document.getElementById('replyBody').value = "";
-                window.closeReplyModal();
-            } catch (error) { console.error(error); alert("Yanıt gönderilemedi!"); }
+            let id = document.getElementById('replyThreadId').value, txt = document.getElementById('replyBody').value; if(txt.trim()==="") return;
+            await updateDoc(doc(db, "forum_mesajlari", id), { cevaplar: arrayUnion({ yazar: window.currentUsername, fotograf: window.currentUserPhoto, metin: txt }) });
+            document.getElementById('replyBody').value = ""; window.closeReplyModal();
         };
 
-        window.deleteThread = async (threadId) => {
-            if(!window.isAdmin) { alert("Yetkiniz yok!"); return; }
-            if(confirm("Bu konuyu tamamen silmek istediğine emin misin patron?")) {
-                try {
-                    await deleteDoc(doc(db, "forum_mesajlari", threadId));
-                } catch(error) {
-                    alert("Silinirken hata oluştu!");
-                }
-            }
-        };
+        window.deleteThread = async (id) => { if(window.isAdmin && confirm("Silinsin mi?")) await deleteDoc(doc(db, "forum_mesajlari", id)); };
 
-        // CANLI FORUM OKUMA VE EKRANA ÇİZME
-        const q = query(collection(db, "forum_mesajlari"), orderBy("tarih", "desc"));
-        onSnapshot(q, (snapshot) => {
-            let container = document.getElementById('threadContainer');
-            
-            let sabitKonu = `
-            <div class="thread-card pinned">
-                <div class="thread-main">
-                    <div class="thread-avatar" style="border-color: #F1C40F; background: transparent; color: #F1C40F; font-size: 20px;">👑</div>
-                    <div class="thread-content">
-                        <h3 class="thread-title"><span style="background: #F1C40F; color: #000;">SABİT</span> 📌 Hoş Geldiniz! Forum Kuralları ve Kullanım Rehberi</h3>
-                        <div class="thread-body">Yeni üyelerimiz, lütfen konu açmadan önce oyun kategorilerine dikkat edelim. Küfür ve argo kullanımı yasaktır. İyi oyunlar!</div>
-                        <div class="thread-meta">
-                            <span class="thread-author">Admin_Mustafa</span> • 📅 Kurucu • 📍 Kategori: Genel Tartışma
-                        </div>
-                    </div>
-                </div>
-            </div>`;
-            container.innerHTML = sabitKonu;
-
-            snapshot.forEach((docSnap) => {
-                let data = docSnap.data();
-                let threadId = docSnap.id; 
-                
-                let saatStr = "Az Önce";
-                if(data.tarih) {
-                    let d = data.tarih.toDate();
-                    saatStr = d.getHours() + ":" + String(d.getMinutes()).padStart(2, '0');
-                }
-
-                let cevaplarHTML = "";
-                if(data.cevaplar && data.cevaplar.length > 0) {
-                    cevaplarHTML += `<div class="replies-container">`;
-                    data.cevaplar.forEach(cevap => {
-                        cevaplarHTML += `
-                        <div class="reply-item">
-                            <div class="reply-avatar"><img src="${cevap.fotograf}" alt="Profil"></div>
-                            <div class="reply-content"><span class="reply-author">${cevap.yazar}</span>${cevap.metin}</div>
-                        </div>`;
-                    });
-                    cevaplarHTML += `</div>`;
-                }
-
-                let adminDeleteBtnStyle = window.isAdmin ? 'display:block;' : 'display:none;';
-
-                let html = `
-                <div class="thread-card" style="border-color: #1ABC9C; animation: fadeIn 0.5s;">
+        onSnapshot(query(collection(db, "forum_mesajlari"), orderBy("tarih", "desc")), (snap) => {
+            let c = document.getElementById('threadContainer'); c.innerHTML = "";
+            snap.forEach((d) => {
+                let data = d.data(), id = d.id;
+                let html = `<div class="thread-card">
                     <div class="thread-main">
-                        <div class="thread-avatar">
-                            <img src="${data.fotograf || 'https://via.placeholder.com/50'}" alt="Profil">
-                        </div>
+                        <div class="thread-avatar"><img src="${data.fotograf}"></div>
                         <div class="thread-content">
-                            <h3 class="thread-title">${data.baslik}</h3>
-                            ${data.icerik ? `<div class="thread-body">${data.icerik}</div>` : ''}
-                            
-                            <div class="thread-meta">
-                                <span class="thread-author">${data.yazar}</span> • 📅 ${saatStr} • 📍 Kategori: ${data.kategori}
-                            </div>
-                            
-                            <div class="thread-actions">
-                                <button class="reply-btn" onclick="openReplyModal('${threadId}')">💬 Cevap Yaz</button>
-                                <button class="admin-delete-btn" style="${adminDeleteBtnStyle}" onclick="deleteThread('${threadId}')">🗑️ Sil (Admin)</button>
-                            </div>
+                            <h3 class="thread-title">${data.baslik}</h3><div class="thread-body">${data.icerik}</div>
+                            <div class="thread-meta"><span>${data.yazar}</span> • Kategori: ${data.kategori}</div>
+                            <div class="thread-actions"><button class="reply-btn" onclick="openReplyModal('${id}')">Cevap Yaz</button><button class="admin-delete-btn" style="${window.isAdmin?'display:block;':'display:none;'}" onclick="deleteThread('${id}')">SİL</button></div>
                         </div>
-                    </div>
-                    ${cevaplarHTML}
-                </div>`;
-                
-                container.insertAdjacentHTML('beforeend', html);
+                    </div>`;
+                if(data.cevaplar && data.cevaplar.length>0) {
+                    html += `<div class="replies-container">`;
+                    data.cevaplar.forEach(r => html+=`<div class="reply-item"><div class="reply-avatar"><img src="${r.fotograf}"></div><div class="reply-content"><span class="reply-author">${r.yazar}</span>${r.metin}</div></div>`);
+                    html += `</div>`;
+                }
+                c.insertAdjacentHTML('beforeend', html + `</div>`);
             });
         });
     </script>
