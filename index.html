@@ -77,7 +77,6 @@
         .game-card.ac .play-btn:hover { background-color: #E74C3C; color: #FFF; border-color: #E74C3C;}
         .game-card.gta .play-btn:hover { background-color: #2ECC71; color: #000; border-color: #2ECC71;}
         
-        .locked-btn { background-color: #1A1A1A; color: #555; text-align: center; padding: 12px; border-radius: 6px; font-weight: 700; border: 1px dashed #333; pointer-events: none; }
         .free-download-badge { display: inline-block; background: rgba(46, 204, 113, 0.1); color: #2ECC71; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; margin-bottom: 10px; border: 1px solid #2ECC71; }
 
         /* FORUM BÖLÜMÜ */
@@ -100,7 +99,8 @@
         .thread-list { display: flex; flex-direction: column; gap: 15px; }
         .thread-card { background: rgba(22, 27, 34, 0.9); border: 1px solid #2C3E50; border-radius: 10px; padding: 20px; display: flex; gap: 20px; align-items: center; transition: 0.2s; }
         .thread-card:hover { border-color: #555; background: rgba(30, 35, 45, 0.9); transform: translateX(5px); }
-        .thread-avatar { width: 50px; height: 50px; border-radius: 50%; background: #2C3E50; display: flex; justify-content: center; align-items: center; font-size: 24px; border: 2px solid #1ABC9C; flex-shrink: 0;}
+        .thread-avatar { width: 50px; height: 50px; border-radius: 50%; background: #2C3E50; display: flex; justify-content: center; align-items: center; font-size: 24px; border: 2px solid #1ABC9C; flex-shrink: 0; overflow: hidden;}
+        .thread-avatar img { width: 100%; height: 100%; object-fit: cover; }
         .thread-content { flex-grow: 1; }
         .thread-title { margin: 0 0 5px 0; color: #FFF; font-size: 18px; font-weight: 700; }
         .thread-title span { background: #3498DB; color: #FFF; font-size: 10px; padding: 3px 6px; border-radius: 4px; margin-right: 8px; vertical-align: middle;}
@@ -146,7 +146,6 @@
         
         <div class="header-right">
             <button id="loginBtn" class="login-btn" onclick="openAuthModal()">Giriş Yap / Üye Ol</button>
-            
             <div id="userProfile" class="user-profile">
                 <img id="userPhoto" src="" alt="Profil" style="width: 30px; height: 30px; border-radius: 50%; border: 2px solid #2ECC71;">
                 <span>Hoş geldin, <span id="usernameDisplay">Patron</span></span>
@@ -159,25 +158,24 @@
         <div id="showcaseSection">
             <section class="hero">
                 <h1>Oyunlarda <span>Maksimum</span> Performans</h1>
-                <p>FPS artırma taktikleri, hayat kurtaran modlar, güncel yamalar ve Türkiye'nin en büyük oyuncu kütüphanesine hoş geldin. Dosya indirmek için üye olmana gerek yok, direkt oynamaya başla!</p>
+                <p>FPS artırma taktikleri, hayat kurtaran modlar, güncel yamalar ve Türkiye'nin en büyük oyuncu kütüphanesine hoş geldin.</p>
             </section>
 
             <div class="forum-banner">
                 <div class="forum-text">
                     <h2>👑 BoostRehberi VIP Forum</h2>
-                    <p>Takım arkadaşı bul, oyun içi sorunlarını paylaş, kendi rehberlerini oluştur. (Sadece Üyelere Özeldir)</p>
+                    <p>Takım arkadaşı bul, oyun içi sorunlarını paylaş, kendi rehberlerini oluştur.</p>
                 </div>
                 <button class="forum-btn" onclick="goToForum()">Forum'a Gir ➔</button>
             </div>
 
             <h2 class="section-title">Oyun Kütüphanesi</h2>
             <div class="games-grid">
-                
                 <div class="game-card mc">
                     <div class="free-download-badge">İndirmeler Ücretsiz & Açık</div>
                     <div class="game-icon">⛏️</div>
                     <h3>Minecraft 1.20+</h3>
-                    <p>Oyun motorunu değiştiren FPS modları, sınırsız farmlar, efsanevi seed kodları ve interaktif crafting sistemi.</p>
+                    <p>Oyun motorunu değiştiren FPS modları, sınırsız farmlar, efsanevi seed kodları.</p>
                     <a href="minecraft.html" class="play-btn">Rehbere Git</a>
                 </div>
 
@@ -185,7 +183,7 @@
                     <div class="free-download-badge">İndirmeler Ücretsiz & Açık</div>
                     <div class="game-icon">⚽</div>
                     <h3>Football Manager 2026</h3>
-                    <p>Orijinal isim (lisans) yaması, kasmayan Unity taktikleri, HD grafik paketleri ve 2026'nın en ucuz Wonderkidleri.</p>
+                    <p>Orijinal isim yaması, kasmayan taktikleri ve en ucuz Wonderkidleri.</p>
                     <a href="fm.html" class="play-btn">Taktik Tahtasına Geç</a>
                 </div>
 
@@ -193,7 +191,7 @@
                     <div class="free-download-badge">İndirmeler Ücretsiz & Açık</div>
                     <div class="game-icon">🏎️</div>
                     <h3>Assetto Corsa</h3>
-                    <p>Oyun motorunu yenileme (CSP), tek tıkla araba/harita kurma ve Japonya otoyolunda trafik makas modu rehberi.</p>
+                    <p>Japonya otoyolunda trafik makas modu rehberi.</p>
                     <a href="assetto.html" class="play-btn">Garaja Gir</a>
                 </div>
 
@@ -201,10 +199,9 @@
                     <div class="free-download-badge">İndirmeler Ücretsiz & Açık</div>
                     <div class="game-icon">🔫</div>
                     <h3>Grand Theft Auto V</h3>
-                    <p>Oyunu bozmadan mod kurma (OpenIV), ScriptHookV hata çözümü, gerçek araba paketleri ve FiveM Roleplay giriş rehberi.</p>
+                    <p>Oyunu bozmadan mod kurma ve FiveM Roleplay rehberi.</p>
                     <a href="gta5.html" class="play-btn" style="background:#2ECC71; color:#000; border-color:#2ECC71;">Los Santos'a İn</a>
                 </div>
-
             </div>
         </div>
 
@@ -231,16 +228,15 @@
                 <div class="main-panel">
                     <div class="thread-list" id="threadContainer">
                         <div class="thread-card pinned">
-                            <div class="thread-avatar" style="border-color: #F1C40F;">👑</div>
+                            <div class="thread-avatar" style="border-color: #F1C40F; background: transparent; color: #F1C40F; font-size: 20px;">👑</div>
                             <div class="thread-content">
                                 <h3 class="thread-title"><span style="background: #F1C40F; color: #000;">SABİT</span> 📌 Hoş Geldiniz! Forum Kuralları ve Kullanım Rehberi</h3>
                                 <div class="thread-meta">
-                                    <span class="thread-author">Admin_Mustafa</span> • 📅 Bugün • 📍 Kategori: Genel Tartışma
+                                    <span class="thread-author">Admin_Mustafa</span> • 📅 Kurucu • 📍 Kategori: Genel Tartışma
                                 </div>
                             </div>
                             <div class="thread-stats">
-                                <div class="stat-box"><span class="stat-num">0</span><span class="stat-lbl">Görüntülenme</span></div>
-                                <div class="stat-box"><span class="stat-num">0</span><span class="stat-lbl">Cevap</span></div>
+                                <div class="stat-box"><span class="stat-num">∞</span><span class="stat-lbl">Görüntülenme</span></div>
                             </div>
                         </div>
                         </div>
@@ -253,8 +249,7 @@
         <div class="modal-box">
             <button class="close-btn" onclick="closeAuthModal()">×</button>
             <h2 style="color: #FFF; margin-top: 0;">BoostRehberi'ne Katıl</h2>
-            <p style="color: #AAB7B8; font-size: 14px;">VIP Foruma girmek ve dosyaları indirmek için hızlıca giriş yap.</p>
-            
+            <p style="color: #AAB7B8; font-size: 14px;">VIP Foruma girmek ve konuları görmek için giriş yap.</p>
             <button class="google-btn" onclick="loginWithGoogle()">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google">
                 Google ile Güvenli Giriş Yap
@@ -270,11 +265,11 @@
             <div class="input-group">
                 <label>Oyun / Kategori Seçimi</label>
                 <select id="topicCat">
-                    <option value="GENEL">💬 Genel Tartışma</option>
-                    <option value="MC">⛏️ Minecraft</option>
-                    <option value="FM">⚽ Football Manager</option>
-                    <option value="AC">🏎️ Assetto Corsa</option>
-                    <option value="GTA">🔫 GTA 5</option>
+                    <option value="💬 Genel Tartışma">💬 Genel Tartışma</option>
+                    <option value="⛏️ Minecraft">⛏️ Minecraft</option>
+                    <option value="⚽ Football Manager">⚽ Football Manager</option>
+                    <option value="🏎️ Assetto Corsa">🏎️ Assetto Corsa</option>
+                    <option value="🔫 GTA 5">🔫 GTA 5</option>
                 </select>
             </div>
 
@@ -288,87 +283,65 @@
                 <textarea id="topicBody" placeholder="Buraya yazmaya başlayın..."></textarea>
             </div>
 
-            <button class="submit-btn" onclick="submitTopic()">Foruma Gönder</button>
+            <button class="submit-btn" onclick="submitTopicToDatabase()">Foruma Gönder</button>
         </div>
     </div>
 
     <script type="module">
-        // Firebase Modüllerini İçe Aktar
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
         import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+        // YENİ: VERİTABANI KÜTÜPHANELERİ EKLENDİ!
+        import { getFirestore, collection, addDoc, onSnapshot, serverTimestamp, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
-        // Senin BoostRehberi Altın Anahtarların!
+        // Senin Anahtarların
         const firebaseConfig = {
             apiKey: "AIzaSyC7NhVifwWUaKikHE3QrkKwjhnLdaW48OY",
             authDomain: "boostrehberi.firebaseapp.com",
             projectId: "boostrehberi",
             storageBucket: "boostrehberi.firebasestorage.app",
             messagingSenderId: "775353055674",
-            appId: "1:775353055674:web:47d8d22d3a5e976b834583",
-            measurementId: "G-L358ES2HFV"
+            appId: "1:775353055674:web:47d8d22d3a5e976b834583"
         };
 
-        // Kilitleri Açıyoruz
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
+        const db = getFirestore(app); // YENİ: Veritabanı motoru çalıştırıldı
         const provider = new GoogleAuthProvider();
 
-        // Evrensel (Global) Değişkenler ve Fonksiyonlar
         window.isUserLoggedIn = false;
         window.currentUsername = "";
+        window.currentUserPhoto = "";
         
         window.openAuthModal = () => { document.getElementById('authModal').style.display = 'flex'; };
         window.closeAuthModal = () => { document.getElementById('authModal').style.display = 'none'; };
         
-        // GOOGLE İLE GİRİŞ FONKSİYONU
         window.loginWithGoogle = () => {
-            signInWithPopup(auth, provider).then((result) => {
-                // Giriş Başarılı!
-                window.closeAuthModal();
-            }).catch((error) => {
-                alert("Giriş yaparken bir hata oluştu: " + error.message);
-            });
+            signInWithPopup(auth, provider).then(() => { window.closeAuthModal(); })
+            .catch((error) => { alert("Hata: " + error.message); });
         };
 
-        // ÇIKIŞ YAPMA FONKSİYONU
         window.logoutFirebase = () => {
-            signOut(auth).then(() => {
-                alert("Güvenli bir şekilde çıkış yapıldı.");
-                window.goToGames();
-            }).catch((error) => {
-                console.error(error);
-            });
+            signOut(auth).then(() => { window.goToGames(); });
         };
 
-        // KULLANICI DURUMUNU DİNLEME (Sürekli Kontrol Eder)
         onAuthStateChanged(auth, (user) => {
-            const loginBtn = document.getElementById('loginBtn');
-            const userProfile = document.getElementById('userProfile');
-            const usernameDisplay = document.getElementById('usernameDisplay');
-            const userPhoto = document.getElementById('userPhoto');
-
             if (user) {
-                // Sisteme biri girdiğinde burası çalışır
                 window.isUserLoggedIn = true;
                 window.currentUsername = user.displayName;
+                window.currentUserPhoto = user.photoURL;
                 
-                // İsmi ve resmi Google'dan çeker
-                usernameDisplay.innerText = user.displayName;
-                userPhoto.src = user.photoURL; 
+                document.getElementById('usernameDisplay').innerText = user.displayName;
+                document.getElementById('userPhoto').src = user.photoURL; 
                 
-                loginBtn.style.display = 'none';
-                userProfile.style.display = 'flex';
+                document.getElementById('loginBtn').style.display = 'none';
+                document.getElementById('userProfile').style.display = 'flex';
             } else {
-                // Giriş yapılmadıysa veya çıkış yapıldıysa burası çalışır
                 window.isUserLoggedIn = false;
-                window.currentUsername = "";
-                
-                loginBtn.style.display = 'block';
-                userProfile.style.display = 'none';
+                document.getElementById('loginBtn').style.display = 'block';
+                document.getElementById('userProfile').style.display = 'none';
             }
         });
 
-        /* --- VİTRİN / FORUM GEÇİŞ SİSTEMİ --- */
         window.goToForum = () => {
             if(window.isUserLoggedIn) {
                 document.getElementById('showcaseSection').style.display = 'none';
@@ -385,38 +358,93 @@
             window.scrollTo({top: 0, behavior: 'smooth'}); 
         };
 
-        /* --- FORUM KONU AÇMA SİSTEMİ (Şimdilik Görsel) --- */
         window.openTopicModal = () => { document.getElementById('topicModal').style.display = 'flex'; };
         window.closeTopicModal = () => { document.getElementById('topicModal').style.display = 'none'; };
 
-        window.submitTopic = () => {
+        // YENİ: KASAYA MESAJ GÖNDERME MOTORU
+        window.submitTopicToDatabase = async () => {
+            if(!window.isUserLoggedIn) { alert("Yetkisiz işlem!"); return; }
+            
             let title = document.getElementById('topicTitle').value;
-            let cat = document.getElementById('topicCat').options[document.getElementById('topicCat').selectedIndex].text;
+            let cat = document.getElementById('topicCat').value;
             
             if(title.trim() === "") { alert("Lütfen bir başlık girin!"); return; }
 
-            let newThreadHTML = `
-            <div class="thread-card" style="border-color: #1ABC9C; animation: fadeIn 0.5s;">
-                <div class="thread-avatar" style="background: #1ABC9C; color: #000;">👤</div>
+            // Google Firestore Kasasına Veri Gönderiliyor...
+            try {
+                await addDoc(collection(db, "forum_mesajlari"), {
+                    baslik: title,
+                    kategori: cat,
+                    yazar: window.currentUsername,
+                    fotograf: window.currentUserPhoto,
+                    tarih: serverTimestamp(), // Google'ın kendi saatini kullan
+                    goruntulenme: Math.floor(Math.random() * 50), // Şimdilik rastgele görüntülenme
+                    cevap: 0
+                });
+                
+                // Formu Temizle
+                document.getElementById('topicTitle').value = "";
+                document.getElementById('topicBody').value = "";
+                window.closeTopicModal();
+            } catch (error) {
+                console.error("Hata:", error);
+                alert("Mesaj gönderilemedi, bir hata oluştu!");
+            }
+        };
+
+        // YENİ: KASADAN CANLI (REAL-TIME) MESAJ OKUMA MOTORU
+        const q = query(collection(db, "forum_mesajlari"), orderBy("tarih", "desc"));
+        onSnapshot(q, (snapshot) => {
+            let container = document.getElementById('threadContainer');
+            
+            // Önce listeyi temizle (Sabit konu hariç)
+            let sabitKonu = `
+            <div class="thread-card pinned">
+                <div class="thread-avatar" style="border-color: #F1C40F; background: transparent; color: #F1C40F; font-size: 20px;">👑</div>
                 <div class="thread-content">
-                    <h3 class="thread-title"><span style="background: #1ABC9C; color: #000;">YENİ</span> ${title}</h3>
+                    <h3 class="thread-title"><span style="background: #F1C40F; color: #000;">SABİT</span> 📌 Hoş Geldiniz! Forum Kuralları ve Kullanım Rehberi</h3>
                     <div class="thread-meta">
-                        <span class="thread-author">${window.currentUsername}</span> • 📅 Az Önce • 📍 Kategori: ${cat}
+                        <span class="thread-author">Admin_Mustafa</span> • 📅 Kurucu • 📍 Kategori: Genel Tartışma
                     </div>
                 </div>
                 <div class="thread-stats">
-                    <div class="stat-box"><span class="stat-num">0</span><span class="stat-lbl">Görüntülenme</span></div>
-                    <div class="stat-box"><span class="stat-num">0</span><span class="stat-lbl">Cevap</span></div>
+                    <div class="stat-box"><span class="stat-num">∞</span><span class="stat-lbl">Görüntülenme</span></div>
                 </div>
             </div>`;
+            container.innerHTML = sabitKonu;
 
-            let container = document.getElementById('threadContainer');
-            container.children[0].insertAdjacentHTML('afterend', newThreadHTML);
-            
-            document.getElementById('topicTitle').value = "";
-            document.getElementById('topicBody').value = "";
-            window.closeTopicModal();
-        };
+            // Kasadaki her bir mesaj için döngü oluştur
+            snapshot.forEach((doc) => {
+                let data = doc.data();
+                let saatStr = "Az Önce";
+                
+                // Tarihi hesapla
+                if(data.tarih) {
+                    let d = data.tarih.toDate();
+                    saatStr = d.getHours() + ":" + String(d.getMinutes()).padStart(2, '0');
+                }
+
+                // Mesajı Ekrana Çiz
+                let html = `
+                <div class="thread-card" style="border-color: #1ABC9C; animation: fadeIn 0.5s;">
+                    <div class="thread-avatar">
+                        <img src="${data.fotograf || 'https://via.placeholder.com/50'}" alt="Profil">
+                    </div>
+                    <div class="thread-content">
+                        <h3 class="thread-title">${data.baslik}</h3>
+                        <div class="thread-meta">
+                            <span class="thread-author">${data.yazar}</span> • 📅 ${saatStr} • 📍 Kategori: ${data.kategori}
+                        </div>
+                    </div>
+                    <div class="thread-stats">
+                        <div class="stat-box"><span class="stat-num">${data.goruntulenme}</span><span class="stat-lbl">Görüntülenme</span></div>
+                        <div class="stat-box"><span class="stat-num">${data.cevap}</span><span class="stat-lbl">Cevap</span></div>
+                    </div>
+                </div>`;
+                
+                container.insertAdjacentHTML('beforeend', html);
+            });
+        });
     </script>
 </body>
 </html>
