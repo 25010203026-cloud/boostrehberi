@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FM 26 Performans & Rehber Merkezi - BoostRehberi</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Fira+Code:wght@600&display=swap');
+        
+        /* FM'ye Özel Futbol Topu İmleci */
+        body, a, button, .mod-card, input, details, summary {
+            cursor: url('https://cdn.custom-cursor.com/db/cursor/32/football_ball_cursor.png'), auto !important;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: radial-gradient(circle at top right, #1e103d 0%, #06090f 100%);
+            background-attachment: fixed;
+            color: #E0E0E0; margin: 0; padding: 0; line-height: 1.6;
+        }
+
+        /* HEADER */
+        header { background-color: #0b0f19; padding: 15px 50px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #6D28D9; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .logo { font-size: 24px; font-weight: 800; color: #FFFFFF; text-decoration: none; }
+        .logo span { color: #6D28D9; }
+        .back-btn { color: #6D28D9; text-decoration: none; font-weight: 600; border: 1px solid #6D28D9; padding: 8px 20px; border-radius: 6px; transition: all 0.2s; font-size: 14px; }
+        .back-btn:hover { background-color: #6D28D9; color: #FFF; }
+
+        /* LAYOUT */
+        .container { max-width: 1300px; margin: 40px auto; padding: 0 20px; }
+        .page-header { margin-bottom: 30px; border-bottom: 1px solid #2C3E50; padding-bottom: 20px; }
+        .page-title { font-size: 32px; color: #FFF; font-weight: 800; margin: 0; display: flex; align-items: center; gap: 15px; }
+
+        .layout-grid { display: grid; grid-template-columns: 280px 1fr; gap: 40px; align-items: start; }
+        
+        /* SIDEBAR */
+        .sidebar { display: flex; flex-direction: column; gap: 5px; position: sticky; top: 20px; background-color: rgba(20, 25, 30, 0.6); padding: 20px; border-radius: 12px; border: 1px solid #2C3E50; }
+        .sidebar-title { color: #8892B0; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; font-weight: 700; padding-left: 10px; }
+        .menu-btn { background: transparent; color: #AAB7B8; border: none; padding: 12px 15px; font-size: 14px; font-weight: 600; text-align: left; border-radius: 8px; transition: 0.2s; display: flex; align-items: center; gap: 12px; cursor: pointer; }
+        .menu-btn:hover { background-color: rgba(109, 40, 217, 0.1); color: #6D28D9; }
+        .menu-btn.active-btn { background-color: #6D28D9; color: #FFF; font-weight: 700; }
+
+        /* MAIN CONTENT */
+        .tab-content { display: none; animation: fadeIn 0.3s ease-in-out; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        .section-desc { color: #AAB7B8; font-size: 15px; margin-bottom: 25px; }
+
+        /* GRID SYSTEM */
+        .mod-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); gap: 25px; margin-bottom: 40px; }
+        .mod-card { background-color: #161B22; border: 1px solid #2C3E50; border-radius: 10px; padding: 25px; display: flex; flex-direction: column; transition: 0.2s; }
+        .mod-card:hover { border-color: #6D28D9; transform: translateY(-3px); box-shadow: 0 8px 15px rgba(0,0,0,0.3); }
+        .mod-header { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; }
+        .mod-icon { font-size: 22px; background: rgba(109, 40, 217, 0.1); padding: 8px; border-radius: 8px; display: flex; align-items: center; justify-content: center; width: 35px; height: 35px; color: #6D28D9; }
+        .mod-card h4 { margin: 0; color: #FFF; font-size: 18px; font-weight: 700; }
+        .mod-card p { color: #8892B0; font-size: 14px; margin: 0 0 15px 0; flex-grow: 1; line-height: 1.5; }
+        
+        .show-more-btn { background: rgba(109, 40, 217, 0.1); border: none; color: #A78BFA; padding: 12px; border-radius: 6px; font-size: 14px; font-weight: 700; cursor: pointer; transition: 0.2s; text-align: center; width: 100%; }
+        .show-more-btn:hover { background: #6D28D9; color: #FFF; }
+        
+        .extra-info { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid #2C3E50; font-size: 14px; color: #DDD; line-height: 1.7; }
+        .extra-info strong { color: #FFF; }
+        .dl-box { display: flex; align-items: center; justify-content: space-between; margin-top: 20px; }
+        .dl-btn { background-color: #6D28D9; color: #FFF; text-decoration: none; font-size: 13px; font-weight: 700; padding: 10px 18px; border-radius: 6px; transition: 0.2s; }
+        .dl-btn:hover { background-color: #5B21B6; }
+
+        .important-note { background-color: rgba(243, 156, 18, 0.1); border-left: 5px solid #F39C12; padding: 15px; border-radius: 8px; margin-bottom: 25px; font-size: 14px; color: #f39c12; font-weight: 600; }
+        .guide-box { background-color: rgba(46, 204, 113, 0.1); border-left: 5px solid #2ECC71; padding: 25px; border-radius: 8px; margin-bottom: 30px; font-size: 14px; color: #E0E0E0; line-height: 1.8; }
+        .guide-box h4 { color: #2ECC71; margin-top: 0; font-size: 20px; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        
+        code.path-text { background: #000; color: #1ABC9C; padding: 6px 10px; border-radius: 4px; font-family: 'Fira Code', monospace; font-size: 14px; display: block; margin-top: 8px; margin-bottom: 8px; border: 1px dashed #333; }
+
+        /* WONDERKID TABLO TASARIMI */
+        .wk-table-wrapper { overflow-x: auto; background-color: #161B22; border-radius: 10px; border: 1px solid #2C3E50; margin-bottom: 40px; }
+        .wk-table { width: 100%; border-collapse: collapse; text-align: left; }
+        .wk-table th { background-color: rgba(109, 40, 217, 0.15); color: #A78BFA; font-weight: 700; padding: 15px; font-size: 14px; border-bottom: 2px solid #2C3E50; white-space: nowrap; }
+        .wk-table td { padding: 15px; border-bottom: 1px solid #2C3E50; color: #E0E0E0; font-size: 14px; vertical-align: middle; }
+        .wk-table tr:hover { background-color: rgba(255, 255, 255, 0.03); }
+        .wk-table tr:last-child td { border-bottom: none; }
+        .wk-name { font-weight: 700; color: #FFF; font-size: 15px; display: flex; align-items: center; gap: 8px; }
+        .wk-pos { background: #2C3E50; color: #FFF; padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: 700; font-family: 'Fira Code', monospace; }
+        .wk-price { color: #2ECC71; font-weight: 700; }
+        .wk-stars { color: #F1C40F; letter-spacing: 2px; }
+        
+        /* TAKTİK ETİKETLERİ */
+        .tac-tag { display: inline-block; padding: 4px 10px; border-radius: 4px; font-size: 11px; font-weight: 700; margin-right: 5px; margin-bottom: 10px; }
+        .tac-atk { background-color: rgba(231, 76, 60, 0.2); color: #E74C3C; border: 1px solid #E74C3C; }
+        .tac-def { background-color: rgba(52, 152, 219, 0.2); color: #3498DB; border: 1px solid #3498DB; }
+        .tac-pos { background-color: rgba(241, 196, 15, 0.2); color: #F1C40F; border: 1px solid #F1C40F; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">Boost<span>Rehberi</span></a>
+        <a href="index.html" class="back-btn">Ana Sayfaya Dön</a>
+    </header>
+
+    <div class="container">
+        
+        <div class="page-header">
+            <h1 class="page-title">⚽ FM 26 Performans Merkezi</h1>
+        </div>
+
+        <div class="layout-grid">
+            
+            <div class="sidebar">
+                <div class="sidebar-title">Teknik Ayarlar</div>
+                <button id="btn-fps" class="menu-btn active-btn" onclick="sekmeDegistir('fps')">⚡ PC'yi Yormadan Oynama</button>
+                <button id="btn-fix" class="menu-btn" onclick="sekmeDegistir('fix')">📝 Gerçek İsimleri Açma</button>
+                
+                <div class="sidebar-title" style="margin-top: 15px;">Grafik ve Oyuncular</div>
+                <button id="btn-gfx" class="menu-btn" onclick="sekmeDegistir('gfx')">🎨 Yüz & Logo Yükleme</button>
+                <button id="btn-wonder" class="menu-btn" onclick="sekmeDegistir('wonder')">🌟 Genç Yetenekler</button>
+                
+                <div class="sidebar-title" style="margin-top: 15px;">Genel</div>
+                <button id="btn-taktik" class="menu-btn" onclick="sekmeDegistir('taktik')">📋 Taktik Tahtası</button>
+            </div>
+
+            <div class="main-panel">
+                
+                <div id="content-fps" class="tab-content active">
+                    <h3 style="color: #FFF; border-bottom: 1px solid #333; padding-bottom: 10px; margin-top: 0;">⚡ Bilgisayarı Yormadan Akıcı Oynama Rehberi</h3>
+                    <p class="section-desc">Oyunun gün atlamaları çok mu yavaş? Maç oynanırken 3 boyutlu ekranda takılmalar mı var? Bu ayarları adım adım uygulayarak sorunu kökten çözün.</p>
+                    
+                    <div class="mod-grid">
+                        <div class="mod-card">
+                            <div class="mod-header"><div class="mod-icon">🚀</div><h4>Günlerin Çok Hızlı Geçmesi İçin</h4></div>
+                            <p>Kariyer açarken bütün ülkeleri seçerseniz oyun ağırlaşır. Peki hangi ayara basmalıyız?</p>
+                            <button class="show-more-btn" onclick="toggleDetails('det-db')">Adım Adım Nasıl Yapılır? ▼</button>
+                            <div id="det-db" class="extra-info">
+                                <strong>Yeni Kariyer Açarken Şunları Yapın:</strong><br><br>
+                                1. Ana menüden "Yeni Kariyere Başla" butonuna tıklayın.<br>
+                                2. Sağ üst köşede bulunan <strong>"Gelişmiş Kurulum" (Advanced Setup)</strong> butonuna basın.<br>
+                                3. Karşınıza ülkelerin listesi gelecek. Sadece takım yöneteceğiniz ülkeleri (Örneğin: Türkiye, İngiltere, İspanya) seçin.<br>
+                                4. Seçtiğiniz bu ülkelerin yanındaki açılır menüye tıklayıp onları <strong>"Oynanabilir"</strong> yapın.<br>
+                                5. Sırf oyuncu satın almak için takip edeceğiniz ligleri (Örneğin: Brezilya, Arjantin) ekleyin ama yanındaki menüden onlara tıklayıp <strong>"Sadece Görüntülenebilir" (View-Only)</strong> seçeneğini işaretleyin.
+                            </div>
+                        </div>
+
+                        <div class="mod-card">
+                            <div class="mod-header"><div class="mod-icon">⚙️</div><h4>Maç İçi Takılmaları Düzeltme</h4></div>
+                            <p>3 Boyutlu maç izlerken oyuncular robot gibi kasarak hareket ediyorsa yapılacak ayar çok basit.</p>
+                            <button class="show-more-btn" onclick="toggleDetails('det-unity')">Adım Adım Nasıl Yapılır? ▼</button>
+                            <div id="det-unity" class="extra-info">
+                                <strong>Oyun içindeyken şu menüleri takip edin:</strong><br><br>
+                                1. Ekranın sağ üst köşesindeki "FM" logosuna tıklayın ve <strong>"Tercihler" (Preferences)</strong> menüsünü açın.<br>
+                                2. Çıkan ekranda üst taraftaki sekmelerden <strong>"Gelişmiş" (Advanced)</strong> yazana tıklayın.<br>
+                                3. Sağ taraftaki açılır menüden <strong>"Grafikler" veya "3B Maç Motoru"</strong> bölümünü seçin.<br><br>
+                                <strong>Şimdi şu iki ayarı değiştirin:</strong><br>
+                                • <strong>İşleme Ölçeği (Render Scale)</strong> çubuğunu <strong>%80'e</strong> kadar sola kaydırın.<br>
+                                • <strong>Seyirci Detayları</strong> seçeneğini <strong>"Düşük"</strong> yapın.<br>
+                                • Dikey Senkronizasyon (V-Sync) ayarını kapatın.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="content-fix" class="tab-content">
+                    <h3 style="color: #FFF; border-bottom: 1px solid #333; padding-bottom: 10px; margin-top: 0;">📝 Gerçek Takım İsimleri Nasıl Açılır?</h3>
+                    <div class="important-note">⚠️ DİKKAT: Bu işlemleri yaptıktan sonra isimlerin düzelmesi için YENİ BİR KARİYER başlatmanız ŞARTTIR. Eski kayıtlı oyununuzda isimler düzelmez.</div>
+                    
+                    <div class="mod-grid">
+                        <div class="mod-card" style="border-top: 3px solid #6D28D9;">
+                            <div class="mod-header"><div class="mod-icon">🗑️</div><h4>Adım 1: Sahte İsim Yapan Dosyaları Silme</h4></div>
+                            <p>Oyunun telif hakkı olmadığı için Juventus'a "Zebre" yazar. Önce oyunun içindeki bu yasak koyan dosyaları bulup sileceğiz.</p>
+                            <button class="show-more-btn" onclick="toggleDetails('det-step1')">Klasör Nasıl Bulunur ve Silinir? ▼</button>
+                            <div id="det-step1" class="extra-info">
+                                1. Steam'i açın ve "Kütüphane" kısmına gelin.<br>
+                                2. <strong>Football Manager 2026</strong> oyununu bulup üzerine <strong>Sağ Tıklayın</strong>.<br>
+                                3. Çıkan menüden <strong>"Yönet > Yerel Dosyalara Göz At"</strong> seçeneğine tıklayın.<br>
+                                4. Açılan klasörde sırasıyla şuraya girin: 
+                                <code class="path-text">data > database > db > 26xx</code> <br>
+                                Karşınıza <strong>dbc</strong>, <strong>edt</strong> ve <strong>lnc</strong> adında 3 klasör çıkacak. <strong>Bu üç klasörün İÇİNE tek tek girin ve gördüğünüz BÜTÜN DOSYALARI SİLİN.</strong>
+                            </div>
+                        </div>
+
+                        <div class="mod-card" style="border-top: 3px solid #1ABC9C;">
+                            <div class="mod-header"><div class="mod-icon">📥</div><h4>Adım 2: Gerçek İsimleri İçeri Atma</h4></div>
+                            <p>Sildiğimiz o yasaklı dosyaların yerine internetten indirdiğimiz doğru ve gerçek isim dosyalarını koyacağız.</p>
+                            <button class="show-more-btn" onclick="toggleDetails('det-step2')">İndirme ve Kurulum Adımları ▼</button>
+                            <div id="det-step2" class="extra-info">
+                                1. Aşağıdaki butondan Yama dosyasını indirin ve .rar içinden çıkarın.<br>
+                                2. Çıkan dosyaları kopyalayın.<br>
+                                3. Az önce içini boşalttığınız Steam klasörüne geri dönün ve şu yolu izleyin:<br>
+                                <code class="path-text">.../Football Manager 2026/data/database/db/26xx/lnc/all</code><br>
+                                4. Kopyaladığınız dosyaları bu klasörün içine yapıştırın. İşlem tamam!
+                            </div>
+                            <div class="dl-box"><span style="font-size: 11px; color: #2ECC71; display:flex; align-items:center; gap:5px;">✔️ Güvenli Dosya</span><a href="https://www.fmscout.com/a-fm24-real-names-fix.html" target="_blank" class="dl-btn">Gerçek İsim Yamasını İndir</a></div>
+                        </div>
+
+                        <div class="mod-card" style="border-top: 3px solid #E74C3C;">
+                            <div class="mod-header"><div class="mod-icon">🇩🇪</div><h4>Almanya Milli Takımını Düzeltme</h4></div>
+                            <p>Almanya veya Japonya milli takımına girince oyuncuların hepsi gridir, sahte isimleri vardır.</p>
+                            <button class="show-more-btn" onclick="toggleDetails('det-milli')">Milli Takım Çözümü ▼</button>
+                            <div id="det-milli" class="extra-info">
+                                Aslında siz farkında olmadan bu sorunu <strong>Adım 1'de çözdünüz!</strong> <br><br>
+                                Klasörlerin içini silerken, <strong>"fake.dbc"</strong> adında bir dosya sildiniz. Oyun o dosyayı kullanarak Alman milli takımını yasaklıyordu. Onu sildiğiniz an Almanya milli takımındaki o sahte ve gri oyuncu yasağı otomatik olarak kalkmış oldu.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="content-gfx" class="tab-content">
+                    <h3 style="color: #FFF; border-bottom: 1px solid #333; padding-bottom: 10px; margin-top: 0;">🎨 Grafik ve Görsel Paketler</h3>
+                    <p class="section-desc">Oyuncuların boş silüetlerinden kurtulun. Oyuna yüz, gerçek logo ve formaları ekleyin.</p>
+                    
+                    <div class="guide-box">
+                        <h4>🛠️ Tüm Grafikler İçin Kurulum Rehberi (Önce Burayı Okuyun)</h4>
+                        <strong>1. Dosyaları Nereye Atacaksınız?</strong><br>
+                        Aşağıdan indirdiğiniz paketleri (Yüz, Logo veya Forma fark etmez) bilgisayarınızda şu ana klasörün içine atacaksınız:<br>
+                        <code class="path-text">Bilgisayarım > Belgeler > Sports Interactive > Football Manager 2026 > graphics</code>
+                        <em>(Eğer Football Manager 2026 klasörünün içinde "graphics" adında bir klasör yoksa, sağ tıklayıp o isimde yeni bir klasör oluşturun).</em><br><br>
+                        
+                        <strong>2. Oyunda Aktif Etme (Son ve En Önemli Adım)</strong><br>
+                        Dosyaları klasöre attıktan sonra oyunu açın:<br>
+                        • Sağ üstten FM logonuza tıklayıp <strong>Tercihler</strong> (Preferences) menüsüne girin.<br>
+                        • Arama çubuğuna <strong>Tema</strong> (Skin) yazın.<br>
+                        • ❌ <em>"Sayfaların daha hızlı yüklenmesi için önbelleği kullan"</em> yazan yerdeki Tiki <strong>KALDIRIN</strong>.<br>
+                        • ✅ <em>"Tercihlerde değişiklik yapıldığında temayı yenile"</em> yazan yere Tik <strong>KOYUN</strong>.<br>
+                        • Son olarak alttaki <strong>"TEMA YENİLE"</strong> butonuna basın. Ekran 10 saniye donacak ve tüm grafikler yüklenecektir!
+                    </div>
+
+                    <div class="important-note">💡 İPUCU: İndirdiğiniz yüz dosyalarını graphics klasörünün içinde "faces" klasörü açarak, logoları ise "logos" klasörü açarak atarsanız oyununuz çok daha düzenli olur.</div>
+
+                    <div class="mod-grid">
+                        <div class="mod-card" style="border-top: 3px solid #3498DB;">
+                            <div class="mod-header"><div class="mod-icon">👤</div><h4>Sortitoutsi Cut-Out Yüz Paketi</h4></div>
+                            <p>Oyunun kendi orijinal tasarımına en uygun ve en geniş yüz paketidir (400.000+ oyuncu).</p>
+                            <div class="dl-box" style="margin-top: auto;">
+                                <span style="font-size: 11px; color: #2ECC71; display:flex; align-items:center; gap:5px;">✔️ Güvenli Bağlantı</span>
+                                <a href="https://sortitoutsi.net/graphics/player-faces" target="_blank" class="dl-btn" style="background:#3498DB;">Paketi İndir</a>
+                            </div>
+                        </div>
+
+                        <div class="mod-card" style="border-top: 3px solid #9B59B6;">
+                            <div class="mod-header"><div class="mod-icon">🖼️</div><h4>DF11 Portre Yüz Paketi</h4></div>
+                            <p>Oyuncuları sadece kafa olarak değil, formalarıyla omuzlarından itibaren büyük portreler halinde gösterir.</p>
+                            <div class="dl-box" style="margin-top: auto;">
+                                <span style="font-size: 11px; color: #2ECC71; display:flex; align-items:center; gap:5px;">✔️ Güvenli Bağlantı</span>
+                                <a href="https://df11faces.com/" target="_blank" class="dl-btn" style="background:#9B59B6;">Paketi İndir</a>
+                            </div>
+                        </div>
+
+                        <div class="mod-card" style="border-top: 3px solid #F1C40F;">
+                            <div class="mod-header"><div class="mod-icon">🛡️</div><h4>TCM Gerçek Kulüp Logoları</h4></div>
+                            <p>İngiltere Premier Lig ve İspanya gibi sahte logolu takımlara 100.000'den fazla HD gerçek logoyu ekler.</p>
+                            <div class="dl-box" style="margin-top: auto;">
+                                <span style="font-size: 11px; color: #2ECC71; display:flex; align-items:center; gap:5px;">✔️ Güvenli Bağlantı</span>
+                                <a href="https://www.tcmlogos.com/" target="_blank" class="dl-btn" style="background:#F1C40F; color:#111;">Paketi İndir</a>
+                            </div>
+                        </div>
+
+                        <div class="mod-card" style="border-top: 3px solid #E67E22;">
+                            <div class="mod-header"><div class="mod-icon">👕</div><h4>FC12 Gerçek Forma Paketi</h4></div>
+                            <p>Takım menüsünde ve oyun içi 2D ekranda görünen o sahte formaları, sezonun orijinal formalarıyla değiştirir.</p>
+                            <div class="dl-box" style="margin-top: auto;">
+                                <span style="font-size: 11px; color: #2ECC71; display:flex; align-items:center; gap:5px;">✔️ Güvenli Bağlantı</span>
+                                <a href="https://sortitoutsi.net/graphics/kits" target="_blank" class="dl-btn" style="background:#E67E22;">Paketi İndir</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="content-wonder" class="tab-content">
+                    <h3 style="color: #FFF; border-bottom: 1px solid #333; padding-bottom: 10px; margin-top: 0;">🌟 FM 26 Wonderkid (Genç Yetenek) Listesi</h3>
+                    <p class="section-desc">Gözlemci ekibimizin derlediği, takımınızı 10 yıl sırtlayacak ve size milyon eurolar kazandıracak en potansiyelli 15 yıldız adayı.</p>
+                    
+                    <div class="wk-table-wrapper">
+                        <table class="wk-table">
+                            <thead>
+                                <tr>
+                                    <th>Oyuncu Adı</th>
+                                    <th>Mevki</th>
+                                    <th>Yaş</th>
+                                    <th>Mevcut Kulüp</th>
+                                    <th>Tahmini Fiyat</th>
+                                    <th>Potansiyel</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="wk-name">🇪🇸 Lamine Yamal</span></td>
+                                    <td><span class="wk-pos">AM (R)</span></td>
+                                    <td>18</td>
+                                    <td>Barcelona</td>
+                                    <td class="wk-price">€120M - €150M</td>
+                                    <td class="wk-stars">★★★★★</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="wk-name">🇧🇷 Endrick</span></td>
+                                    <td><span class="wk-pos">ST (C)</span></td>
+                                    <td>19</td>
+                                    <td>Real Madrid</td>
+                                    <td class="wk-price">€90M - €130M</td>
+                                    <td class="wk-stars">★★★★★</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="wk-name">🇫🇷 Warren Zaïre-Emery</span></td>
+                                    <td><span class="wk-pos">DM / M (C)</span></td>
+                                    <td>19</td>
+                                    <td>PSG</td>
+                                    <td class="wk-price">€80M - €110M</td>
+                                    <td class="wk-stars">★★★★☆</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="wk-name">🇹🇷 Arda Güler</span></td>
+                                    <td><span class="wk-pos">M / AM (RC)</span></td>
+                                    <td>20</td>
+                                    <td>Real Madrid</td>
+                                    <td class="wk-price">€60M - €90M</td>
+                                    <td class="wk-stars">★★★★☆</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="wk-name">🇧🇷 Estêvão (Messinho)</span></td>
+                                    <td><span class="wk-pos">AM (R)</span></td>
+                                    <td>18</td>
+                                    <td>Chelsea</td>
+                                    <td class="wk-price">€70M - €100M</td>
+                                    <td class="wk-stars">★★★★★</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="wk-name">🇪🇸 Pau Cubarsí</span></td>
+                                    <td><span class="wk-pos">D (C)</span></td>
+                                    <td>18</td>
+                                    <td>Barcelona</td>
+                                    <td class="wk-price">€55M - €85M</td>
+                                    <td class="wk-stars">★★★★☆</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="wk-name">🇹🇷 Kenan Yıldız</span></td>
+                                    <td><span class="wk-pos">AM (L) / ST</span></td>
+                                    <td>20</td>
+                                    <td>Juventus</td>
+                                    <td class="wk-price">€50M - €75M</td>
+                                    <td class="wk-stars">★★★★☆</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="wk-name">🇫🇷 Leny Yoro</span></td>
+                                    <td><span class="wk-pos">D (C)</span></td>
+                                    <td>20</td>
+                                    <td>Man Utd</td>
+                                    <td class="wk-price">€65M - €95M</td>
+                                    <td class="wk-stars">★★★★☆</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="wk-name">🇵🇹 João Neves</span></td>
+                                    <td><span class="wk-pos">DM / M (C)</span></td>
+                                    <td>21</td>
+                                    <td>PSG</td>
+                                    <td class="wk-price">€75M - €105M</td>
+                                    <td class="wk-stars">★★★★☆</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="wk-name">🇦🇷 Franco Mastantuono</span></td>
+                                    <td><span class="wk-pos">M / AM (C)</span></td>
+                                    <td>18</td>
+                                    <td>River Plate</td>
+                                    <td class="wk-price">€25M - €45M</td>
+                                    <td class="wk-stars">★★★★☆</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="wk-name">🇳🇴 Sverre Halseth Nypan</span></td>
+                                    <td><span class="wk-pos">M (C)</span></td>
+                                    <td>19</td>
+                                    <td>Rosenborg</td>
+                                    <td class="wk-price">€15M - €25M</td>
+                                    <td class="wk-stars">★★★★☆</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="wk-name">🇸🇪 Roony Bardghji</span></td>
+                                    <td><span class="wk-pos">AM (R)</span></td>
+                                    <td>20</td>
+                                    <td>FC København</td>
+                                    <td class="wk-price">€18M - €30M</td>
+                                    <td class="wk-stars">★★★★☆</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="wk-name">🇳🇱 Jorrel Hato</span></td>
+                                    <td><span class="wk-pos">D (LC)</span></td>
+                                    <td>19</td>
+                                    <td>Ajax</td>
+                                    <td class="wk-price">€40M - €65M</td>
+                                    <td class="wk-stars">★★★★☆</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="wk-name">🇩🇪 Assan Ouédraogo</span></td>
+                                    <td><span class="wk-pos">M (C)</span></td>
+                                    <td>19</td>
+                                    <td>RB Leipzig</td>
+                                    <td class="wk-price">€20M - €35M</td>
+                                    <td class="wk-stars">★★★★☆</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="wk-name">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Mikey Moore</span></td>
+                                    <td><span class="wk-pos">AM (L)</span></td>
+                                    <td>18</td>
+                                    <td>Tottenham</td>
+                                    <td class="wk-price">€30M - €55M</td>
+                                    <td class="wk-stars">★★★★☆</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="content-taktik" class="tab-content">
+                    <h3 style="color: #FFF; border-bottom: 1px solid #333; padding-bottom: 10px; margin-top: 0;">📋 Taktik Tahtası (Yenilmez Dizilişler)</h3>
+                    <p class="section-desc">FM maç motorunu çaresiz bırakan, hazır şablon olarak kurup ufak dokunuşlarla takımı şaha kaldıracağınız en popüler 3 taktik.</p>
+
+                    <div class="mod-grid">
+                        
+                        <div class="mod-card" style="border-top: 3px solid #E74C3C;">
+                            <div class="mod-header"><div class="mod-icon" style="color: #E74C3C; background: rgba(231, 76, 60, 0.1);">⚔️</div><h4>4-2-3-1 Gegenpress</h4></div>
+                            <span class="tac-tag tac-atk">Aşırı Hücum</span> <span class="tac-tag tac-pos">Yüksek Baskı</span>
+                            <p>Modern futbolun zirvesi. Rakibi kendi sahasında boğan, sürekli pozisyona giren Heavy Metal futbolu.</p>
+                            <button class="show-more-btn" onclick="toggleDetails('det-tac1')">Taktik Ayarları ▼</button>
+                            <div id="det-tac1" class="extra-info">
+                                <strong>Zihniyet:</strong> Hücum (Attacking)<br><br>
+                                <strong>Topluyken:</strong><br>
+                                • Tempo: Çok Yüksek<br>
+                                • Pas Şekli: Kısa Pas<br>
+                                • Bekleri İleri Çıkar (Overlap)<br><br>
+                                <strong>Geçiş Oyunu:</strong><br>
+                                • Topu Kaybedince: Karşı Pres (Counter-Press)<br>
+                                • Topu Kazanınca: Kontraya Kalk<br>
+                                • Kaleci: Hızlıca stoperlere/beklere elden yuvarla<br><br>
+                                <strong>Topsuz Oyun:</strong><br>
+                                • Savunma Çizgisi: Çok Önde<br>
+                                • Baskı Şiddeti: Aşırı Şiddetli<br>
+                                • Rakip Kaleciye Baskı Yap
+                            </div>
+                        </div>
+
+                        <div class="mod-card" style="border-top: 3px solid #F1C40F;">
+                            <div class="mod-header"><div class="mod-icon" style="color: #F1C40F; background: rgba(241, 196, 15, 0.1);">🧠</div><h4>4-3-3 Tiki-Taka</h4></div>
+                            <span class="tac-tag tac-pos">Topa Sahip Olma</span> <span class="tac-tag tac-def">Kontrollü</span>
+                            <p>Topu rakibe göstermeden, sabırla boşluk arayan ve yorarak yenen Guardiola stili dominasyon.</p>
+                            <button class="show-more-btn" onclick="toggleDetails('det-tac2')">Taktik Ayarları ▼</button>
+                            <div id="det-tac2" class="extra-info">
+                                <strong>Zihniyet:</strong> Olumlu (Positive)<br><br>
+                                <strong>Topluyken:</strong><br>
+                                • Tempo: Düşük (Sakin)<br>
+                                • Pas Şekli: Çok Kısa Paslaşma<br>
+                                • Topu Ceza Sahasına Pasla Sok<br>
+                                • Yerden Orta Yap<br><br>
+                                <strong>Geçiş Oyunu:</strong><br>
+                                • Topu Kaybedince: Karşı Pres (Hemen Geri Kazan)<br>
+                                • Topu Kazanınca: Şeklini Koru (Kontraya Çıkma)<br><br>
+                                <strong>Topsuz Oyun:</strong><br>
+                                • Savunma Çizgisi: Önde<br>
+                                • Topa Yatarak Müdahale Etme (Ayakta Kal)
+                            </div>
+                        </div>
+
+                        <div class="mod-card" style="border-top: 3px solid #3498DB;">
+                            <div class="mod-header"><div class="mod-icon" style="color: #3498DB; background: rgba(52, 152, 219, 0.1);">🛡️</div><h4>5-3-2 Kontra Atak</h4></div>
+                            <span class="tac-tag tac-def">Katı Savunma</span> <span class="tac-tag tac-atk">Hızlı Kontra</span>
+                            <p>Zayıf bir takımı yönetiyorsanız veya Şampiyonlar Ligi'nde devlere karşı oynuyorsanız hayat kurtarır.</p>
+                            <button class="show-more-btn" onclick="toggleDetails('det-tac3')">Taktik Ayarları ▼</button>
+                            <div id="det-tac3" class="extra-info">
+                                <strong>Zihniyet:</strong> Temkinli (Cautious)<br><br>
+                                <strong>Topluyken:</strong><br>
+                                • Tempo: Standart<br>
+                                • Pas Şekli: Direkt (Uzun) Paslar<br>
+                                • Bekleri İleri Uçur<br><br>
+                                <strong>Geçiş Oyunu:</strong><br>
+                                • Topu Kaybedince: Geriye Çekil (Regroup)<br>
+                                • Topu Kazanınca: Kontraya Kalk<br>
+                                • Kaleci: Topu uzun diksin (Hedef: Forvet)<br><br>
+                                <strong>Topsuz Oyun:</strong><br>
+                                • Savunma Çizgisi: Standart veya Geride<br>
+                                • Baskı Şiddeti: Orta<br>
+                                • Rakipleri Merkezden Oynamaya Zorla
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleDetails(id) {
+            let element = document.getElementById(id);
+            element.style.display = (element.style.display === "block") ? "none" : "block";
+        }
+
+        function sekmeDegistir(sekmeAdi) {
+            let icerikler = document.getElementsByClassName('tab-content');
+            for(let i = 0; i < icerikler.length; i++) { icerikler[i].classList.remove('active'); }
+            document.getElementById('content-' + sekmeAdi).classList.add('active');
+
+            let butonlar = document.getElementsByClassName('menu-btn');
+            for(let i = 0; i < butonlar.length; i++) { butonlar[i].classList.remove('active-btn'); }
+            document.getElementById('btn-' + sekmeAdi).classList.add('active-btn');
+            window.scrollTo({top: 0, behavior: 'smooth'}); 
+        }
+    </script>
+</body>
+</html>

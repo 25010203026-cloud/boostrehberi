@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assetto Corsa Mod Merkezi - BoostRehberi</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Fira+Code:wght@600&display=swap');
+        
+        /* Assetto Corsa'ya Özel Araba İmleci */
+        body, a, button, .mod-card, input, details, summary {
+            cursor: url('https://cdn.custom-cursor.com/db/cursor/32/sports_car_cursor.png'), auto !important;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: radial-gradient(circle at top right, #2c1010 0%, #0a0a0a 100%);
+            background-attachment: fixed;
+            color: #E0E0E0; margin: 0; padding: 0; line-height: 1.6;
+        }
+
+        /* HEADER */
+        header { background-color: rgba(10, 10, 10, 0.95); padding: 15px 50px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #E74C3C; box-shadow: 0 4px 15px rgba(0,0,0,0.5); position: sticky; top: 0; z-index: 100; backdrop-filter: blur(10px);}
+        .logo { font-size: 24px; font-weight: 800; color: #FFFFFF; text-decoration: none; }
+        .logo span { color: #E74C3C; }
+        .back-btn { color: #E74C3C; text-decoration: none; font-weight: 600; border: 1px solid #E74C3C; padding: 8px 20px; border-radius: 6px; transition: all 0.2s; font-size: 14px; }
+        .back-btn:hover { background-color: #E74C3C; color: #FFF; }
+
+        /* LAYOUT */
+        .container { max-width: 1300px; margin: 40px auto; padding: 0 20px; }
+        .page-header { margin-bottom: 30px; border-bottom: 1px solid #2C3E50; padding-bottom: 20px; }
+        .page-title { font-size: 32px; color: #FFF; font-weight: 800; margin: 0; display: flex; align-items: center; gap: 15px; }
+
+        .layout-grid { display: grid; grid-template-columns: 280px 1fr; gap: 40px; align-items: start; }
+        
+        /* SIDEBAR */
+        .sidebar { display: flex; flex-direction: column; gap: 5px; position: sticky; top: 90px; background-color: rgba(20, 25, 30, 0.8); padding: 20px; border-radius: 12px; border: 1px solid #333; }
+        .sidebar-title { color: #8892B0; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; font-weight: 700; padding-left: 10px; }
+        .menu-btn { background: transparent; color: #AAB7B8; border: none; padding: 12px 15px; font-size: 14px; font-weight: 600; text-align: left; border-radius: 8px; transition: 0.2s; display: flex; align-items: center; gap: 12px; cursor: pointer; }
+        .menu-btn:hover { background-color: rgba(231, 76, 60, 0.1); color: #E74C3C; }
+        .menu-btn.active-btn { background-color: #E74C3C; color: #FFF; font-weight: 700; }
+
+        /* MAIN CONTENT */
+        .tab-content { display: none; animation: fadeIn 0.3s ease-in-out; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        .section-desc { color: #AAB7B8; font-size: 15px; margin-bottom: 25px; }
+
+        /* GRID SYSTEM */
+        .mod-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 25px; margin-bottom: 40px; }
+        .mod-card { background-color: #161B22; border: 1px solid #333; border-radius: 10px; padding: 25px; display: flex; flex-direction: column; transition: 0.2s; }
+        .mod-card:hover { border-color: #E74C3C; transform: translateY(-3px); box-shadow: 0 8px 15px rgba(231, 76, 60, 0.15); }
+        .mod-header { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; }
+        .mod-icon { font-size: 22px; background: rgba(231, 76, 60, 0.1); padding: 8px; border-radius: 8px; display: flex; align-items: center; justify-content: center; width: 35px; height: 35px; color: #E74C3C; }
+        .mod-card h4 { margin: 0; color: #FFF; font-size: 18px; font-weight: 700; }
+        .mod-card p { color: #8892B0; font-size: 14px; margin: 0 0 15px 0; flex-grow: 1; line-height: 1.5; }
+        
+        .show-more-btn { background: rgba(231, 76, 60, 0.1); border: none; color: #E74C3C; padding: 12px; border-radius: 6px; font-size: 14px; font-weight: 700; cursor: pointer; transition: 0.2s; text-align: center; width: 100%; }
+        .show-more-btn:hover { background: #E74C3C; color: #FFF; }
+        
+        .extra-info { display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid #333; font-size: 14px; color: #DDD; line-height: 1.7; }
+        .extra-info strong { color: #FFF; }
+        .dl-box { display: flex; align-items: center; justify-content: space-between; margin-top: 20px; }
+        .dl-btn { background-color: #E74C3C; color: #FFF; text-decoration: none; font-size: 13px; font-weight: 700; padding: 10px 18px; border-radius: 6px; transition: 0.2s; text-align: center;}
+        .dl-btn:hover { background-color: #C0392B; }
+
+        .important-note { background-color: rgba(241, 196, 15, 0.1); border-left: 5px solid #F1C40F; padding: 15px; border-radius: 8px; margin-bottom: 25px; font-size: 14px; color: #f1c40f; font-weight: 600; }
+        .guide-box { background-color: rgba(52, 152, 219, 0.1); border-left: 5px solid #3498DB; padding: 25px; border-radius: 8px; margin-bottom: 30px; font-size: 14px; color: #E0E0E0; line-height: 1.8; }
+        .guide-box h4 { color: #3498DB; margin-top: 0; font-size: 20px; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        
+        code.path-text { background: #000; color: #E74C3C; padding: 4px 8px; border-radius: 4px; font-family: 'Fira Code', monospace; font-size: 13px; display: inline-block; margin-top: 5px; margin-bottom: 5px; border: 1px solid #333; }
+
+        /* GALERİ TASARIMI (MODLAR İÇİN) */
+        .gallery-card { background-color: #161B22; border: 1px solid #333; border-radius: 12px; overflow: hidden; transition: 0.2s; display: flex; flex-direction: column; }
+        .gallery-card:hover { border-color: #E74C3C; transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+        .gallery-img { width: 100%; height: 180px; object-fit: cover; border-bottom: 1px solid #333; }
+        .gallery-info { padding: 20px; display: flex; flex-direction: column; flex-grow: 1; }
+        .gallery-info h4 { margin: 0 0 10px 0; font-size: 18px; font-weight: 700; color: #FFF; }
+        .gallery-info p { color: #8892B0; font-size: 13px; margin: 0 0 15px 0; flex-grow: 1; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">Boost<span>Rehberi</span></a>
+        <a href="index.html" class="back-btn">Ana Sayfaya Dön</a>
+    </header>
+
+    <div class="container">
+        
+        <div class="page-header">
+            <h1 class="page-title">🏎️ Assetto Corsa Makas & Mod Merkezi</h1>
+        </div>
+
+        <div class="layout-grid">
+            
+            <div class="sidebar">
+                <div class="sidebar-title">Temel Kurulum (Zorunlu)</div>
+                <button id="btn-cm" class="menu-btn active-btn" onclick="sekmeDegistir('cm')">⚙️ CM ve CSP Kurulumu</button>
+                <button id="btn-sol" class="menu-btn" onclick="sekmeDegistir('sol')">🌧️ SOL (Gerçekçi Hava) Kurulumu</button>
+                
+                <div class="sidebar-title" style="margin-top: 15px;">Mod Galerisi</div>
+                <button id="btn-cars" class="menu-btn" onclick="sekmeDegistir('cars')">🚘 Araba Galerisi</button>
+                <button id="btn-maps" class="menu-btn" onclick="sekmeDegistir('maps')">🗺️ Harita Galerisi</button>
+                
+                <div class="sidebar-title" style="margin-top: 15px;">Trafik ve Ayarlar</div>
+                <button id="btn-traffic" class="menu-btn" onclick="sekmeDegistir('traffic')">🚦 No Hesi & Trafik Modu</button>
+                <button id="btn-controls" class="menu-btn" onclick="sekmeDegistir('controls')">🎮 Fare & Direksiyon Ayarı</button>
+            </div>
+
+            <div class="main-panel">
+                
+                <div id="content-cm" class="tab-content active">
+                    <h3 style="color: #FFF; border-bottom: 1px solid #333; padding-bottom: 10px; margin-top: 0;">⚙️ Adım 1: Ana Motorlar (Content Manager & CSP)</h3>
+                    <p class="section-desc">Oyunun kendi menüsünü çöpe atıp, mod kurmamızı sağlayacak modern programı (CM) ve grafikleri güncelleyen yamasını (CSP) kuruyoruz. <strong>Bu ikisi olmadan hiçbir mod çalışmaz!</strong></p>
+                    
+                    <div class="mod-grid">
+                        <div class="mod-card" style="border-top: 3px solid #E74C3C;">
+                            <div class="mod-header"><div class="mod-icon">📥</div><h4>1. Content Manager Kurulumu</h4></div>
+                            <p>Artık oyuna Steam'den değil, masaüstüne atacağımız bu programdan gireceğiz.</p>
+                            <button class="show-more-btn" onclick="toggleDetails('det-cm')">Nasıl Kurulur? ▼</button>
+                            <div id="det-cm" class="extra-info">
+                                1. Aşağıdaki butondan dosyayı indirin.<br>
+                                2. İçindeki <strong>"Content Manager.exe"</strong> dosyasını masaüstüne atın.<br>
+                                3. Çift tıklayıp açın. İlk açılışta Steam'deki Assetto Corsa klasörünüzü seçmenizi isteyecek. Klasörü gösterin ve OK tuşuna basın.
+                            </div>
+                            <div class="dl-box">
+                                <a href="https://acstuff.ru/app/" target="_blank" class="dl-btn">Content Manager İndir</a>
+                            </div>
+                        </div>
+
+                        <div class="mod-card" style="border-top: 3px solid #3498DB;">
+                            <div class="mod-header"><div class="mod-icon">✨</div><h4>2. CSP (Custom Shaders Patch)</h4></div>
+                            <p>Gece farları, fren lambaları ve egzoz alevleri için grafik motorunu günceller.</p>
+                            <button class="show-more-btn" onclick="toggleDetails('det-csp')">Nasıl Yapılır? ▼</button>
+                            <div id="det-csp" class="extra-info">
+                                İndirmeye gerek yok, programın içinden yapacağız:<br><br>
+                                1. <strong>Content Manager'ı</strong> açın.<br>
+                                2. Sağ üstten <strong>Settings (Ayarlar)</strong> > Sol üstten <strong>Custom Shaders Patch</strong> sekmesine tıklayın.<br>
+                                3. Ortada çıkan büyük yeşil <strong>"Install" (Yükle)</strong> butonuna basın. Birkaç saniye içinde oyunun grafikleri çağ atlayacak.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="content-sol" class="tab-content">
+                    <h3 style="color: #FFF; border-bottom: 1px solid #333; padding-bottom: 10px; margin-top: 0;">🌧️ Adım 2: SOL (Gerçekçi Hava Durumu) Kurulumu</h3>
+                    <p class="section-desc">Bulutların gerçekçi olması, yağmurun cama vurması ve gündüz/gece döngüsünün çalışması için bu modu manuel (elle) kurmamız gerekiyor.</p>
+                    
+                    <div class="guide-box" style="border-color: #F1C40F;">
+                        <h4 style="color: #F1C40F;">Elle Kurulum (Manuel) Nasıl Yapılır?</h4>
+                        <strong>DİKKAT:</strong> SOL modunu Content Manager'a SÜRÜKLEYİP BIRAKMAYIN. Oyununuz bozulur. Şu adımları izleyin:<br><br>
+                        1. <a href="https://www.overtake.gg/downloads/sol.24914/" target="_blank" style="color:#F1C40F; font-weight:bold;">Buraya tıklayarak</a> SOL modunu indirin (Ücretsiz üyelik ister).<br>
+                        2. İnen .zip dosyasını açın. İçinde <code>apps</code>, <code>content</code>, <code>extension</code> ve <code>system</code> adında 4 klasör göreceksiniz.<br>
+                        3. Bilgisayarınızdan oyunun ana klasörüne gidin: <br><code class="path-text">Steam/steamapps/common/assettocorsa/</code><br>
+                        4. İndirdiğiniz o 4 klasörü farenizle tutun ve oyunun ana klasörünün içine SÜRÜKLEYİP YAPIŞTIRIN. "Hedefteki dosyaları değiştir" sorusuna <strong>EVET</strong> deyin.<br><br>
+                        <em>İşlem tamam! Content Manager ayarlarına girip "Weather" kısmından SOL'u seçebilirsiniz.</em>
+                    </div>
+                </div>
+
+                <div id="content-cars" class="tab-content">
+                    <h3 style="color: #FFF; border-bottom: 1px solid #333; padding-bottom: 10px; margin-top: 0;">🚘 Araba Galerisi</h3>
+                    
+                    <div class="important-note">💡 NASIL KURULUR: İndirdiğiniz .zip veya .rar uzantılı araba dosyasını farenizle tutup Content Manager ekranının tam ortasına bırakın. Sağ üstteki yeşil çizgiye tıklayıp "Install" deyin. Bitti!</div>
+
+                    <div class="mod-grid">
+                        <div class="gallery-card">
+                            <img src="https://placehold.co/400x200/1a1a1a/e74c3c?text=Tofas+Sahin" alt="Tofaş" class="gallery-img">
+                            <div class="gallery-info">
+                                <h4>Tofaş Şahin (Drift Setup)</h4>
+                                <p>Türkiye otoyollarının vazgeçilmezi. Özel egzoz sesi ve drift ayarlarıyla gelir.</p>
+                                <a href="https://assettocorsa.club/mods/auto/tofas-sahin.html" target="_blank" class="dl-btn">Aracı İndir</a>
+                            </div>
+                        </div>
+
+                        <div class="gallery-card">
+                            <img src="https://placehold.co/400x200/1a1a1a/3498db?text=BMW+M5+CS" alt="BMW" class="gallery-img">
+                            <div class="gallery-info">
+                                <h4>BMW M5 CS (No Hesi Spec)</h4>
+                                <p>Makas atmak için özel olarak ayarlanmış yol tutuşu ve inanılmaz bir ivmelenme.</p>
+                                <a href="https://vosan.co/" target="_blank" class="dl-btn">Aracı İndir</a>
+                            </div>
+                        </div>
+
+                        <div class="gallery-card">
+                            <img src="https://placehold.co/400x200/1a1a1a/f1c40f?text=Honda+S2000" alt="Honda" class="gallery-img">
+                            <div class="gallery-info">
+                                <h4>Honda S2000 (VTEC)</h4>
+                                <p>Vites geçişlerinde VTEC açma sesiyle sizi gaza getirecek bir Japon efsanesi.</p>
+                                <a href="https://assettocorsa.club/mods/auto/" target="_blank" class="dl-btn">Aracı İndir</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="content-maps" class="tab-content">
+                    <h3 style="color: #FFF; border-bottom: 1px solid #333; padding-bottom: 10px; margin-top: 0;">🗺️ Harita Galerisi</h3>
+                    <p class="section-desc">Kurulumu araçlarla aynıdır. ZİP dosyasını Content Manager'a sürükleyip bırakın.</p>
+
+                    <div class="mod-grid">
+                        <div class="gallery-card">
+                            <img src="https://placehold.co/400x200/1a1a1a/2ecc71?text=Istanbul+Park" alt="Istanbul Park" class="gallery-img">
+                            <div class="gallery-info">
+                                <h4>Intercity İstanbul Park F1</h4>
+                                <p>Türkiye'nin gururu 8. virajı dönmeyi denemek ister misiniz? Mükemmel lazer tarama.</p>
+                                <a href="https://www.overtake.gg/downloads/istanbul-park.6631/" target="_blank" class="dl-btn">Haritayı İndir</a>
+                            </div>
+                        </div>
+
+                        <div class="gallery-card">
+                            <img src="https://placehold.co/400x200/1a1a1a/9b59b6?text=LA+Canyons" alt="LA Canyons" class="gallery-img">
+                            <div class="gallery-info">
+                                <h4>LA Canyons (Serbest Sürüş)</h4>
+                                <p>Los Angeles dağlarında kilometrelerce uzunlukta, manzaralı serbest sürüş (Free Roam) haritası.</p>
+                                <a href="https://www.overtake.gg/downloads/la-canyons.15067/" target="_blank" class="dl-btn">Haritayı İndir</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="content-traffic" class="tab-content">
+                    <h3 style="color: #FFF; border-bottom: 1px solid #333; padding-bottom: 10px; margin-top: 0;">🚦 Makas Atma ve Trafik Sunucuları (No Hesi)</h3>
+                    <p class="section-desc">YouTube ve TikTok'ta gördüğünüz o sıkışık trafikte saatte 300km hızla makas atılan sunuculara giriş rehberi.</p>
+                    
+                    <div class="mod-grid">
+                        <div class="mod-card" style="border-top: 3px solid #F1C40F;">
+                            <div class="mod-header"><div class="mod-icon">🛣️</div><h4>Adım 1: Shutoko (SRP) Haritasını İndirin</h4></div>
+                            <p>Tüm bu makas sunucularının kullandığı ana harita, Tokyo'nun otoyolları olan Shutoko haritasıdır.</p>
+                            <button class="show-more-btn" onclick="toggleDetails('det-shutoko')">Nasıl Kurulur? ▼</button>
+                            <div id="det-shutoko" class="extra-info">
+                                1. Aşağıdaki linkten "Shutoko Revival Project" resmi Discord adresine girin.<br>
+                                2. Sol kanallardan <strong>#track-downloads</strong> odasını bulun.<br>
+                                3. Oradaki harita linklerinden birine tıklayıp indirin (yaklaşık 2GB).<br>
+                                4. İnen dosyayı Content Manager'a Sürükle-Bırak yaparak kurun.
+                            </div>
+                            <div class="dl-box">
+                                <a href="https://discord.com/invite/shutokorevivalproject" target="_blank" class="dl-btn" style="background: #5865F2;">SRP Discord'a Katıl</a>
+                            </div>
+                        </div>
+
+                        <div class="mod-card" style="border-top: 3px solid #E74C3C;">
+                            <div class="mod-header"><div class="mod-icon">🌐</div><h4>Adım 2: No Hesi Sunucusuna Bağlanın</h4></div>
+                            <p>Haritayı kurduktan sonra geriye sadece en kalabalık makas sunucularından birine girmek kalıyor.</p>
+                            <button class="show-more-btn" onclick="toggleDetails('det-nohesi')">Nasıl Bağlanılır? ▼</button>
+                            <div id="det-nohesi" class="extra-info">
+                                1. Content Manager'ı açın.<br>
+                                2. Üst menüden <strong>Drive</strong> > <strong>Online</strong> sekmesine gelin.<br>
+                                3. Sağ taraftaki arama çubuğuna <strong>No Hesi</strong> yazın.<br>
+                                4. Karşınıza onlarca sunucu çıkacak. Birine tıklayın.<br>
+                                5. Sağ tarafta sunucuda eksik olan arabalarınız gözükebilir. Eğer eksik araç varsa yanlarındaki indirme butonuna basıp indirin. Her şey tamsa yeşil <strong>JOIN</strong> tuşuna basıp trafiğe dalın!
+                            </div>
+                            <div class="dl-box">
+                                <a href="https://discord.gg/nohesi" target="_blank" class="dl-btn" style="background: #5865F2;">No Hesi Discord (Destek)</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="content-controls" class="tab-content">
+                    <h3 style="color: #FFF; border-bottom: 1px solid #333; padding-bottom: 10px; margin-top: 0;">🎮 Direksiyon ve Fare (Mouse) Ayarları</h3>
+                    <p class="section-desc">Direksiyon setiniz yoksa klavye ile oynamak imkansız gibidir. Fare ile pürüzsüz direksiyon kontrolünü açın.</p>
+
+                    <div class="mod-grid">
+                        <div class="mod-card">
+                            <div class="mod-header"><div class="mod-icon">🖱️</div><h4>Mouse ile Araba Sürme (Makas İçin İdeal)</h4></div>
+                            <p>Direksiyonu olmayanlar için aracı fareyi sağa sola kaydırarak hassas şekilde sürme ayarı.</p>
+                            <button class="show-more-btn" onclick="toggleDetails('det-mouse')">Ayarı Aç ▼</button>
+                            <div id="det-mouse" class="extra-info">
+                                1. Content Manager'da sağ üstten <strong>Settings (Ayarlar)</strong> > Sol üstten <strong>Assetto Corsa</strong> > <strong>Controls</strong> kısmına girin.<br>
+                                2. Yukarıdaki giriş cihazı seçeneklerinden klavye yerine fare simgesine tıklayın veya <strong>"Mouse Steering"</strong> seçeneğini aktif edin.<br>
+                                3. Oyuna girdiğinizde, <code>CTRL + M</code> tuşlarına basarak fare ile kontrolü anında açıp kapatabilirsiniz!
+                            </div>
+                        </div>
+                        
+                        <div class="mod-card">
+                            <div class="mod-header"><div class="mod-icon">🎡</div><h4>Direksiyon Seti (Force Feedback)</h4></div>
+                            <p>Logitech, Thrustmaster gibi setlerde yoldaki çukurları ve lastik kaymasını hissetme ayarı.</p>
+                            <button class="show-more-btn" onclick="toggleDetails('det-wheel')">Temel Ayarlar ▼</button>
+                            <div id="det-wheel" class="extra-info">
+                                Aynı Kontroller (Controls) menüsünden giriş cihazınızı <strong>Wheel (Direksiyon)</strong> seçin.<br><br>
+                                Sağ taraftaki <strong>Force Feedback (FFB)</strong> sekmesine gelin:<br>
+                                • Gain (Genel Sertlik): %70 - %80<br>
+                                • Kerb Effects (Bordür Titremesi): %40<br>
+                                • Road Effects (Yol Hissiyatı): %30<br>
+                                • Slip Effects (Lastik Kayması): %20
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleDetails(id) {
+            let element = document.getElementById(id);
+            element.style.display = (element.style.display === "block") ? "none" : "block";
+        }
+
+        function sekmeDegistir(sekmeAdi) {
+            let icerikler = document.getElementsByClassName('tab-content');
+            for(let i = 0; i < icerikler.length; i++) { icerikler[i].classList.remove('active'); }
+            document.getElementById('content-' + sekmeAdi).classList.add('active');
+
+            let butonlar = document.getElementsByClassName('menu-btn');
+            for(let i = 0; i < butonlar.length; i++) { butonlar[i].classList.remove('active-btn'); }
+            document.getElementById('btn-' + sekmeAdi).classList.add('active-btn');
+            window.scrollTo({top: 0, behavior: 'smooth'}); 
+        }
+    </script>
+</body>
+</html>

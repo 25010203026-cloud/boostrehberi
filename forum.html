@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIP Forum - BoostRehberi</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Fira+Code:wght@600&display=swap');
+
+        body, a, button, input, textarea {
+            cursor: url('https://cdn.custom-cursor.com/db/cursor/32/minecraft_diamond_pickaxe_cursor.png'), auto !important;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(rgba(15, 20, 25, 0.95), rgba(15, 20, 25, 0.98)), url('arkaplan.jpg') center/cover fixed;
+            color: #E0E0E0; margin: 0; padding: 0; line-height: 1.6;
+        }
+
+        /* HEADER */
+        header { background-color: #11151D; padding: 15px 50px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #F1C40F; box-shadow: 0 4px 15px rgba(0,0,0,0.5); position: sticky; top: 0; z-index: 100;}
+        .logo { font-size: 24px; font-weight: 800; color: #FFFFFF; text-decoration: none; }
+        .logo span { color: #1ABC9C; }
+        .header-right { display: flex; align-items: center; gap: 15px; }
+        .user-badge { background: rgba(241, 196, 15, 0.1); border: 1px solid #F1C40F; color: #F1C40F; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-weight: 700;}
+        .back-btn { color: #1ABC9C; text-decoration: none; font-weight: 600; border: 1px solid #1ABC9C; padding: 8px 20px; border-radius: 6px; transition: all 0.2s; font-size: 14px; }
+        .back-btn:hover { background-color: #1ABC9C; color: #11151D; }
+
+        /* FORUM LAYOUT */
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+        .forum-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px; border-bottom: 1px solid #2C3E50; padding-bottom: 20px;}
+        .forum-header h1 { font-size: 32px; color: #FFF; margin: 0; font-weight: 800; display: flex; align-items: center; gap: 10px;}
+        .new-topic-btn { background: #1ABC9C; color: #000; border: none; padding: 12px 25px; border-radius: 6px; font-weight: 800; font-size: 15px; transition: 0.3s; box-shadow: 0 4px 10px rgba(26, 188, 156, 0.3);}
+        .new-topic-btn:hover { background: #16A085; transform: translateY(-2px); box-shadow: 0 6px 15px rgba(26, 188, 156, 0.5);}
+
+        .layout-grid { display: grid; grid-template-columns: 260px 1fr; gap: 30px; align-items: start; }
+
+        /* SIDEBAR (KATEGORİLER) */
+        .sidebar { background-color: rgba(20, 25, 30, 0.8); padding: 20px; border-radius: 12px; border: 1px solid #2C3E50; position: sticky; top: 90px; }
+        .sidebar-title { color: #8892B0; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; font-weight: 700; }
+        .cat-btn { background: transparent; color: #AAB7B8; border: none; width: 100%; text-align: left; padding: 12px 15px; border-radius: 8px; font-size: 14px; font-weight: 600; transition: 0.2s; margin-bottom: 5px; display: flex; justify-content: space-between; align-items: center;}
+        .cat-btn:hover { background: rgba(255,255,255,0.05); color: #FFF; }
+        .cat-btn.active { background: rgba(26, 188, 156, 0.1); color: #1ABC9C; border-left: 3px solid #1ABC9C; }
+        .cat-count { background: #1A202C; padding: 2px 8px; border-radius: 12px; font-size: 11px; color: #888; }
+        .cat-btn.active .cat-count { background: #1ABC9C; color: #000; }
+
+        /* THREAD LIST */
+        .thread-list { display: flex; flex-direction: column; gap: 15px; }
+        .thread-card { background: rgba(22, 27, 34, 0.9); border: 1px solid #2C3E50; border-radius: 10px; padding: 20px; display: flex; gap: 20px; align-items: center; transition: 0.2s; }
+        .thread-card:hover { border-color: #555; background: rgba(30, 35, 45, 0.9); transform: translateX(5px); }
+        
+        .thread-avatar { width: 50px; height: 50px; border-radius: 50%; background: #2C3E50; display: flex; justify-content: center; align-items: center; font-size: 24px; border: 2px solid #1ABC9C; flex-shrink: 0;}
+        .thread-content { flex-grow: 1; }
+        .thread-title { margin: 0 0 5px 0; color: #FFF; font-size: 18px; font-weight: 700; }
+        .thread-title span { background: #E74C3C; color: #FFF; font-size: 10px; padding: 3px 6px; border-radius: 4px; margin-right: 8px; vertical-align: middle;}
+        .thread-title span.fm { background: #6D28D9; }
+        .thread-title span.mc { background: #2ECC71; color: #000;}
+        .thread-title span.genel { background: #3498DB; }
+
+        .thread-meta { font-size: 12px; color: #8892B0; display: flex; gap: 15px; align-items: center; }
+        .thread-author { color: #1ABC9C; font-weight: 700; }
+        
+        .thread-stats { display: flex; gap: 15px; text-align: center; flex-shrink: 0;}
+        .stat-box { background: #11151D; border: 1px solid #2C3E50; padding: 8px 15px; border-radius: 8px; min-width: 60px;}
+        .stat-num { display: block; font-size: 16px; color: #FFF; font-weight: 700; }
+        .stat-lbl { font-size: 10px; color: #888; text-transform: uppercase; }
+
+        /* MODAL (YENİ KONU AÇ) */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); z-index: 1000; justify-content: center; align-items: center; }
+        .modal-box { background: #11151D; width: 600px; border-radius: 12px; border: 1px solid #1ABC9C; padding: 30px; box-shadow: 0 15px 30px rgba(0,0,0,0.5); position: relative; animation: slideDown 0.3s ease-out; }
+        @keyframes slideDown { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 24px; color: #888; background: none; border: none; font-weight: bold; padding: 0;}
+        .close-btn:hover { color: #FFF; }
+        
+        .modal-box h2 { color: #FFF; margin-top: 0; border-bottom: 1px solid #333; padding-bottom: 10px; margin-bottom: 20px;}
+        .input-group { margin-bottom: 15px; }
+        .input-group label { font-size: 12px; color: #AAB7B8; font-weight: 600; margin-bottom: 5px; display: block; }
+        .input-group input, .input-group select, .input-group textarea { width: 100%; padding: 12px; background: #1A202C; border: 1px solid #333; border-radius: 6px; color: #FFF; font-family: 'Montserrat'; box-sizing: border-box; outline: none; transition: 0.3s; }
+        .input-group input:focus, .input-group select:focus, .input-group textarea:focus { border-color: #1ABC9C; }
+        .input-group textarea { height: 120px; resize: none; }
+        
+        .submit-btn { background: #1ABC9C; color: #000; font-weight: 800; border: none; padding: 15px; border-radius: 6px; font-size: 16px; margin-top: 10px; transition: 0.3s; width: 100%;}
+        .submit-btn:hover { background: #16A085; }
+
+        .pinned { border-left: 4px solid #F1C40F !important; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">Boost<span>Rehberi</span></a>
+        <div class="header-right">
+            <span class="user-badge">👑 VIP Üye</span>
+            <a href="index.html" class="back-btn">Ana Sayfaya Dön</a>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <div class="forum-header">
+            <h1>💬 Topluluk Forumu</h1>
+            <button class="new-topic-btn" onclick="openModal()">+ Yeni Konu Aç</button>
+        </div>
+
+        <div class="layout-grid">
+            
+            <div class="sidebar">
+                <div class="sidebar-title">Kategoriler</div>
+                <button class="cat-btn active">🌐 Tümü <span class="cat-count">42</span></button>
+                <button class="cat-btn">💬 Genel Tartışma <span class="cat-count">15</span></button>
+                <button class="cat-btn">⛏️ Minecraft <span class="cat-count">12</span></button>
+                <button class="cat-btn">⚽ Football Manager <span class="cat-count">8</span></button>
+                <button class="cat-btn">⚔️ League of Legends <span class="cat-count">4</span></button>
+                <button class="cat-btn">🦅 AC Odyssey <span class="cat-count">3</span></button>
+            </div>
+
+            <div class="main-panel">
+                <div class="thread-list" id="threadContainer">
+                    
+                    <div class="thread-card pinned">
+                        <div class="thread-avatar" style="border-color: #F1C40F;">👑</div>
+                        <div class="thread-content">
+                            <h3 class="thread-title"><span style="background: #F1C40F; color: #000;">SABİT</span> Forum Kuralları ve Dosya İndirme Rehberi (MUTLAKA OKUYUN)</h3>
+                            <div class="thread-meta">
+                                <span class="thread-author">Admin_Mustafa</span> • 📅 2 saat önce • 📍 Kategori: Genel Tartışma
+                            </div>
+                        </div>
+                        <div class="thread-stats">
+                            <div class="stat-box"><span class="stat-num">8K</span><span class="stat-lbl">Görüntülenme</span></div>
+                            <div class="stat-box"><span class="stat-num">142</span><span class="stat-lbl">Cevap</span></div>
+                        </div>
+                    </div>
+
+                    <div class="thread-card">
+                        <div class="thread-avatar">🎧</div>
+                        <div class="thread-content">
+                            <h3 class="thread-title"><span class="genel">GENEL</span> Çalışırken gaza getiren Türkçe Rap listem (Cashflow, Gazapizm ağırlıklı)</h3>
+                            <div class="thread-meta">
+                                <span class="thread-author">SokakSairi</span> • 📅 15 dakika önce • 📍 Kategori: Genel Tartışma
+                            </div>
+                        </div>
+                        <div class="thread-stats">
+                            <div class="stat-box"><span class="stat-num">34</span><span class="stat-lbl">Görüntülenme</span></div>
+                            <div class="stat-box"><span class="stat-num">5</span><span class="stat-lbl">Cevap</span></div>
+                        </div>
+                    </div>
+
+                    <div class="thread-card">
+                        <div class="thread-avatar">⚔️</div>
+                        <div class="thread-content">
+                            <h3 class="thread-title"><span style="background: #F1C40F; color:#000;">LOL</span> Top lane Garen mainim, dereceli atacak Mid veya Jungle aranıyor (Zümrüt/Elmas)</h3>
+                            <div class="thread-meta">
+                                <span class="thread-author">Cio_Baba01</span> • 📅 45 dakika önce • 📍 Kategori: Takım Arkadaşı Arama
+                            </div>
+                        </div>
+                        <div class="thread-stats">
+                            <div class="stat-box"><span class="stat-num">120</span><span class="stat-lbl">Görüntülenme</span></div>
+                            <div class="stat-box"><span class="stat-num">12</span><span class="stat-lbl">Cevap</span></div>
+                        </div>
+                    </div>
+
+                    <div class="thread-card">
+                        <div class="thread-avatar">🏗️</div>
+                        <div class="thread-content">
+                            <h3 class="thread-title"><span class="mc">MINECRAFT</span> SUBÜ kampüs internetiyle Aternos sunucusuna girme taktiği? (VPN önerisi lazım)</h3>
+                            <div class="thread-meta">
+                                <span class="thread-author">InsaatMuhendisi</span> • 📅 3 saat önce • 📍 Kategori: Soru & Cevap
+                            </div>
+                        </div>
+                        <div class="thread-stats">
+                            <div class="stat-box"><span class="stat-num">89</span><span class="stat-lbl">Görüntülenme</span></div>
+                            <div class="stat-box"><span class="stat-num">7</span><span class="stat-lbl">Cevap</span></div>
+                        </div>
+                    </div>
+
+                    <div class="thread-card">
+                        <div class="thread-avatar">🦅</div>
+                        <div class="thread-content">
+                            <h3 class="thread-title"><span style="background: #E74C3C;">AC ODYSSEY</span> Yeni yama sonrası Türkçe çeviri hatası kesin çözümü (Dosyalar ektedir)</h3>
+                            <div class="thread-meta">
+                                <span class="thread-author">GizliSuikastci</span> • 📅 Dün • 📍 Kategori: Mod & Yama Paylaşımı
+                            </div>
+                        </div>
+                        <div class="thread-stats">
+                            <div class="stat-box"><span class="stat-num">450</span><span class="stat-lbl">Görüntülenme</span></div>
+                            <div class="stat-box"><span class="stat-num">31</span><span class="stat-lbl">Cevap</span></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="topicModal" class="modal-overlay">
+        <div class="modal-box">
+            <button class="close-btn" onclick="closeModal()">×</button>
+            <h2>📝 Yeni Konu Başlat</h2>
+            
+            <div class="input-group">
+                <label>Oyun / Kategori</label>
+                <select id="topicCat">
+                    <option value="GENEL">💬 Genel Tartışma</option>
+                    <option value="MC">⛏️ Minecraft</option>
+                    <option value="FM">⚽ Football Manager</option>
+                    <option value="LOL">⚔️ League of Legends</option>
+                    <option value="AC">🦅 AC Odyssey</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Konu Başlığı</label>
+                <input type="text" id="topicTitle" placeholder="Örn: FPS sorunumu nasıl çözebilirim?">
+            </div>
+
+            <div class="input-group">
+                <label>İçerik (Sorununuz veya Paylaşımınız)</label>
+                <textarea id="topicBody" placeholder="Buraya yazmaya başlayın..."></textarea>
+            </div>
+
+            <button class="submit-btn" onclick="submitTopic()">Foruma Gönder</button>
+        </div>
+    </div>
+
+    <script>
+        // Modal İşlemleri
+        function openModal() { document.getElementById('topicModal').style.display = 'flex'; }
+        function closeModal() { document.getElementById('topicModal').style.display = 'none'; }
+
+        // Konu Gönderme Simülasyonu
+        function submitTopic() {
+            let title = document.getElementById('topicTitle').value;
+            let cat = document.getElementById('topicCat').options[document.getElementById('topicCat').selectedIndex].text;
+            
+            if(title.trim() === "") {
+                alert("Lütfen bir başlık girin patron!");
+                return;
+            }
+
+            // Yeni konuyu HTML olarak oluşturup en başa ekleme
+            let newThreadHTML = `
+            <div class="thread-card" style="border-color: #1ABC9C; animation: fadeIn 0.5s;">
+                <div class="thread-avatar" style="background: #1ABC9C; color: #000;">👤</div>
+                <div class="thread-content">
+                    <h3 class="thread-title"><span style="background: #1ABC9C; color: #000;">YENİ</span> ${title}</h3>
+                    <div class="thread-meta">
+                        <span class="thread-author">Sen (VIP Üye)</span> • 📅 Az Önce • 📍 Kategori: ${cat}
+                    </div>
+                </div>
+                <div class="thread-stats">
+                    <div class="stat-box"><span class="stat-num">0</span><span class="stat-lbl">Görüntülenme</span></div>
+                    <div class="stat-box"><span class="stat-num">0</span><span class="stat-lbl">Cevap</span></div>
+                </div>
+            </div>
+            `;
+
+            let container = document.getElementById('threadContainer');
+            // Sabit konudan hemen sonra ekle
+            container.children[0].insertAdjacentHTML('afterend', newThreadHTML);
+            
+            // Temizlik
+            document.getElementById('topicTitle').value = "";
+            document.getElementById('topicBody').value = "";
+            closeModal();
+            
+            alert("Konun başarıyla VIP Foruma eklendi!");
+        }
+    </script>
+</body>
+</html>
