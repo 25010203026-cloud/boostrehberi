@@ -116,6 +116,7 @@
         .reply-btn { background: rgba(26, 188, 156, 0.1); color: #1ABC9C; border: 1px solid #1ABC9C; padding: 6px 12px; border-radius: 4px; font-size: 12px; font-weight: 700; transition: 0.2s;}
         .reply-btn:hover { background: #1ABC9C; color: #000; }
         
+        /* ADMİN SİL BUTONU */
         .admin-delete-btn { background: rgba(231, 76, 60, 0.1); color: #E74C3C; border: 1px solid #E74C3C; padding: 6px 12px; border-radius: 4px; font-size: 12px; font-weight: 700; transition: 0.2s; display: none; cursor: pointer;}
         .admin-delete-btn:hover { background: #E74C3C; color: #FFF; }
 
@@ -129,6 +130,7 @@
 
         .pinned { border-left: 4px solid #F1C40F !important; }
 
+        /* MODALLAR */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); z-index: 1000; justify-content: center; align-items: center; }
         .modal-box { background: #11151D; width: 400px; border-radius: 12px; border: 1px solid #1ABC9C; padding: 30px; box-shadow: 0 15px 30px rgba(0,0,0,0.5); position: relative; animation: slideDown 0.3s ease-out; text-align: center;}
         .modal-box.large { width: 600px; text-align: left;}
@@ -146,8 +148,6 @@
         .input-group textarea { height: 120px; resize: none; }
         .submit-btn { background: #1ABC9C; color: #000; font-weight: 800; border: none; padding: 15px; border-radius: 6px; font-size: 16px; margin-top: 10px; transition: 0.3s; width: 100%; }
         .submit-btn:hover { background: #16A085; transform: scale(1.02); }
-        
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
@@ -236,19 +236,7 @@
 
                 <div class="main-panel">
                     <div class="thread-list" id="threadContainer">
-                        <div class="thread-card pinned">
-                            <div class="thread-main">
-                                <div class="thread-avatar" style="border-color: #F1C40F; background: transparent; color: #F1C40F; font-size: 20px;">👑</div>
-                                <div class="thread-content">
-                                    <h3 class="thread-title"><span style="background: #F1C40F; color: #000;">SABİT</span> 📌 Hoş Geldiniz! Forum Kuralları ve Kullanım Rehberi</h3>
-                                    <div class="thread-body">Yeni üyelerimiz, lütfen konu açmadan önce oyun kategorilerine dikkat edelim. Küfür ve argo kullanımı yasaktır. İyi oyunlar!</div>
-                                    <div class="thread-meta">
-                                        <span class="thread-author">Admin_Mustafa</span> • 📅 Kurucu • 📍 Kategori: Genel Tartışma
-                                    </div>
-                                </div>
-                            </div>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -310,6 +298,7 @@
         import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
         import { getFirestore, collection, addDoc, onSnapshot, serverTimestamp, query, orderBy, doc, updateDoc, arrayUnion, deleteDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
+        // Senin Anahtarların (Dokunma)
         const firebaseConfig = {
             apiKey: "AIzaSyC7NhVifwWUaKikHE3QrkKwjhnLdaW48OY",
             authDomain: "boostrehberi.firebaseapp.com",
@@ -327,6 +316,8 @@
         window.isUserLoggedIn = false;
         window.currentUsername = "";
         window.currentUserPhoto = "";
+        
+        // PATRONUN ADMİN MAİLİ BURADA!
         const ADMIN_EMAIL = "mustafacanyilmazpc@gmail.com"; 
         window.isAdmin = false;
 
@@ -344,6 +335,7 @@
         window.closeAuthModal = () => { document.getElementById('authModal').style.display = 'none'; };
         window.openTopicModal = () => { document.getElementById('topicModal').style.display = 'flex'; };
         window.closeTopicModal = () => { document.getElementById('topicModal').style.display = 'none'; };
+        
         window.openReplyModal = (threadId) => { 
             if(!window.isUserLoggedIn) { window.openAuthModal(); return; }
             document.getElementById('replyThreadId').value = threadId;
@@ -365,6 +357,7 @@
                 window.isUserLoggedIn = true;
                 window.currentUsername = user.displayName;
                 window.currentUserPhoto = user.photoURL;
+                
                 if(user.email === ADMIN_EMAIL) {
                     window.isAdmin = true;
                     document.getElementById('adminBadge').style.display = 'inline-block';
@@ -372,12 +365,15 @@
                     window.isAdmin = false;
                     document.getElementById('adminBadge').style.display = 'none';
                 }
+
                 document.getElementById('usernameDisplay').innerText = user.displayName;
                 document.getElementById('userPhoto').src = user.photoURL; 
                 document.getElementById('loginBtn').style.display = 'none';
                 document.getElementById('userProfile').style.display = 'flex';
+                
                 let deleteBtns = document.getElementsByClassName('admin-delete-btn');
                 for(let btn of deleteBtns) { btn.style.display = window.isAdmin ? 'block' : 'none'; }
+                
             } else {
                 window.isUserLoggedIn = false;
                 window.isAdmin = false;
@@ -406,30 +402,41 @@
             let body = document.getElementById('topicBody').value;
             let cat = document.getElementById('topicCat').value;
             if(title.trim() === "") { alert("Lütfen bir başlık girin!"); return; }
+
             title = window.sansurle(title);
             body = window.sansurle(body);
+
             try {
                 await addDoc(collection(db, "forum_mesajlari"), {
-                    baslik: title, icerik: body, kategori: cat,
-                    yazar: window.currentUsername, fotograf: window.currentUserPhoto,
-                    tarih: serverTimestamp(), cevaplar: [], cevapSayisi: 0
+                    baslik: title,
+                    icerik: body,
+                    kategori: cat,
+                    yazar: window.currentUsername,
+                    fotograf: window.currentUserPhoto,
+                    tarih: serverTimestamp(),
+                    cevaplar: [], 
+                    cevapSayisi: 0
                 });
                 document.getElementById('topicTitle').value = "";
                 document.getElementById('topicBody').value = "";
                 window.closeTopicModal();
-            } catch (error) { alert("Hata oluştu!"); }
+            } catch (error) { alert("Hata oluştu! Lütfen Firebase kurallarınızın 'Test Modu' süresini kontrol edin."); }
         };
 
         window.submitReply = async () => {
             let threadId = document.getElementById('replyThreadId').value;
             let replyText = document.getElementById('replyBody').value;
             if(replyText.trim() === "") return;
+
             replyText = window.sansurle(replyText);
+
             try {
                 const threadRef = doc(db, "forum_mesajlari", threadId);
                 await updateDoc(threadRef, {
                     cevaplar: arrayUnion({
-                        yazar: window.currentUsername, fotograf: window.currentUserPhoto, metin: replyText
+                        yazar: window.currentUsername,
+                        fotograf: window.currentUserPhoto,
+                        metin: replyText
                     }),
                     cevapSayisi: Math.floor(Math.random() * 10) + 1 
                 });
@@ -441,34 +448,82 @@
         window.deleteThread = async (threadId) => {
             if(!window.isAdmin) { alert("Yetkiniz yok!"); return; }
             if(confirm("Bu konuyu tamamen silmek istediğine emin misin patron?")) {
-                try { await deleteDoc(doc(db, "forum_mesajlari", threadId)); } 
-                catch(error) { alert("Silinirken hata oluştu!"); }
+                try {
+                    await deleteDoc(doc(db, "forum_mesajlari", threadId));
+                } catch(error) {
+                    alert("Silinirken hata oluştu!");
+                }
             }
         };
 
+        // CANLI FORUM OKUMA VE EKRANA ÇİZME
         const q = query(collection(db, "forum_mesajlari"), orderBy("tarih", "desc"));
         onSnapshot(q, (snapshot) => {
             let container = document.getElementById('threadContainer');
-            let sabitKonu = `<div class="thread-card pinned">...</div>`; // (Sabit konu kodunu buraya ekle)
+            
+            let sabitKonu = `
+            <div class="thread-card pinned">
+                <div class="thread-main">
+                    <div class="thread-avatar" style="border-color: #F1C40F; background: transparent; color: #F1C40F; font-size: 20px;">👑</div>
+                    <div class="thread-content">
+                        <h3 class="thread-title"><span style="background: #F1C40F; color: #000;">SABİT</span> 📌 Hoş Geldiniz! Forum Kuralları ve Kullanım Rehberi</h3>
+                        <div class="thread-body">Yeni üyelerimiz, lütfen konu açmadan önce oyun kategorilerine dikkat edelim. Küfür ve argo kullanımı yasaktır. İyi oyunlar!</div>
+                        <div class="thread-meta">
+                            <span class="thread-author">Admin_Mustafa</span> • 📅 Kurucu • 📍 Kategori: Genel Tartışma
+                        </div>
+                    </div>
+                </div>
+            </div>`;
             container.innerHTML = sabitKonu;
+
             snapshot.forEach((docSnap) => {
                 let data = docSnap.data();
                 let threadId = docSnap.id; 
+                
                 let saatStr = "Az Önce";
                 if(data.tarih) {
                     let d = data.tarih.toDate();
                     saatStr = d.getHours() + ":" + String(d.getMinutes()).padStart(2, '0');
                 }
+
                 let cevaplarHTML = "";
                 if(data.cevaplar && data.cevaplar.length > 0) {
                     cevaplarHTML += `<div class="replies-container">`;
                     data.cevaplar.forEach(cevap => {
-                        cevaplarHTML += `<div class="reply-item">...</div>`; // (Yorum item kodunu buraya ekle)
+                        cevaplarHTML += `
+                        <div class="reply-item">
+                            <div class="reply-avatar"><img src="${cevap.fotograf}" alt="Profil"></div>
+                            <div class="reply-content"><span class="reply-author">${cevap.yazar}</span>${cevap.metin}</div>
+                        </div>`;
                     });
                     cevaplarHTML += `</div>`;
                 }
+
                 let adminDeleteBtnStyle = window.isAdmin ? 'display:block;' : 'display:none;';
-                let html = `<div class="thread-card" ...>...</div>`; // (Thread card kodunu buraya ekle)
+
+                let html = `
+                <div class="thread-card" style="border-color: #1ABC9C; animation: fadeIn 0.5s;">
+                    <div class="thread-main">
+                        <div class="thread-avatar">
+                            <img src="${data.fotograf || 'https://via.placeholder.com/50'}" alt="Profil">
+                        </div>
+                        <div class="thread-content">
+                            <h3 class="thread-title">${data.baslik}</h3>
+                            ${data.icerik ? `<div class="thread-body">${data.icerik}</div>` : ''}
+                            
+                            <div class="thread-meta">
+                                <span class="thread-author">${data.yazar}</span> • 📅 ${saatStr} • 📍 Kategori: ${data.kategori}
+                            </div>
+                            
+                            <div class="thread-actions">
+                                <button class="reply-btn" onclick="openReplyModal('${threadId}')">💬 Cevap Yaz</button>
+                                <button class="admin-delete-btn" style="${adminDeleteBtnStyle}" onclick="deleteThread('${threadId}')">🗑️ Sil (Admin)</button>
+                            </div>
+                        </div>
+                    </div>
+                    ${cevaplarHTML}
+                </div>`;
+                
                 container.insertAdjacentHTML('beforeend', html);
             });
         });
