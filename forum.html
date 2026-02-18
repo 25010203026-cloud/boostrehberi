@@ -83,6 +83,45 @@
         .submit-btn:hover { background: #16A085; }
 
         .pinned { border-left: 4px solid #F1C40F !important; }
+    /* 📱 MOBİL UYUM (TELEFON) DÜZELTMELERİ 📱 */
+        @media (max-width: 900px) {
+            /* Başlık ve Boşluklar */
+            header { padding: 15px 20px; flex-direction: column; gap: 15px; text-align: center; }
+            .header-right { justify-content: center; width: 100%; }
+            .container { padding: 0 15px; margin: 20px auto; }
+            .hero h1 { font-size: 32px; }
+            
+            /* Yan Yana Duran Kolonları Alt Alta Al */
+            .layout-grid, .split-layout, .forum-grid { grid-template-columns: 1fr !important; gap: 20px; }
+            
+            /* Yan Menüyü (Sidebar) Üste Taşı ve Yatay/Izgara Yap */
+            .sidebar { position: relative; top: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 15px; margin-bottom: 20px;}
+            .menu-btn { font-size: 13px; padding: 10px; justify-content: center; text-align: center; }
+            
+            /* Kartlar, Tablolar ve Aramalar Ekrana Sığsın */
+            .mod-grid, .games-grid, .seed-grid, .craft-grid { grid-template-columns: 1fr; }
+            .wk-table-wrapper { overflow-x: auto; width: 100%; } /* FM Tablosu için kaydırma */
+            .search-container { width: 100%; padding: 0 10px; box-sizing: border-box; } /* Crafting Arama Çubuğu */
+            .search-input { font-size: 14px; padding: 15px; }
+
+            /* Modallar (Kayıt / Konu Açma Kutuları) Taşmasın */
+            .modal-box, .modal-box.large { width: 90%; padding: 20px; box-sizing: border-box; }
+            
+            /* Forum Mobili */
+            .forum-header { flex-direction: column; align-items: flex-start; gap: 15px; }
+            .thread-main { flex-direction: column; align-items: flex-start; }
+            .thread-avatar { margin-bottom: 10px; }
+            
+            /* Minecraft Crafting Masası Telefona Sığsın */
+            .mc-ui { transform: scale(0.85); transform-origin: left center; }
+        }
+
+        @media (max-width: 480px) {
+            /* Çok Küçük Telefonlar (iPhone SE vb.) */
+            .sidebar { grid-template-columns: 1fr; } /* Menü butonları tamamen alt alta */
+            .hero h1 { font-size: 26px; }
+            .mc-ui { transform: scale(0.75); }
+        }
     </style>
 </head>
 <body>
@@ -267,4 +306,5 @@
         }
     </script>
 </body>
+
 </html>
