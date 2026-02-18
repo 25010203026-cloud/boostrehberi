@@ -3,268 +3,225 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minecraft Performans & Mod Merkezi - BoostRehberi</title>
-    
-    <script>
-    (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="BH_QRyI6c8QlBb0uZLNRa";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
-    </script>
-
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
-
+    <title>Minecraft Performans Merkezi - BoostRehberi</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=VT323&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Fira+Code:wght@600&display=swap');
         
-        /* --- MINECRAFT ÖZEL İMLEÇ AYARLARI --- */
-        /* Normal Durum: Elmas Kazma */
-        body, a, button, .mod-card, input, details, summary {
-            cursor: url('https://cdn.custom-cursor.com/db/cursor/32/minecraft_diamond_pickaxe_cursor.png'), auto !important;
+        /* --- İMLEÇ AYARLARI (SADECE BURASI EKLENDİ) --- */
+        
+        /* 1. Normal Durum: Elmas Kazma */
+        body, a, button, .content-box, input, details, summary { 
+            cursor: url('https://cdn.custom-cursor.com/db/cursor/32/minecraft_diamond_pickaxe_cursor.png'), auto !important; 
         }
-        /* Tıklama Anı: Elmas Kılıç */
-        body:active, a:active, button:active, .mod-card:active {
+
+        /* 2. Tıklama Anı (Mouse Basılı Tutulunca): Elmas Kılıç */
+        body:active, a:active, button:active, .content-box:active, summary:active {
             cursor: url('https://cdn.custom-cursor.com/db/cursor/32/minecraft_diamond_sword_cursor.png'), auto !important;
         }
 
-        body {
-            font-family: 'Montserrat', sans-serif;
-            /* Minecraft Temalı Arkaplan */
-            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.85)), url('https://wallpapers.com/images/hd/minecraft-background-9-1920-x-1080-692e07k8y52j7r5d.jpg');
-            background-attachment: fixed;
-            background-size: cover;
-            background-position: center;
-            color: #E0E0E0; margin: 0; padding: 0; line-height: 1.6;
+        /* --- ORİJİNAL TASARIM KODLARIN --- */
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background: linear-gradient(rgba(15, 20, 25, 0.90), rgba(15, 20, 25, 0.98)), url('arkaplan.jpg') repeat; 
+            background-attachment: fixed; 
+            color: #E0E0E0; 
+            margin: 0; 
+            padding: 0; 
+            line-height: 1.6; 
         }
 
-        /* ÖZEL SCROLLBAR (Minecraft Yeşili) */
-        ::-webkit-scrollbar { width: 10px; }
-        ::-webkit-scrollbar-track { background: #111; }
-        ::-webkit-scrollbar-thumb { background: #2ecc71; border-radius: 5px; border: 2px solid #111; }
-        ::-webkit-scrollbar-thumb:hover { background: #27ae60; }
+        header { 
+            background-color: #11151D; 
+            padding: 15px 50px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border-bottom: 1px solid #2C3E50; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5); 
+            position: sticky; 
+            top: 0; 
+            z-index: 100; 
+        }
 
-        /* PRELOADER */
-        #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #111; z-index: 9999; display: flex; justify-content: center; align-items: center; transition: opacity 0.5s; }
-        .loader-content { text-align: center; }
-        .spinner { width: 50px; height: 50px; border: 5px solid #333; border-top: 5px solid #2ecc71; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 15px auto; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
-        /* HEADER */
-        header { background-color: rgba(20, 20, 20, 0.95); padding: 15px 50px; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #27ae60; box-shadow: 0 4px 15px rgba(0,0,0,0.5); position: sticky; top: 0; z-index: 100; backdrop-filter: blur(10px); }
-        .logo { font-size: 26px; font-weight: 800; color: #FFFFFF; text-decoration: none; font-family: 'VT323', monospace; letter-spacing: 2px; text-transform: uppercase; }
-        .logo span { color: #2ecc71; }
-        .back-btn { color: #2ecc71; text-decoration: none; font-weight: 600; border: 2px solid #2ecc71; padding: 8px 20px; border-radius: 0; transition: all 0.2s; font-size: 14px; font-family: 'VT323', monospace; font-size: 18px; }
-        .back-btn:hover { background-color: #2ecc71; color: #000; }
-
-        /* LAYOUT */
-        .container { max-width: 1300px; margin: 40px auto; padding: 0 20px; }
-        .page-header { margin-bottom: 30px; border-bottom: 2px solid #333; padding-bottom: 20px; }
-        .page-title { font-size: 32px; color: #fff; font-weight: 800; margin: 0; display: flex; align-items: center; gap: 15px; font-family: 'VT323', monospace; letter-spacing: 2px; text-shadow: 2px 2px #000; }
-
-        .layout-grid { display: grid; grid-template-columns: 280px 1fr; gap: 40px; align-items: start; }
+        .logo { font-size: 24px; font-weight: 800; color: #FFFFFF; text-decoration: none; letter-spacing: 1px; }
+        .logo span { color: #2ECC71; }
         
-        /* SIDEBAR */
-        .sidebar { display: flex; flex-direction: column; gap: 8px; position: sticky; top: 90px; background-color: rgba(30, 30, 30, 0.8); padding: 20px; border: 2px solid #444; }
-        .sidebar-title { color: #888; font-size: 14px; font-family: 'VT323', monospace; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; font-weight: 700; }
-        .menu-btn { background: #222; color: #aaa; border: 1px solid #333; padding: 12px 15px; font-size: 14px; font-weight: 600; text-align: left; transition: 0.2s; display: flex; align-items: center; gap: 12px; cursor: pointer; }
-        .menu-btn:hover { background-color: #2ecc71; color: #000; border-color: #2ecc71; }
-        .menu-btn.active-btn { background-color: #27ae60; color: #fff; border-color: #2ecc71; font-weight: 700; }
+        .back-btn { 
+            color: #AAB7B8; 
+            text-decoration: none; 
+            font-size: 14px; 
+            font-weight: 600; 
+            transition: 0.3s; 
+            display: flex; 
+            align-items: center; 
+            gap: 5px; 
+        }
+        .back-btn:hover { color: #FFFFFF; }
 
-        /* MAIN CONTENT */
-        .tab-content { display: none; animation: fadeIn 0.3s ease-in-out; }
-        .tab-content.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
-
-        .section-desc { color: #ccc; font-size: 15px; margin-bottom: 25px; background: rgba(0,0,0,0.5); padding: 15px; border-left: 4px solid #2ecc71; }
-
-        /* GRID SYSTEM & CARDS (3D TILT EFEKTLİ) */
-        .mod-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 25px; margin-bottom: 40px; }
-        .mod-card { background-color: #1a1a1a; border: 2px solid #333; padding: 25px; display: flex; flex-direction: column; transition: 0.2s; position: relative; overflow: hidden; transform-style: preserve-3d; transform: perspective(1000px); }
-        .mod-card:hover { border-color: #2ecc71; box-shadow: 0 10px 20px rgba(46, 204, 113, 0.2); }
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
         
-        .mod-header { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; transform: translateZ(20px); }
-        .mod-icon { font-size: 24px; }
-        .mod-card h4 { margin: 0; color: #fff; font-size: 18px; font-weight: 700; font-family: 'VT323', monospace; letter-spacing: 1px; font-size: 22px; }
-        .mod-card p { color: #999; font-size: 14px; margin: 0 0 15px 0; flex-grow: 1; line-height: 1.5; transform: translateZ(10px); }
+        .page-header { margin-bottom: 30px; border-bottom: 1px solid #2C3E50; padding-bottom: 20px; }
+        .page-title { font-size: 28px; color: #FFF; font-weight: 700; margin: 0; display: flex; align-items: center; gap: 10px; }
         
-        .dl-box { display: flex; align-items: center; justify-content: space-between; margin-top: auto; border-top: 1px solid #333; padding-top: 15px; transform: translateZ(20px); }
-        .dl-btn { background-color: #2ecc71; color: #000; text-decoration: none; font-size: 14px; font-weight: 700; padding: 8px 15px; transition: 0.2s; font-family: 'VT323', monospace; font-size: 18px; }
-        .dl-btn:hover { background-color: #fff; transform: scale(1.05); }
+        .layout-grid { display: grid; grid-template-columns: 250px 1fr; gap: 30px; align-items: start; }
+        
+        .sidebar { background-color: #161B22; padding: 20px; border-radius: 8px; border: 1px solid #2C3E50; position: sticky; top: 100px; }
+        .sidebar-title { color: #8892B0; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; font-weight: 700; }
+        
+        .menu-btn { 
+            background: transparent; 
+            color: #AAB7B8; 
+            border: none; 
+            width: 100%; 
+            text-align: left; 
+            padding: 12px 15px; 
+            border-radius: 6px; 
+            font-size: 14px; 
+            font-weight: 600; 
+            cursor: pointer; 
+            transition: 0.2s; 
+            margin-bottom: 5px; 
+        }
+        .menu-btn:hover { background: rgba(255,255,255,0.05); color: #FFF; }
+        .menu-btn.active-btn { background: rgba(46, 204, 113, 0.1); color: #2ECC71; border-left: 3px solid #2ECC71; }
 
-        .guide-box { background-color: rgba(46, 204, 113, 0.1); border: 2px solid #2ecc71; padding: 25px; margin-bottom: 30px; font-size: 14px; color: #E0E0E0; line-height: 1.8; }
-        .guide-box h4 { color: #2ecc71; margin-top: 0; font-size: 24px; margin-bottom: 15px; font-family: 'VT323', monospace; }
+        .content-box { background-color: #161B22; border: 1px solid #2C3E50; border-radius: 8px; padding: 30px; margin-bottom: 20px; }
+        .section-header { font-size: 20px; color: #FFF; margin-top: 0; margin-bottom: 15px; border-bottom: 1px solid #2C3E50; padding-bottom: 10px; }
         
-        code.path-text { background: #000; color: #2ecc71; padding: 4px 8px; font-family: 'Fira Code', monospace; font-size: 13px; border: 1px solid #333; }
-        .show-more-btn { background: #222; border: 1px solid #444; color: #2ecc71; padding: 10px; width: 100%; cursor: pointer; font-family: 'VT323', monospace; font-size: 18px; margin-top: 10px; }
-        .extra-info { display: none; margin-top: 10px; padding: 10px; background: #000; border: 1px solid #333; color: #aaa; font-size: 13px; }
+        .mod-item { background: #0D1117; padding: 15px; border-radius: 6px; border: 1px solid #30363D; margin-bottom: 15px; transition: 0.2s; }
+        .mod-item:hover { border-color: #2ECC71; }
+        .mod-name { font-weight: 700; color: #58A6FF; font-size: 16px; margin-bottom: 5px; display: block; }
+        .mod-desc { font-size: 13px; color: #8B949E; margin-bottom: 10px; }
+        .download-link { display: inline-block; background: #238636; color: white; padding: 5px 12px; border-radius: 4px; text-decoration: none; font-size: 12px; font-weight: 700; }
+        .download-link:hover { background: #2EA043; }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.3s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        details { background: #0D1117; border: 1px solid #30363D; border-radius: 6px; margin-bottom: 10px; overflow: hidden; }
+        summary { padding: 12px 15px; cursor: pointer; font-weight: 600; color: #E0E0E0; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        summary:hover { background: #161B22; }
+        summary::after { content: '+'; font-weight: bold; color: #2ECC71; }
+        details[open] summary::after { content: '-'; }
+        .details-content { padding: 15px; border-top: 1px solid #30363D; color: #8B949E; font-size: 14px; line-height: 1.6; }
+        
+        code { background: rgba(110, 118, 129, 0.4); padding: 2px 6px; border-radius: 4px; font-family: 'Fira Code', monospace; color: #E0E0E0; font-size: 12px; }
+
+        @media (max-width: 768px) {
+            .layout-grid { grid-template-columns: 1fr; }
+            .sidebar { position: static; margin-bottom: 20px; }
+            header { padding: 15px 20px; }
+        }
     </style>
 </head>
 <body>
 
-    <div id="preloader">
-        <div class="loader-content">
-            <div class="spinner"></div>
-            <h2 style="color: #fff; font-family: 'VT323', monospace; font-size: 28px;">ARAZİ YÜKLENİYOR...</h2>
-        </div>
-    </div>
-
     <header>
         <a href="index.html" class="logo">Boost<span>Rehberi</span></a>
-        <a href="index.html" class="back-btn">Ana Sayfaya Dön</a>
+        <a href="index.html" class="back-btn">⬅ Ana Sayfaya Dön</a>
     </header>
 
     <div class="container">
         
         <div class="page-header">
-            <h1 class="page-title">⛏️ Minecraft Performans & Mod Merkezi</h1>
+            <h1 class="page-title">⛏️ Minecraft Performans Merkezi</h1>
         </div>
 
         <div class="layout-grid">
             
             <div class="sidebar">
                 <div class="sidebar-title">Kategoriler</div>
-                <button id="btn-fps" class="menu-btn active-btn" onclick="sekmeDegistir('fps')">⚡ FPS Uçuran Modlar (6)</button>
-                <button id="btn-gfx" class="menu-btn" onclick="sekmeDegistir('gfx')">🎨 Grafik & Shaders (6)</button>
-                <button id="btn-packs" class="menu-btn" onclick="sekmeDegistir('packs')">📦 Hazır Mod Paketleri (6)</button>
-                <button id="btn-guide" class="menu-btn" onclick="sekmeDegistir('guide')">❓ Nasıl Kurulur?</button>
+                <button id="btn-fps" class="menu-btn active-btn" onclick="sekmeDegistir('fps')">⚡ FPS Arttırma (Fabric)</button>
+                <button id="btn-optifine" class="menu-btn" onclick="sekmeDegistir('optifine')">🐢 Optifine Ayarları</button>
+                <button id="btn-sunucu" class="menu-btn" onclick="sekmeDegistir('sunucu')">🌐 Sunucu Optimizasyonu</button>
             </div>
 
             <div class="main-panel">
                 
                 <div id="content-fps" class="tab-content active">
-                    <h3 style="color: #fff; font-family:'VT323', monospace; font-size: 28px; border-bottom: 2px solid #333; margin-top: 0;">⚡ Kasmayı Önleyen FPS Modları (Fabric)</h3>
-                    <p class="section-desc">Eski bilgisayarlarda bile oyunu 60+ FPS oynatan, Optifine'dan çok daha güçlü modern modlar.</p>
-                    
-                    <div class="mod-grid">
-                        <div class="mod-card" data-tilt>
-                            <div class="mod-header"><div class="mod-icon">🧪</div><h4>Sodium (Ana Motor)</h4></div>
-                            <p><strong>Ne İşe Yarar:</strong> Oyunun render motorunu baştan yazar. FPS'i 3-4 katına çıkarır. Optifine'dan çok daha iyidir.</p>
-                            <div class="dl-box"><span style="color:#2ecc71; font-size:12px;">✔️ Zorunlu</span><a href="https://modrinth.com/mod/sodium" target="_blank" class="dl-btn">İndir</a></div>
+                    <div class="content-box">
+                        <h2 class="section-header">🚀 Sodium & Fabric Modları (Önerilen)</h2>
+                        <p style="color: #8B949E; font-size: 14px; margin-bottom: 20px;">
+                            Optifine artık eskidi. Modern Minecraft sürümlerinde (1.16+) en yüksek FPS'i almak için <strong>Fabric Loader</strong> kullanmalısınız.
+                            Aşağıdaki modlar FPS'inizi 3-4 katına çıkarabilir.
+                        </p>
+
+                        <div class="mod-item">
+                            <span class="mod-name">Sodium</span>
+                            <div class="mod-desc">Oyunun render motorunu baştan yazar. En önemli FPS modudur.</div>
+                            <a href="https://modrinth.com/mod/sodium" target="_blank" class="download-link">📥 İndir (Modrinth)</a>
                         </div>
 
-                        <div class="mod-card" data-tilt>
-                            <div class="mod-header"><div class="mod-icon">🔋</div><h4>Lithium (Sunucu)</h4></div>
-                            <p><strong>Ne İşe Yarar:</strong> Oyunun mantık ve fizik hesaplamalarını optimize eder. Lagı azaltır, chunk yüklenmesini hızlandırır.</p>
-                            <div class="dl-box"><span style="color:#2ecc71; font-size:12px;">✔️ Tavsiye</span><a href="https://modrinth.com/mod/lithium" target="_blank" class="dl-btn">İndir</a></div>
+                        <div class="mod-item">
+                            <span class="mod-name">Lithium</span>
+                            <div class="mod-desc">Oyun içi fizik ve chunk hesaplamalarını optimize eder (Lag azaltır).</div>
+                            <a href="https://modrinth.com/mod/lithium" target="_blank" class="download-link">📥 İndir (Modrinth)</a>
                         </div>
 
-                        <div class="mod-card" data-tilt>
-                            <div class="mod-header"><div class="mod-icon">💡</div><h4>Starlight (Işık)</h4></div>
-                            <p><strong>Ne İşe Yarar:</strong> Minecraft'ın ışıklandırma motorunu baştan yazar. Mağaralara girerken oluşan anlık takılmaları yok eder.</p>
-                            <div class="dl-box"><span style="color:#2ecc71; font-size:12px;">✔️ Tavsiye</span><a href="https://modrinth.com/mod/starlight" target="_blank" class="dl-btn">İndir</a></div>
+                        <div class="mod-item">
+                            <span class="mod-name">Starlight (veya Phosphor)</span>
+                            <div class="mod-desc">Işıklandırma motorunu düzeltir. Mağaralarda FPS düşmesini engeller.</div>
+                            <a href="https://modrinth.com/mod/starlight" target="_blank" class="download-link">📥 İndir (Modrinth)</a>
                         </div>
-
-                        <div class="mod-card" data-tilt>
-                            <div class="mod-header"><div class="mod-icon">🧠</div><h4>FerriteCore (RAM)</h4></div>
-                            <p><strong>Ne İşe Yarar:</strong> Oyunun RAM kullanımını yarıya indirir. 4GB veya 8GB RAM'i olanlar için hayat kurtarıcıdır.</p>
-                            <div class="dl-box"><span style="color:#2ecc71; font-size:12px;">✔️ Hafıza Dostu</span><a href="https://modrinth.com/mod/ferrite-core" target="_blank" class="dl-btn">İndir</a></div>
-                        </div>
-
-                        <div class="mod-card" data-tilt>
-                            <div class="mod-header"><div class="mod-icon">🚫</div><h4>Entity Culling</h4></div>
-                            <p><strong>Ne İşe Yarar:</strong> Arkanızda kalan veya duvar arkasındaki görmediğiniz yaratıkları/blokları işlemeyi bırakır. FPS artırır.</p>
-                            <div class="dl-box"><span style="color:#2ecc71; font-size:12px;">✔️ Görünmez Güç</span><a href="https://modrinth.com/mod/entityculling" target="_blank" class="dl-btn">İndir</a></div>
-                        </div>
-
-                        <div class="mod-card" data-tilt>
-                            <div class="mod-header"><div class="mod-icon">⚙️</div><h4>Mod Menu</h4></div>
-                            <p><strong>Ne İşe Yarar:</strong> Yüklediğiniz tüm bu modları oyun içinde görmenizi ve ayarlarını değiştirmenizi sağlayan menü.</p>
-                            <div class="dl-box"><span style="color:#2ecc71; font-size:12px;">✔️ Arayüz</span><a href="https://modrinth.com/mod/modmenu" target="_blank" class="dl-btn">İndir</a></div>
+                        
+                        <div class="mod-item">
+                            <span class="mod-name">FerriteCore</span>
+                            <div class="mod-desc">RAM kullanımını ciddi oranda düşürür. 4GB-8GB RAM'li PC'ler için şart.</div>
+                            <a href="https://modrinth.com/mod/ferrite-core" target="_blank" class="download-link">📥 İndir (Modrinth)</a>
                         </div>
                     </div>
                 </div>
 
-                <div id="content-gfx" class="tab-content">
-                    <h3 style="color: #fff; font-family:'VT323', monospace; font-size: 28px; border-bottom: 2px solid #333; margin-top: 0;">🎨 Oyunu Güzelleştiren Görsel Modlar</h3>
-                    <p class="section-desc">Minecraft'ın kare dünyasına gerçekçilik, animasyon ve atmosfer katan eklentiler.</p>
+                <div id="content-optifine" class="tab-content">
+                    <div class="content-box">
+                        <h2 class="section-header">🐢 Optifine İnce Ayarları</h2>
+                        <p style="color: #8B949E; font-size: 14px; margin-bottom: 20px;">Eğer modlarla uğraşmak istemiyorsanız Optifine kurun ve şu ayarları yapın:</p>
+                        
+                        <details>
+                            <summary>Grafik Ayarları</summary>
+                            <div class="details-content">
+                                • Grafikler: <strong>Hızlı</strong><br>
+                                • Yumuşak Aydınlatma: <strong>Kapalı</strong><br>
+                                • Pürüzsüzleştirme: <strong>Kapalı</strong><br>
+                                • Parlaklık: <strong>Parlak</strong>
+                            </div>
+                        </details>
 
-                    <div class="mod-grid">
-                        <div class="mod-card" data-tilt>
-                            <div class="mod-header"><div class="mod-icon">👁️</div><h4>Iris Shaders</h4></div>
-                            <p><strong>Ne İşe Yarar:</strong> Oyuna Shader (Gölge paketi) kurmanızı sağlar. Optifine'dan çok daha hızlı çalışır ve Sodium ile uyumludur.</p>
-                            <div class="dl-box"><a href="https://modrinth.com/mod/iris" target="_blank" class="dl-btn">İndir</a></div>
-                        </div>
+                        <details>
+                            <summary>Performance (Performans) Sekmesi</summary>
+                            <div class="details-content">
+                                • Render Regions: <strong>Açık</strong><br>
+                                • Fast Render: <strong>Açık</strong><br>
+                                • Smart Animations: <strong>Açık</strong><br>
+                                • Smooth FPS: <strong>Kapalı</strong> (Bazen takılma yapar)
+                            </div>
+                        </details>
 
-                        <div class="mod-card" data-tilt>
-                            <div class="mod-header"><div class="mod-icon">🌅</div><h4>Complementary Shaders</h4></div>
-                            <p><strong>Ne İşe Yarar:</strong> En popüler Shader paketi. Su parlar, bulutlar gerçekçi olur, meşaleler etrafı yumuşak aydınlatır.</p>
-                            <div class="dl-box"><a href="https://www.curseforge.com/minecraft/customization/complementary-shaders" target="_blank" class="dl-btn">İndir</a></div>
-                        </div>
-
-                        <div class="mod-card" data-tilt>
-                            <div class="mod-header"><div class="mod-icon">👀</div><h4>Fresh Animations</h4></div>
-                            <p><strong>Ne İşe Yarar:</strong> Köylülerin, zombilerin ve hayvanların robot gibi değil, gözlerini kırparak ve canlı gibi hareket etmesini sağlar. (Doku Paketidir)</p>
-                            <div class="dl-box"><a href="https://www.curseforge.com/minecraft/texture-packs/fresh-animations" target="_blank" class="dl-btn">İndir</a></div>
-                        </div>
-
-                        <div class="mod-card" data-tilt>
-                            <div class="mod-header"><div class="mod-icon">✨</div><h4>Visuality</h4></div>
-                            <p><strong>Ne İşe Yarar:</strong> Slime'a vurunca parçacıklar sıçrar, çölde yürürken toz kalkar. Oyuna minik ama tatlı parçacık efektleri ekler.</p>
-                            <div class="dl-box"><a href="https://modrinth.com/mod/visuality" target="_blank" class="dl-btn">İndir</a></div>
-                        </div>
-
-                        <div class="mod-card" data-tilt>
-                            <div class="mod-header"><div class="mod-icon">🍂</div><h4>Falling Leaves</h4></div>
-                            <p><strong>Ne İşe Yarar:</strong> Ağaçlardan sonbahardaki gibi yavaşça yapraklar dökülür. Ormanda yürümek çok huzurlu hale gelir.</p>
-                            <div class="dl-box"><a href="https://modrinth.com/mod/falling-leaves" target="_blank" class="dl-btn">İndir</a></div>
-                        </div>
-
-                        <div class="mod-card" data-tilt>
-                            <div class="mod-header"><div class="mod-icon">🧊</div><h4>3D Skin Layers</h4></div>
-                            <p><strong>Ne İşe Yarar:</strong> Karakterinizin skinindeki (kıyafetindeki) detayları kabartmalı ve 3 boyutlu yapar. Dümdüz görünmez.</p>
-                            <div class="dl-box"><a href="https://modrinth.com/mod/3d-skin-layers" target="_blank" class="dl-btn">İndir</a></div>
-                        </div>
+                        <details>
+                            <summary>Animations (Animasyonlar) Sekmesi</summary>
+                            <div class="details-content">
+                                Buradaki her şeyi <strong>"KAPALI"</strong> (All OFF) yapın. Sadece çok kötü PC'ler için önerilir çünkü oyunun görseli bozulur.
+                            </div>
+                        </details>
                     </div>
                 </div>
 
-                <div id="content-packs" class="tab-content">
-                    <h3 style="color: #fff; font-family:'VT323', monospace; font-size: 28px; border-bottom: 2px solid #333; margin-top: 0;">📦 Hazır Mod Paketleri (Tek Tıkla Kurulum)</h3>
-                    <p class="section-desc">Tek tek uğraşmak istemeyenler için en iyi derlenmiş paketler.</p>
-
-                    <div class="mod-grid">
-                        <div class="mod-card" style="border-color: #f1c40f;" data-tilt>
-                            <div class="mod-header"><div class="mod-icon" style="color:#f1c40f">🚀</div><h4>Fabulously Optimized</h4></div>
-                            <p><strong>İçerik:</strong> Sadece FPS artırma modlarını içerir. Oyunu vanilya (saf) haliyle ama 500 FPS ile oynamak isteyenler için.</p>
-                            <div class="dl-box"><a href="#" class="dl-btn">Paketi İndir</a></div>
+                <div id="content-sunucu" class="tab-content">
+                    <div class="content-box">
+                        <h2 class="section-header">⚙️ Başlatma Kodu (Java Arguments)</h2>
+                        <p style="color: #8B949E; font-size: 14px; margin-bottom: 15px;">
+                            Minecraft Launcher'da "Yüklemeler" > Sürümünüze Tıklayın > "Daha Fazla Seçenek" kısmındaki JVM Arguments kutusuna şunu yapıştırın:
+                        </p>
+                        <div style="background: #000; padding: 10px; border-radius: 4px; overflow-x: auto; color: #2ECC71; font-family: 'Fira Code', monospace; font-size: 12px; border: 1px solid #333;">
+                            -Xmx4G -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1NewSizePercent=20 -XX:G1ReservePercent=20 -XX:MaxGCPauseMillis=50 -XX:G1HeapRegionSize=32M
                         </div>
-
-                        <div class="mod-card" style="border-color: #e74c3c;" data-tilt>
-                            <div class="mod-header"><div class="mod-icon" style="color:#e74c3c">🐉</div><h4>RLCraft</h4></div>
-                            <p><strong>İçerik:</strong> Dünyanın en zor mod paketi. Ejderhalar, susuzluk, sıcaklık... Hayatta kalmak imkansıza yakın.</p>
-                            <div class="dl-box"><a href="#" class="dl-btn">Paketi İndir</a></div>
-                        </div>
-
-                        <div class="mod-card" style="border-color: #9b59b6;" data-tilt>
-                            <div class="mod-header"><div class="mod-icon" style="color:#9b59b6">🏰</div><h4>Better MC (Minecraft 2.0)</h4></div>
-                            <p><strong>İçerik:</strong> "Minecraft 2 çıksa nasıl olurdu?" sorusunun cevabı. Yeni biyomlar, yeni bosslar ve zindanlar.</p>
-                            <div class="dl-box"><a href="#" class="dl-btn">Paketi İndir</a></div>
-                        </div>
-
-                        <div class="mod-card" style="border-color: #3498db;" data-tilt>
-                            <div class="mod-header"><div class="mod-icon" style="color:#3498db">💎</div><h4>Vault Hunters</h4></div>
-                            <p><strong>İçerik:</strong> RPG öğeleri, yetenek ağaçları ve zindan yağmalama üzerine kurulu, bağımlılık yapan bir paket.</p>
-                            <div class="dl-box"><a href="#" class="dl-btn">Paketi İndir</a></div>
-                        </div>
-
-                        <div class="mod-card" style="border-color: #2ecc71;" data-tilt>
-                            <div class="mod-header"><div class="mod-icon" style="color:#2ecc71">🐾</div><h4>Pixelmon Reforged</h4></div>
-                            <p><strong>İçerik:</strong> Minecraft dünyasında Pokemon yakalamak, eğitmek ve savaştırmak isteyenler için.</p>
-                            <div class="dl-box"><a href="#" class="dl-btn">Paketi İndir</a></div>
-                        </div>
-
-                        <div class="mod-card" style="border-color: #e67e22;" data-tilt>
-                            <div class="mod-header"><div class="mod-icon" style="color:#e67e22">⚔️</div><h4>DawnCraft</h4></div>
-                            <p><strong>İçerik:</strong> Dark Souls tarzı savaş sistemi, görevler ve devasa bosslar ekleyen macera paketi.</p>
-                            <div class="dl-box"><a href="#" class="dl-btn">Paketi İndir</a></div>
-                        </div>
+                        <p style="font-size: 12px; color: #666; margin-top: 5px;">*Not: <code>-Xmx4G</code> kısmı oyuna 4GB RAM verir. Bilgisayarınızda 8GB varsa bunu kullanın.</p>
                     </div>
-                </div>
 
-                <div id="content-guide" class="tab-content">
-                    <div class="guide-box">
-                        <h4>❓ Modlar Nasıl Kurulur? (Fabric Yöntemi)</h4>
-                        <p><strong>Adım 1:</strong> <a href="https://fabricmc.net/" target="_blank" style="color:#2ecc71;">Fabric Loader</a> sitesine gidin ve "Download for Windows" diyerek indirip kurun (Sürüm seçmeyi unutmayın).</p>
-                        <p><strong>Adım 2:</strong> Klavyeden <code>Windows + R</code> tuşuna basın, <code>%appdata%</code> yazıp Enter'a basın.</p>
-                        <p><strong>Adım 3:</strong> <code>.minecraft</code> klasörüne girin. Orada <code>mods</code> diye bir klasör olacak (Yoksa kendiniz oluşturun).</p>
-                        <p><strong>Adım 4:</strong> Yukarıdan indirdiğiniz Sodium, Iris vb. dosyaları (.jar uzantılı) bu <code>mods</code> klasörünün içine atın.</p>
-                        <p><strong>Adım 5:</strong> Minecraft Launcher'ı açın, sol alttan "Fabric Loader" sürümünü seçip Oyna'ya basın. Bitti!</p>
+                    <div style="background: rgba(46, 204, 113, 0.1); border-left: 5px solid #2ECC71; padding: 20px; border-radius: 8px; margin-bottom: 25px;">
+                        <h4 style="color: #2ECC71; margin-top: 0;">🤝 BoostRehberi Oyuncu Dostu Tavsiyesi</h4>
+                        <p style="margin-bottom: 0; color: #aaa;">Piyasada dolaşan korsan başlatıcıların birçoğu PC'nizi yoran madencilik (mining) virüsleri barındırır. Bilgisayarınızı güvende tutmak için <strong>kesinlikle orijinal</strong> oynamanızı tavsiye ediyoruz.</p>
                     </div>
                 </div>
 
@@ -273,35 +230,33 @@
     </div>
 
     <script>
-        // Sayfa Yüklenince Preloader'ı Kapat
-        window.addEventListener('load', function() {
-            const preloader = document.getElementById('preloader');
-            preloader.style.opacity = '0';
-            setTimeout(() => { preloader.style.display = 'none'; }, 500);
-        });
-
-        // 3D Tilt Efekti Başlatma
-        VanillaTilt.init(document.querySelectorAll(".mod-card"), {
-            max: 15,
-            speed: 400,
-            glare: true,
-            "max-glare": 0.2,
-            scale: 1.05
-        });
-
+        // Detayları aç/kapa
         function toggleDetails(id) {
             let element = document.getElementById(id);
             element.style.display = (element.style.display === "block") ? "none" : "block";
         }
 
+        // Sekme Değiştirme
         function sekmeDegistir(sekmeAdi) {
+            // Tüm içerikleri gizle
             let icerikler = document.getElementsByClassName('tab-content');
-            for(let i = 0; i < icerikler.length; i++) { icerikler[i].classList.remove('active'); }
+            for(let i = 0; i < icerikler.length; i++) {
+                icerikler[i].classList.remove('active');
+            }
+            
+            // Seçilen içeriği göster
             document.getElementById('content-' + sekmeAdi).classList.add('active');
 
+            // Tüm butonların aktifliğini kaldır
             let butonlar = document.getElementsByClassName('menu-btn');
-            for(let i = 0; i < butonlar.length; i++) { butonlar[i].classList.remove('active-btn'); }
+            for(let i = 0; i < butonlar.length; i++) {
+                butonlar[i].classList.remove('active-btn');
+            }
+
+            // Tıklanan butonu aktif yap
             document.getElementById('btn-' + sekmeAdi).classList.add('active-btn');
+            
+            // Sayfayı yukarı kaydır
             window.scrollTo({top: 0, behavior: 'smooth'}); 
         }
     </script>
