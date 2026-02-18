@@ -33,12 +33,16 @@
 
         .layout-grid { display: grid; grid-template-columns: 280px 1fr; gap: 40px; align-items: start; }
         
-        /* SIDEBAR (MODRINTH STYLE) */
+        /* SIDEBAR */
         .sidebar { display: flex; flex-direction: column; gap: 5px; position: sticky; top: 20px; background-color: rgba(20, 25, 30, 0.5); padding: 20px; border-radius: 12px; border: 1px solid #2C3E50; }
         .sidebar-title { color: #8892B0; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; font-weight: 700; padding-left: 15px; }
         .menu-btn { background: transparent; color: #AAB7B8; border: none; padding: 12px 15px; font-size: 15px; font-weight: 600; text-align: left; border-radius: 8px; transition: 0.2s; display: flex; align-items: center; gap: 12px; }
         .menu-btn:hover { background-color: rgba(26, 188, 156, 0.1); color: #1ABC9C; }
         .menu-btn.active-btn { background-color: #1ABC9C; color: #11151D; font-weight: 700; }
+
+        /* MEGA İNDİR BUTONU EFEKTİ */
+        .mega-dl-btn { background: linear-gradient(90deg, #E74C3C, #C0392B); color: #FFF; border: none; padding: 15px 25px; border-radius: 8px; font-size: 16px; font-weight: 800; cursor: pointer; transition: 0.3s; display: flex; align-items: center; gap: 10px; box-shadow: 0 5px 15px rgba(231, 76, 60, 0.3); margin-bottom: 30px; text-decoration: none; justify-content: center; width: 100%; box-sizing: border-box;}
+        .mega-dl-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(231, 76, 60, 0.5); background: linear-gradient(90deg, #C0392B, #922B21); }
 
         /* MAIN CONTENT */
         .tab-content { display: none; animation: fadeIn 0.3s ease-in-out; }
@@ -117,6 +121,9 @@
                 <button id="btn-qol" class="menu-btn" onclick="sekmeDegistir('qol')">🔍 Hayat Kurtaran Modlar</button>
                 <button id="btn-shader" class="menu-btn" onclick="sekmeDegistir('shader')">🎨 Görsel Şölen (Shader)</button>
                 
+                <div class="sidebar-title" style="margin-top: 15px; color: #F1C40F;">MEGA PAKETLER</div>
+                <button id="btn-packs" class="menu-btn" onclick="sekmeDegistir('packs')" style="color:#F1C40F;">💥 Oyunu Değiştiren Modlar</button>
+
                 <div class="sidebar-title" style="margin-top: 15px;">Oyun İçi Ansiklopedi</div>
                 <button id="btn-farm" class="menu-btn" onclick="sekmeDegistir('farm')">⚙️ Sistemler ve Farmlar</button>
                 <button id="btn-seed" class="menu-btn" onclick="sekmeDegistir('seed')">🌍 Efsanevi Seedler</button>
@@ -135,6 +142,8 @@
                         <p>Aşağıdaki modların çalışması için Fabric Installer kurmalı ve <strong>Fabric API</strong> modunu mods klasörüne atmalısınız.</p>
                     </div>
 
+                    <a href="BURAYA_MEDIAFIRE_LINKINI_KOY" target="_blank" class="mega-dl-btn">📦 TÜM FPS MODLARINI TEK TIKLA İNDİR (.ZIP)</a>
+
                     <h3 style="color: #FFF; border-bottom: 1px solid #333; padding-bottom: 10px; margin-top: 0;">⚡ Zorunlu Optimizasyon (Core)</h3>
                     <p class="section-desc">Oyunu oynanabilir kılan ve FPS'i %300'e kadar artıran temel motorlar.</p>
                     
@@ -144,7 +153,7 @@
                             <p>Optifine'ı ezer, ekran kartını verimli kullanıp devasa FPS artışı sağlar.</p>
                             <button class="show-more-btn" onclick="toggleDetails('det-sodium')">Detaylar ▼</button>
                             <div id="det-sodium" class="mod-extra-info">Eski kod yapısını çöpe atar; donmaları tamamen bitirir.</div>
-                            <div class="dl-box"><span class="security-badge">✔️ Temiz</span><a href="https://modrinth.com/mod/sodium" target="_blank" class="dl-btn">İndir</a></div>
+                            <div class="dl-box"><span class="security-badge">✔️ Temiz</span><a href="https://modrinth.com/mod/sodium" target="_blank" class="dl-btn">Tekli İndir</a></div>
                         </div>
 
                         <div class="mod-card">
@@ -152,7 +161,7 @@
                             <p>Uyumluluk köprüsü. Diğer modların Sodium ile sorunsuz çalışmasını sağlar.</p>
                             <button class="show-more-btn" onclick="toggleDetails('det-indium')">Detaylar ▼</button>
                             <div id="det-indium" class="mod-extra-info">Fabric rendering API desteği ekleyerek görsel hataları engeller.</div>
-                            <div class="dl-box"><span class="security-badge">✔️ Temiz</span><a href="https://modrinth.com/mod/indium" target="_blank" class="dl-btn">İndir</a></div>
+                            <div class="dl-box"><span class="security-badge">✔️ Temiz</span><a href="https://modrinth.com/mod/indium" target="_blank" class="dl-btn">Tekli İndir</a></div>
                         </div>
 
                         <div class="mod-card">
@@ -160,7 +169,7 @@
                             <p>İşlemci (CPU) yükünü hafifletir, oyun içi fizikleri optimize eder.</p>
                             <button class="show-more-btn" onclick="toggleDetails('det-lithium')">Detaylar ▼</button>
                             <div id="det-lithium" class="mod-extra-info">Sunucu ve tek oyunculu "Tick" sürelerini %45 iyileştirir.</div>
-                            <div class="dl-box"><span class="security-badge">✔️ Temiz</span><a href="https://modrinth.com/mod/lithium" target="_blank" class="dl-btn">İndir</a></div>
+                            <div class="dl-box"><span class="security-badge">✔️ Temiz</span><a href="https://modrinth.com/mod/lithium" target="_blank" class="dl-btn">Tekli İndir</a></div>
                         </div>
 
                         <div class="mod-card">
@@ -168,7 +177,7 @@
                             <p>Modlu MC'de RAM şişmesini engeller, düşük RAM'li PC'lerde hayat kurtarır.</p>
                             <button class="show-more-btn" onclick="toggleDetails('det-ferrite')">Detaylar ▼</button>
                             <div id="det-ferrite" class="mod-extra-info">Veri yapılarını sıkıştırarak bellek tüketimini yarıya indirir.</div>
-                            <div class="dl-box"><span class="security-badge">✔️ Temiz</span><a href="https://modrinth.com/mod/ferritecore" target="_blank" class="dl-btn">İndir</a></div>
+                            <div class="dl-box"><span class="security-badge">✔️ Temiz</span><a href="https://modrinth.com/mod/ferritecore" target="_blank" class="dl-btn">Tekli İndir</a></div>
                         </div>
                     </div>
 
@@ -179,7 +188,7 @@
                             <p>Duvardan görünmeyen mobları çizmeyi durdurarak ekran kartını rahatlatır.</p>
                             <button class="show-more-btn" onclick="toggleDetails('det-cull')">Detaylar ▼</button>
                             <div id="det-cull" class="mod-extra-info">Mob farmı yaptığınız bölgelerde FPS düşmesini kesin olarak engeller.</div>
-                            <div class="dl-box"><span class="security-badge">✔️ Temiz</span><a href="https://modrinth.com/mod/entityculling" target="_blank" class="dl-btn">İndir</a></div>
+                            <div class="dl-box"><span class="security-badge">✔️ Temiz</span><a href="https://modrinth.com/mod/entityculling" target="_blank" class="dl-btn">Tekli İndir</a></div>
                         </div>
 
                         <div class="mod-card">
@@ -187,7 +196,7 @@
                             <p>Sodium menüsüne eksik olan parçacık ve animasyon ayarlarını geri getirir.</p>
                             <button class="show-more-btn" onclick="toggleDetails('det-extra')">Detaylar ▼</button>
                             <div id="det-extra" class="mod-extra-info">Yağmur, ateş, duman gibi parçacıkları kapatarak ekstra FPS sağlar.</div>
-                            <div class="dl-box"><span class="security-badge">✔️ Temiz</span><a href="https://modrinth.com/mod/sodium-extra" target="_blank" class="dl-btn">İndir</a></div>
+                            <div class="dl-box"><span class="security-badge">✔️ Temiz</span><a href="https://modrinth.com/mod/sodium-extra" target="_blank" class="dl-btn">Tekli İndir</a></div>
                         </div>
 
                         <div class="mod-card">
@@ -195,7 +204,7 @@
                             <p>Karışık Sodium ayar menüsünü düzenli sekmelere ayırır.</p>
                             <button class="show-more-btn" onclick="toggleDetails('det-reese')">Detaylar ▼</button>
                             <div id="det-reese" class="mod-extra-info">Kullanıcı dostu, kategorize edilmiş şık bir arayüz sunar.</div>
-                            <div class="dl-box"><span class="security-badge">✔️ Temiz</span><a href="https://modrinth.com/mod/reeses-sodium-options" target="_blank" class="dl-btn">İndir</a></div>
+                            <div class="dl-box"><span class="security-badge">✔️ Temiz</span><a href="https://modrinth.com/mod/reeses-sodium-options" target="_blank" class="dl-btn">Tekli İndir</a></div>
                         </div>
 
                         <div class="mod-card">
@@ -203,7 +212,7 @@
                             <p>Gölge paketlerini (Shader) kasmadan çalıştırmanızı sağlayan efsane motor.</p>
                             <button class="show-more-btn" onclick="toggleDetails('det-iris')">Detaylar ▼</button>
                             <div id="det-iris" class="mod-extra-info">Oyunu yeniden başlatmadan anında shader değiştirme imkanı tanır.</div>
-                            <div class="dl-box"><span class="security-badge">✔️ Temiz</span><a href="https://modrinth.com/mod/iris" target="_blank" class="dl-btn">İndir</a></div>
+                            <div class="dl-box"><span class="security-badge">✔️ Temiz</span><a href="https://modrinth.com/mod/iris" target="_blank" class="dl-btn">Tekli İndir</a></div>
                         </div>
                     </div>
 
@@ -214,7 +223,7 @@
                             <p>Cam blokların arasındaki o çirkin çizgileri yok edip bütünleştirir.</p>
                             <button class="show-more-btn" onclick="toggleDetails('det-cont')">Detaylar ▼</button>
                             <div id="det-cont" class="mod-extra-info">Optifine'ın "Connected Textures" özelliğini Fabric'e getirir.</div>
-                            <div class="dl-box"><span class="security-badge">✔️ Temiz</span><a href="https://modrinth.com/mod/continuity" target="_blank" class="dl-btn">İndir</a></div>
+                            <div class="dl-box"><span class="security-badge">✔️ Temiz</span><a href="https://modrinth.com/mod/continuity" target="_blank" class="dl-btn">Tekli İndir</a></div>
                         </div>
 
                         <div class="mod-card">
@@ -222,7 +231,7 @@
                             <p>Oyun dilini değiştirirken oluşan o 10 saniyelik donmayı tamamen çözer.</p>
                             <button class="show-more-btn" onclick="toggleDetails('det-lang')">Detaylar ▼</button>
                             <div id="det-lang" class="mod-extra-info">Menüde beklemeden şimşek hızında dil geçişi sağlar.</div>
-                            <div class="dl-box"><span class="security-badge">✔️ Temiz</span><a href="https://modrinth.com/mod/language-reload" target="_blank" class="dl-btn">İndir</a></div>
+                            <div class="dl-box"><span class="security-badge">✔️ Temiz</span><a href="https://modrinth.com/mod/language-reload" target="_blank" class="dl-btn">Tekli İndir</a></div>
                         </div>
                     </div>
                 </div>
@@ -231,13 +240,15 @@
                     <h3 style="color: #FFF; border-bottom: 1px solid #333; padding-bottom: 10px; margin-top: 0;">🔍 Hayat Kurtaran Modlar (Konfor)</h3>
                     <p class="section-desc">Oyun deneyiminizi modernleştiren ve sinir bozucu engelleri kaldıran eklentiler.</p>
 
+                    <a href="BURAYA_MEDIAFIRE_LINKINI_KOY" target="_blank" class="mega-dl-btn" style="background: linear-gradient(90deg, #9B59B6, #8E44AD); box-shadow: 0 5px 15px rgba(155, 89, 182, 0.3);">📦 TÜM HAYAT KURTARAN MODLARI TEK TIKLA İNDİR</a>
+
                     <div class="mod-grid">
                         <div class="mod-card">
                             <div class="mod-header"><div class="mod-icon">🖥️</div><h4>1. Borderless Mining</h4></div>
                             <p>Tam ekranda oynarken Alt-Tab yaptığınızda oyunun donmasını engeller.</p>
                             <button class="show-more-btn" onclick="toggleDetails('det-border')">Detaylar ▼</button>
                             <div id="det-border" class="mod-extra-info">Arkada Discord, Spotify veya tarayıcı kullananlar için hayati önem taşır.</div>
-                            <div class="dl-box"><span class="security-badge">✔️ Temiz</span><a href="https://modrinth.com/mod/borderless-mining" target="_blank" class="dl-btn">İndir</a></div>
+                            <div class="dl-box"><span class="security-badge">✔️ Temiz</span><a href="https://modrinth.com/mod/borderless-mining" target="_blank" class="dl-btn">Tekli İndir</a></div>
                         </div>
 
                         <div class="mod-card">
@@ -245,7 +256,7 @@
                             <p>Oyunu açarken göz kör eden kırmızı Mojang ekranını karanlık yapar.</p>
                             <button class="show-more-btn" onclick="toggleDetails('det-dark')">Detaylar ▼</button>
                             <div id="det-dark" class="mod-extra-info">Özellikle gece oyuncularının göz yorgunluğunu anında engeller.</div>
-                            <div class="dl-box"><span class="security-badge">✔️ Temiz</span><a href="https://modrinth.com/mod/dark-loading-screen" target="_blank" class="dl-btn">İndir</a></div>
+                            <div class="dl-box"><span class="security-badge">✔️ Temiz</span><a href="https://modrinth.com/mod/dark-loading-screen" target="_blank" class="dl-btn">Tekli İndir</a></div>
                         </div>
 
                         <div class="mod-card">
@@ -253,7 +264,7 @@
                             <p>Sunuculardaki düşük görüş mesafesi sınırını kendi sisteminizle aşın.</p>
                             <button class="show-more-btn" onclick="toggleDetails('det-bobby')">Detaylar ▼</button>
                             <div id="det-bobby" class="mod-extra-info">Sunucu sahibi render'ı 6 yapsa bile siz gezdiğiniz yerleri hafızaya alıp 32 chunk görebilirsiniz.</div>
-                            <div class="dl-box"><span class="security-badge">✔️ Temiz</span><a href="https://modrinth.com/mod/bobby" target="_blank" class="dl-btn">İndir</a></div>
+                            <div class="dl-box"><span class="security-badge">✔️ Temiz</span><a href="https://modrinth.com/mod/bobby" target="_blank" class="dl-btn">Tekli İndir</a></div>
                         </div>
 
                         <div class="mod-card">
@@ -261,7 +272,7 @@
                             <p>F5 kamerasına özgürlük getirir, koşarken karakterinizin etrafına bakın.</p>
                             <button class="show-more-btn" onclick="toggleDetails('det-third')">Detaylar ▼</button>
                             <div id="det-third" class="mod-extra-info">PvP sırasında arkanızdan kimin geldiğini yönünüzü bozmadan görmenizi sağlar.</div>
-                            <div class="dl-box"><span class="security-badge">✔️ Temiz</span><a href="https://modrinth.com/mod/better-third-person" target="_blank" class="dl-btn">İndir</a></div>
+                            <div class="dl-box"><span class="security-badge">✔️ Temiz</span><a href="https://modrinth.com/mod/better-third-person" target="_blank" class="dl-btn">Tekli İndir</a></div>
                         </div>
 
                         <div class="mod-card">
@@ -269,7 +280,91 @@
                             <p>Microsoft'un getirdiği sohbet raporlama ve ban sistemini devre dışı bırakır.</p>
                             <button class="show-more-btn" onclick="toggleDetails('det-chat')">Detaylar ▼</button>
                             <div id="det-chat" class="mod-extra-info">Sohbetinize eklenen dijital imzaları silerek haksız yere uzaklaştırılmanızı engeller.</div>
-                            <div class="dl-box"><span class="security-badge">✔️ Temiz</span><a href="https://modrinth.com/mod/no-chat-reports" target="_blank" class="dl-btn">İndir</a></div>
+                            <div class="dl-box"><span class="security-badge">✔️ Temiz</span><a href="https://modrinth.com/mod/no-chat-reports" target="_blank" class="dl-btn">Tekli İndir</a></div>
+                        </div>
+
+                        <div class="mod-card">
+                            <div class="mod-header"><div class="mod-icon">🍎</div><h4>6. AppleSkin</h4></div>
+                            <p>Gıda doygunluğunu (Saturation) ve yiyeceklerin ne kadar can dolduracağını gösterir.</p>
+                            <button class="show-more-btn" onclick="toggleDetails('det-apple')">Detaylar ▼</button>
+                            <div id="det-apple" class="mod-extra-info">Hangi yemeğin seni ne kadar süre tok tutacağını barda görsel olarak belirtir. Hayati bir eklentidir.</div>
+                            <div class="dl-box"><span class="security-badge">✔️ Temiz</span><a href="https://modrinth.com/mod/appleskin" target="_blank" class="dl-btn">Tekli İndir</a></div>
+                        </div>
+
+                        <div class="mod-card">
+                            <div class="mod-header"><div class="mod-icon">🔍</div><h4>7. Zoomify</h4></div>
+                            <p>Optifine'ın "C" tuşuyla yaptığı yakınlaştırmanın (Zoom) çok daha gelişmiş halidir.</p>
+                            <button class="show-more-btn" onclick="toggleDetails('det-zoom')">Detaylar ▼</button>
+                            <div id="det-zoom" class="mod-extra-info">Fare tekerleğiyle yakınlaştırma seviyesini ayarlayabilir, sinematik kamera geçişi yapabilirsiniz.</div>
+                            <div class="dl-box"><span class="security-badge">✔️ Temiz</span><a href="https://modrinth.com/mod/zoomify" target="_blank" class="dl-btn">Tekli İndir</a></div>
+                        </div>
+
+                        <div class="mod-card">
+                            <div class="mod-header"><div class="mod-icon">🖱️</div><h4>8. Mouse Tweaks</h4></div>
+                            <p>Envanter yönetimini inanılmaz derecede hızlandıran fare geliştirmeleri.</p>
+                            <button class="show-more-btn" onclick="toggleDetails('det-mouse')">Detaylar ▼</button>
+                            <div id="det-mouse" class="mod-extra-info">Sandığa eşyaları sürükleyerek tek hamlede atmanızı veya farenin tekerleği ile eşyaları dizmenizi sağlar.</div>
+                            <div class="dl-box"><span class="security-badge">✔️ Temiz</span><a href="https://modrinth.com/mod/mouse-tweaks" target="_blank" class="dl-btn">Tekli İndir</a></div>
+                        </div>
+
+                        <div class="mod-card">
+                            <div class="mod-header"><div class="mod-icon">🗺️</div><h4>9. Xaero's Minimap</h4></div>
+                            <p>Ekranın köşesine detaylı bir mini harita ekler, yolunuzu asla kaybetmezsiniz.</p>
+                            <button class="show-more-btn" onclick="toggleDetails('det-minimap')">Detaylar ▼</button>
+                            <div id="det-minimap" class="mod-extra-info">Ölüm noktanızı (Deathpoint) kaydeder, mobları gösterir ve evinizi işaretlemenize (Waypoint) olanak tanır.</div>
+                            <div class="dl-box"><span class="security-badge">✔️ Temiz</span><a href="https://modrinth.com/mod/xaeros-minimap" target="_blank" class="dl-btn">Tekli İndir</a></div>
+                        </div>
+
+                        <div class="mod-card">
+                            <div class="mod-header"><div class="mod-icon">📖</div><h4>10. Just Enough Items (JEI)</h4></div>
+                            <p>Oyundaki BÜTÜN eşyaların yapım tariflerini ekranın sağına listeler.</p>
+                            <button class="show-more-btn" onclick="toggleDetails('det-jei')">Detaylar ▼</button>
+                            <div id="det-jei" class="mod-extra-info">Bir eşyaya fareyle gelip 'R' tuşuna basarsanız nasıl yapıldığını, 'U' tuşuna basarsanız nerelerde kullanıldığını gösterir. Modlu serilerin vazgeçilmezidir.</div>
+                            <div class="dl-box"><span class="security-badge">✔️ Temiz</span><a href="https://modrinth.com/mod/jei" target="_blank" class="dl-btn">Tekli İndir</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="content-packs" class="tab-content">
+                    <h3 style="color: #F1C40F; border-bottom: 1px solid #333; padding-bottom: 10px; margin-top: 0;">💥 Oyunu Değiştiren Dev Mod Paketleri</h3>
+                    <p class="section-desc">Vanilla Minecraft'tan sıkılanlar için oyuna yepyeni çağlar, büyüler, makineler ve patronlar (boss) ekleyen hazır "Modpack" listesi.</p>
+
+                    <div class="guide-box" style="background-color: rgba(241, 196, 15, 0.1); border-left: 5px solid #F1C40F;">
+                        <h4 style="color: #F1C40F; margin-top: 0;">⚠️ Mod Paketleri Nasıl Kurulur?</h4>
+                        <p style="margin-bottom: 0;">Bu paketleri manuel olarak mods klasörüne atmak zordur. CurseForge veya Modrinth gibi <strong>Özel Launcher (Başlatıcı)</strong> programları indirip, programın içindeki arama çubuğuna paketin adını yazarak tek tıkla kurmalısınız.</p>
+                    </div>
+
+                    <div class="mod-grid">
+                        <div class="mod-card" style="border-top: 3px solid #27AE60;">
+                            <div class="mod-header"><div class="mod-icon">🌲</div><h4>Better MC (Vanilla+)</h4></div>
+                            <p>Minecraft 2.0 gibi hissettiren, oyunun özünü bozmadan binlerce yeni eşya ve zindan ekleyen efsanevi paket.</p>
+                            <button class="show-more-btn" onclick="toggleDetails('det-bettermc')">Neler Var? ▼</button>
+                            <div id="det-bettermc" class="mod-extra-info">İçinde 250+ mod var. Yeni köyler, devasa yeraltı mağaraları, ejderhalar ve gelişmiş tarım sistemi içerir.</div>
+                            <div class="dl-box" style="justify-content: flex-end;"><a href="https://modrinth.com/modpack/better-mc-fabric" target="_blank" class="dl-btn" style="background:#27AE60;">Sayfasına Git</a></div>
+                        </div>
+
+                        <div class="mod-card" style="border-top: 3px solid #E67E22;">
+                            <div class="mod-header"><div class="mod-icon">⚙️</div><h4>Create (Endüstri & Makine)</h4></div>
+                            <p>Oyuna dişliler, çarklar, su değirmenleri ve buharlı trenler ekleyerek oyunu bir mühendislik simülatörüne çevirir.</p>
+                            <button class="show-more-btn" onclick="toggleDetails('det-create')">Neler Var? ▼</button>
+                            <div id="det-create" class="mod-extra-info">Hayal gücünüzle sınırsız fabrika yapabilirsiniz. Kendi hareket eden treninizi inşa edip içine sandıklar dizebilirsiniz.</div>
+                            <div class="dl-box" style="justify-content: flex-end;"><a href="https://modrinth.com/mod/create" target="_blank" class="dl-btn" style="background:#E67E22;">Sayfasına Git</a></div>
+                        </div>
+
+                        <div class="mod-card" style="border-top: 3px solid #8E44AD;">
+                            <div class="mod-header"><div class="mod-icon">🪄</div><h4>RLCraft (Zorlu RPG)</h4></div>
+                            <p>Minecraft'ı "Elden Ring" zorluğuna çıkaran, susuzluk, sıcaklık ve devasa ölümcül canavarlar ekleyen hard mode paketi.</p>
+                            <button class="show-more-btn" onclick="toggleDetails('det-rlcraft')">Neler Var? ▼</button>
+                            <div id="det-rlcraft" class="mod-extra-info">Gerçek hayattaki gibi su içmeniz, kışın ateş yakıp ısınmanız gerekir. Uçan ejderhalar köyleri anında yakıp yıkabilir. Sadece usta oyuncular içindir.</div>
+                            <div class="dl-box" style="justify-content: flex-end;"><a href="https://www.curseforge.com/minecraft/modpacks/rlcraft" target="_blank" class="dl-btn" style="background:#8E44AD;">Sayfasına Git</a></div>
+                        </div>
+
+                        <div class="mod-card" style="border-top: 3px solid #34495E;">
+                            <div class="mod-header"><div class="mod-icon">🌌</div><h4>Vault Hunters (Zindan Avı)</h4></div>
+                            <p>Oyunun amacını maden yapmaktan çıkarıp, süre kısıtlamalı tehlikeli zindanlara girmeye (RPG mantığı) çevirir.</p>
+                            <button class="show-more-btn" onclick="toggleDetails('det-vault')">Neler Var? ▼</button>
+                            <div id="det-vault" class="mod-extra-info">Zindanlardan ganimet toplayıp karakterinize seviye atlatır, yetenek ağacından büyü hızınızı veya canınızı kalıcı olarak artırırsınız.</div>
+                            <div class="dl-box" style="justify-content: flex-end;"><a href="https://vaulthunters.gg/" target="_blank" class="dl-btn" style="background:#34495E;">Sayfasına Git</a></div>
                         </div>
                     </div>
                 </div>
@@ -475,6 +570,23 @@
 
                         <div class="craft-card"><div class="craft-info"><h3>Ekmek</h3><p>3x Buğday</p></div><div class="mc-ui"><div class="mc-grid"><div class="mc-slot"></div><div class="mc-slot"></div><div class="mc-slot"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/wheat.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/wheat.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/wheat.png"></div><div class="mc-slot"></div><div class="mc-slot"></div><div class="mc-slot"></div></div><div class="mc-arrow">➔</div><div class="mc-result"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/bread.png"></div></div></div>
                         <div class="craft-card"><div class="craft-info"><h3>Altın Elma</h3><p>8x Altın, 1x Elma</p></div><div class="mc-ui"><div class="mc-grid"><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/gold_ingot.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/gold_ingot.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/gold_ingot.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/gold_ingot.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/apple.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/gold_ingot.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/gold_ingot.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/gold_ingot.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/gold_ingot.png"></div></div><div class="mc-arrow">➔</div><div class="mc-result"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/golden_apple.png"></div></div></div>
+
+                        <div class="craft-card"><div class="craft-info"><h3>Meşale</h3><p>Kömür & Çubuk</p></div><div class="mc-ui"><div class="mc-grid"><div class="mc-slot"></div><div class="mc-slot"></div><div class="mc-slot"></div><div class="mc-slot"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/coal.png"></div><div class="mc-slot"></div><div class="mc-slot"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/stick.png"></div><div class="mc-slot"></div></div><div class="mc-arrow">➔</div><div class="mc-result"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/block/torch.png"></div></div></div>
+                        <div class="craft-card"><div class="craft-info"><h3>Kova</h3><p>3x Demir</p></div><div class="mc-ui"><div class="mc-grid"><div class="mc-slot"></div><div class="mc-slot"></div><div class="mc-slot"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/iron_ingot.png"></div><div class="mc-slot"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/iron_ingot.png"></div><div class="mc-slot"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/iron_ingot.png"></div><div class="mc-slot"></div></div><div class="mc-arrow">➔</div><div class="mc-result"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/bucket.png"></div></div></div>
+                        <div class="craft-card"><div class="craft-info"><h3>Kalkan</h3><p>6x Tahta, 1x Demir</p></div><div class="mc-ui"><div class="mc-grid"><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/block/oak_planks.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/iron_ingot.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/block/oak_planks.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/block/oak_planks.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/block/oak_planks.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/block/oak_planks.png"></div><div class="mc-slot"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/block/oak_planks.png"></div><div class="mc-slot"></div></div><div class="mc-arrow">➔</div><div class="mc-result"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/shield_base.png"></div></div></div>
+                        <div class="craft-card"><div class="craft-info"><h3>Kağıt</h3><p>3x Şeker Kamışı</p></div><div class="mc-ui"><div class="mc-grid"><div class="mc-slot"></div><div class="mc-slot"></div><div class="mc-slot"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/sugar_cane.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/sugar_cane.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/sugar_cane.png"></div><div class="mc-slot"></div><div class="mc-slot"></div><div class="mc-slot"></div></div><div class="mc-arrow">➔</div><div class="mc-result"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/paper.png"></div></div></div>
+                        <div class="craft-card"><div class="craft-info"><h3>Kitap</h3><p>3x Kağıt, 1x Deri</p></div><div class="mc-ui"><div class="mc-grid"><div class="mc-slot"></div><div class="mc-slot"></div><div class="mc-slot"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/paper.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/paper.png"></div><div class="mc-slot"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/paper.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/leather.png"></div><div class="mc-slot"></div></div><div class="mc-arrow">➔</div><div class="mc-result"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/book.png"></div></div></div>
+                        <div class="craft-card"><div class="craft-info"><h3>Yatak</h3><p>3x Yün, 3x Tahta</p></div><div class="mc-ui"><div class="mc-grid"><div class="mc-slot"></div><div class="mc-slot"></div><div class="mc-slot"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/block/white_wool.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/block/white_wool.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/block/white_wool.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/block/oak_planks.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/block/oak_planks.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/block/oak_planks.png"></div></div><div class="mc-arrow">➔</div><div class="mc-result"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/red_bed.png"></div></div></div>
+                        <div class="craft-card"><div class="craft-info"><h3>Büyü Masası</h3><p>Obsidyen, Elmas, Kitap</p></div><div class="mc-ui"><div class="mc-grid"><div class="mc-slot"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/book.png"></div><div class="mc-slot"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/diamond.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/block/obsidian.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/diamond.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/block/obsidian.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/block/obsidian.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/block/obsidian.png"></div></div><div class="mc-arrow">➔</div><div class="mc-result"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/block/enchanting_table_top.png"></div></div></div>
+                        <div class="craft-card"><div class="craft-info"><h3>Örs</h3><p>3x Demir Blok, 4x Demir</p></div><div class="mc-ui"><div class="mc-grid"><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/block/iron_block.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/block/iron_block.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/block/iron_block.png"></div><div class="mc-slot"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/iron_ingot.png"></div><div class="mc-slot"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/iron_ingot.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/iron_ingot.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/iron_ingot.png"></div></div><div class="mc-arrow">➔</div><div class="mc-result"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/block/anvil_top.png"></div></div></div>
+                        <div class="craft-card"><div class="craft-info"><h3>Kitaplık</h3><p>6x Tahta, 3x Kitap</p></div><div class="mc-ui"><div class="mc-grid"><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/block/oak_planks.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/block/oak_planks.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/block/oak_planks.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/book.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/book.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/book.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/block/oak_planks.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/block/oak_planks.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/block/oak_planks.png"></div></div><div class="mc-arrow">➔</div><div class="mc-result"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/block/bookshelf.png"></div></div></div>
+                        <div class="craft-card"><div class="craft-info"><h3>Huni (Hopper)</h3><p>5x Demir, 1x Sandık</p></div><div class="mc-ui"><div class="mc-grid"><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/iron_ingot.png"></div><div class="mc-slot"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/iron_ingot.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/iron_ingot.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/block/chest_front.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/iron_ingot.png"></div><div class="mc-slot"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/iron_ingot.png"></div><div class="mc-slot"></div></div><div class="mc-arrow">➔</div><div class="mc-result"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/block/hopper_inside.png"></div></div></div>
+                        <div class="craft-card"><div class="craft-info"><h3>Makas</h3><p>2x Demir Külçesi</p></div><div class="mc-ui"><div class="mc-grid"><div class="mc-slot"></div><div class="mc-slot"></div><div class="mc-slot"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/iron_ingot.png"></div><div class="mc-slot"></div><div class="mc-slot"></div><div class="mc-slot"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/iron_ingot.png"></div><div class="mc-slot"></div></div><div class="mc-arrow">➔</div><div class="mc-result"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/shears.png"></div></div></div>
+                        <div class="craft-card"><div class="craft-info"><h3>Demir Kazma</h3><p>3x Demir, 2x Çubuk</p></div><div class="mc-ui"><div class="mc-grid"><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/iron_ingot.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/iron_ingot.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/iron_ingot.png"></div><div class="mc-slot"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/stick.png"></div><div class="mc-slot"></div><div class="mc-slot"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/stick.png"></div><div class="mc-slot"></div></div><div class="mc-arrow">➔</div><div class="mc-result"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/iron_pickaxe.png"></div></div></div>
+                        <div class="craft-card"><div class="craft-info"><h3>Olta</h3><p>3x Çubuk, 2x İp</p></div><div class="mc-ui"><div class="mc-grid"><div class="mc-slot"></div><div class="mc-slot"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/stick.png"></div><div class="mc-slot"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/stick.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/string.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/stick.png"></div><div class="mc-slot"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/string.png"></div></div><div class="mc-arrow">➔</div><div class="mc-result"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/fishing_rod.png"></div></div></div>
+                        <div class="craft-card"><div class="craft-info"><h3>Tekne</h3><p>5x Tahta</p></div><div class="mc-ui"><div class="mc-grid"><div class="mc-slot"></div><div class="mc-slot"></div><div class="mc-slot"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/block/oak_planks.png"></div><div class="mc-slot"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/block/oak_planks.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/block/oak_planks.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/block/oak_planks.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/block/oak_planks.png"></div></div><div class="mc-arrow">➔</div><div class="mc-result"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/oak_boat.png"></div></div></div>
+                        <div class="craft-card"><div class="craft-info"><h3>Kamp Ateşi</h3><p>Kömür, Çubuk, Kütük</p></div><div class="mc-ui"><div class="mc-grid"><div class="mc-slot"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/stick.png"></div><div class="mc-slot"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/stick.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/coal.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/stick.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/block/oak_log.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/block/oak_log.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/block/oak_log.png"></div></div><div class="mc-arrow">➔</div><div class="mc-result"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/campfire.png"></div></div></div>
+                        <div class="craft-card"><div class="craft-info"><h3>Pasta</h3><p>Süt, Şeker, Yumurta, Buğday</p></div><div class="mc-ui"><div class="mc-grid"><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/milk_bucket.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/milk_bucket.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/milk_bucket.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/sugar.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/egg.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/sugar.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/wheat.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/wheat.png"></div><div class="mc-slot"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/wheat.png"></div></div><div class="mc-arrow">➔</div><div class="mc-result"><img src="https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/item/cake.png"></div></div></div>
 
                     </div>
                 </div>
