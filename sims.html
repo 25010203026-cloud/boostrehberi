@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Sims 4 Mod Koleksiyonu - BoostRehberi</title>
+    
+    <script>
+    (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="BH_QRyI6c8QlBb0uZLNRa";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+    </script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Nunito:wght@400;700&display=swap');
+        
+        /* Sims Özel İmleci (Plumbob) */
+        body, a, button, .mod-card, input, details, summary {
+            cursor: url('https://cdn.custom-cursor.com/db/cursor/32/sims_4_plumbob_cursor.png'), auto !important;
+        }
+        /* Tıklayınca Kırmızı Plumbob */
+        body:active, a:active, button:active {
+            cursor: url('https://cdn.custom-cursor.com/db/cursor/32/sims_4_red_plumbob_cursor.png'), auto !important;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            /* Sims Mavisi Arkaplan */
+            background: radial-gradient(circle at center, #1b3a50 0%, #0c1821 100%);
+            background-attachment: fixed;
+            color: #ecf0f1; margin: 0; padding: 0; line-height: 1.6;
+        }
+
+        /* Sims Yeşili Scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #0c1821; }
+        ::-webkit-scrollbar-thumb { background: #00E43C; border-radius: 5px; border: 2px solid #0c1821; }
+        ::-webkit-scrollbar-thumb:hover { background: #00b32d; }
+
+        /* PRELOADER */
+        #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0c1821; z-index: 9999; display: flex; justify-content: center; align-items: center; transition: opacity 0.5s; }
+        .spinner { width: 50px; height: 50px; background: #00E43C; animation: plumbob-spin 1.5s infinite ease-in-out; clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }
+        @keyframes plumbob-spin { 0% { transform: translateY(0) rotateY(0deg); } 50% { transform: translateY(-20px) rotateY(180deg); } 100% { transform: translateY(0) rotateY(360deg); } }
+
+        /* HEADER */
+        header { background-color: rgba(20, 25, 35, 0.95); padding: 15px 50px; display: flex; justify-content: space-between; align-items: center; border-bottom: 3px solid #00E43C; box-shadow: 0 4px 20px rgba(0,228,60,0.2); position: sticky; top: 0; z-index: 100; backdrop-filter: blur(5px);}
+        .logo { font-size: 26px; font-weight: 800; color: #fff; text-decoration: none; font-family: 'Fredoka', sans-serif; letter-spacing: 1px; }
+        .logo span { color: #00E43C; }
+        .back-btn { color: #00E43C; text-decoration: none; font-weight: 700; border: 2px solid #00E43C; padding: 8px 20px; border-radius: 20px; transition: all 0.3s; font-family: 'Fredoka', sans-serif; background: rgba(0, 228, 60, 0.1); }
+        .back-btn:hover { background-color: #00E43C; color: #000; box-shadow: 0 0 15px #00E43C; }
+
+        /* LAYOUT */
+        .container { max-width: 1400px; margin: 40px auto; padding: 0 20px; }
+        .page-header { margin-bottom: 40px; border-bottom: 1px solid #34495e; padding-bottom: 20px; text-align: center; }
+        .page-title { font-family: 'Fredoka', sans-serif; font-size: 42px; color: #fff; text-shadow: 0 5px 0 #009e2a; margin: 0; }
+        .page-subtitle { color: #bdc3c7; font-size: 18px; margin-top: 5px; }
+
+        .layout-grid { display: grid; grid-template-columns: 260px 1fr; gap: 40px; align-items: start; }
+        
+        /* SIDEBAR */
+        .sidebar { display: flex; flex-direction: column; gap: 10px; position: sticky; top: 100px; background: rgba(30, 40, 50, 0.8); padding: 25px; border-radius: 15px; border: 2px solid #34495e; backdrop-filter: blur(5px); }
+        .menu-btn { background: #2c3e50; color: #ecf0f1; border: none; padding: 15px; font-size: 16px; font-family: 'Fredoka', sans-serif; text-align: left; transition: 0.3s; cursor: pointer; border-radius: 10px; display:flex; align-items:center; gap:10px; font-weight:600; }
+        .menu-btn:hover { background: #34495e; transform: translateX(5px); }
+        .menu-btn.active-btn { background: #00E43C; color: #0c1821; box-shadow: 0 5px 15px rgba(0,228,60,0.4); }
+
+        /* CONTENT */
+        .tab-content { display: none; animation: fadeIn 0.6s ease-out; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .section-desc { font-family: 'Fredoka', sans-serif; color: #00E43C; font-size: 24px; border-bottom: 2px solid #34495e; padding-bottom: 15px; margin-bottom: 25px; }
+
+        /* MOD GRID */
+        .mod-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; margin-bottom: 50px; }
+        .mod-card { background: #2c3e50; border-radius: 15px; padding: 25px; display: flex; flex-direction: column; transition: 0.3s; position: relative; overflow: hidden; border: 2px solid transparent; }
+        .mod-card:hover { border-color: #00E43C; box-shadow: 0 10px 30px rgba(0,228,60,0.2); transform: translateY(-5px); background: #34495e; }
+        
+        .mod-header { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; }
+        .mod-icon { font-size: 24px; background: #fff; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .mod-card h4 { margin: 0; color: #fff; font-family: 'Fredoka', sans-serif; font-size: 20px; font-weight: 600; }
+        .mod-card p { color: #bdc3c7; font-size: 14px; margin: 0 0 20px 0; flex-grow: 1; }
+
+        .dl-box { margin-top: auto; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #465f75; padding-top: 15px; }
+        .dl-btn { background: #fff; color: #0c1821; padding: 10px 20px; text-decoration: none; font-weight: 700; font-family: 'Fredoka', sans-serif; font-size: 14px; transition: 0.3s; border-radius: 20px; }
+        .dl-btn:hover { background: #00E43C; color: #fff; box-shadow: 0 5px 15px rgba(0,228,60,0.4); }
+        .safe-badge { color: #2ecc71; font-size: 12px; display: flex; align-items: center; gap: 5px; font-weight: 700; background: rgba(46,204,113,0.1); padding: 5px 10px; border-radius: 5px; }
+
+        /* KURULUM KUTUSU */
+        .guide-box { background: #2c3e50; border-left: 5px solid #00E43C; padding: 30px; color: #ecf0f1; border-radius: 10px; }
+        .guide-step { display: flex; gap: 20px; margin-bottom: 20px; align-items: flex-start; }
+        .step-num { font-family: 'Fredoka', sans-serif; font-size: 24px; color: #0c1821; background: #00E43C; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; border-radius: 50%; flex-shrink: 0; font-weight: 700; }
+        code { background: #1a252f; color: #00E43C; padding: 2px 6px; border-radius: 4px; font-family: monospace; }
+    </style>
+</head>
+<body>
+
+    <div id="preloader"><div class="spinner"></div></div>
+
+    <header>
+        <a href="index.html" class="logo">Boost<span>Rehberi</span></a>
+        <a href="index.html" class="back-btn">⬅ Vitrine Dön</a>
+    </header>
+
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">The Sims 4 Mod Koleksiyonu</h1>
+            <div class="page-subtitle">"Sul Sul! Oyununuzu baştan aşağı değiştirecek 30 efsanevi mod."</div>
+        </div>
+
+        <div class="layout-grid">
+            <div class="sidebar">
+                <button id="btn-game" class="menu-btn active-btn" onclick="sekmeDegistir('game')">🧬 I. Oynanış & Hayat (6)</button>
+                <button id="btn-cas" class="menu-btn" onclick="sekmeDegistir('cas')">💄 II. CAS & Karakter (6)</button>
+                <button id="btn-build" class="menu-btn" onclick="sekmeDegistir('build')">🏠 III. İnşa & Eşya (6)</button>
+                <button id="btn-real" class="menu-btn" onclick="sekmeDegistir('real')">🌍 IV. Gerçekçilik (6)</button>
+                <button id="btn-tech" class="menu-btn" onclick="sekmeDegistir('tech')">🛠️ V. Teknik & Hile (6)</button>
+                <hr style="border:0; border-top:1px solid #444; margin:10px 0;">
+                <button id="btn-guide" class="menu-btn" onclick="sekmeDegistir('guide')">❓ Mod Nasıl Kurulur?</button>
+            </div>
+
+            <div class="main-panel">
+
+                <div id="content-game" class="tab-content active">
+                    <div class="section-desc">Oyunun Kurallarını Değiştiren Dev Modlar</div>
+                    <div class="mod-grid">
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><div class="mod-icon">⚙️</div><h4>1. MC Command Center</h4></div>
+                            <p><strong>Ne İşe Yarar:</strong> Tanrı modu. NPC'lerin evlenmesi, hamile kalması, kıyafetleri, yaşlanma ayarları... Her şeyi kontrol eder.</p>
+                            <div class="dl-box"><span class="safe-badge">⭐ Zorunlu</span><a href="https://deaderpool-mccc.com/" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><div class="mod-icon">❤️</div><h4>2. WonderfulWhims</h4></div>
+                            <p><strong>Ne İşe Yarar:</strong> İlişki sistemini derinleştirir. Çekicilik (Attractiveness), kişilik tipleri ve doğum kontrol gibi özellikler ekler.</p>
+                            <div class="dl-box"><span class="safe-badge">✔️ Güvenli</span><a href="https://wonderfulwhims.com/" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><div class="mod-icon">🍰</div><h4>3. Slice of Life</h4></div>
+                            <p><strong>Ne İşe Yarar:</strong> Simler artık sivilce çıkarır, hastalanır, regl olur, sarhoş olur ve hafızaları oluşur. Gerçek hayat gibi.</p>
+                            <div class="dl-box"><span class="safe-badge">🎭 Gerçekçilik</span><a href="https://www.kawaiistaciemods.com/" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><div class="mod-icon">💭</div><h4>4. Meaningful Stories</h4></div>
+                            <p><strong>Ne İşe Yarar:</strong> Duygu sistemini düzeltir. Simleriniz bir anda "Mutlu"dan "Depresif"e geçmez. Duygular daha kalıcı ve mantıklı olur.</p>
+                            <div class="dl-box"><span class="safe-badge">🧠 Psikoloji</span><a href="https://roburky.com/sims4/meaningful-stories/" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><div class="mod-icon">🍼</div><h4>5. RPO (WooHoo Wellness)</h4></div>
+                            <p><strong>Ne İşe Yarar:</strong> Hamilelik, evlat edinme, ebeveynlik ve ilişki sorunları üzerine devasa bir paket. Aldatma ve DNA testi bile var.</p>
+                            <div class="dl-box"><span class="safe-badge">👶 Aile</span><a href="https://lumpinoumods.com/" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><div class="mod-icon">🗣️</div><h4>6. Have Some Personality Please</h4></div>
+                            <p><strong>Ne İşe Yarar:</strong> Simlerin boş boş durmasını engeller. Kendi kişiliklerine göre otonom olarak sohbet eder ve etkileşime girerler.</p>
+                            <div class="dl-box"><span class="safe-badge">💬 Yapay Zeka</span><a href="https://modthesims.info/d/594573/have-some-personality-please.html" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="content-cas" class="tab-content">
+                    <div class="section-desc">Simlerinizi Güzelleştiren Detaylar</div>
+                    <div class="mod-grid">
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><div class="mod-icon">📐</div><h4>7. More Columns in CAS</h4></div>
+                            <p><strong>Ne İşe Yarar:</strong> Kıyafet seçerken o daracık 2 sütun yerine 3, 4 veya 5 sütun gösterir. CC kullananlar için şart.</p>
+                            <div class="dl-box"><span class="safe-badge">✔️ Arayüz</span><a href="https://www.patreon.com/posts/more-columns-in-27751117" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><div class="mod-icon">👁️</div><h4>8. Kijiko 3D Eyelashes</h4></div>
+                            <p><strong>Ne İşe Yarar:</strong> Oyunun o blok gibi duran kirpiklerini kaldırır, yerine tel tel ayrılmış gerçekçi kirpikler ekler.</p>
+                            <div class="dl-box"><span class="safe-badge">💄 Makyaj</span><a href="http://kijiko-catfood.com/3d-lashes-version2/" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><div class="mod-icon">🖼️</div><h4>9. CAS Backgrounds</h4></div>
+                            <p><strong>Ne İşe Yarar:</strong> Sim yaratma ekranındaki o sıkıcı mavi/yeşil arkaplanı değiştirir. Oda, stüdyo veya manzara yapabilirsiniz.</p>
+                            <div class="dl-box"><span class="safe-badge">🎨 Görsel</span><a href="#" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><div class="mod-icon">📏</div><h4>10. Height Slider (Boy Ayarı)</h4></div>
+                            <p><strong>Ne İşe Yarar:</strong> Simlerin boyunu uzatıp kısaltmanızı sağlar. Ayaklarından tutup çekerek boylarını ayarlayabilirsiniz.</p>
+                            <div class="dl-box"><span class="safe-badge">🧍 Fizik</span><a href="https://modthesims.info/d/588159/height-slider.html" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><div class="mod-icon">✋</div><h4>11. Stand Still in CAS</h4></div>
+                            <p><strong>Ne İşe Yarar:</strong> Simlerin karakter yaratırken sürekli kıpırdamasını, gülmesini ve hareket etmesini engeller. Rahatça düzenlersiniz.</p>
+                            <div class="dl-box"><span class="safe-badge">🛑 Sabitle</span><a href="https://modthesims.info/d/630172/stand-still-in-cas-shimrod101-amp-shookoya.html" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><div class="mod-icon">✨</div><h4>12. Skin Overlay (Cilt)</h4></div>
+                            <p><strong>Ne İşe Yarar:</strong> Simlerin cildini pürüzsüzleştirir, gölgelendirme ekler ve "hamur" gibi görünmelerini engeller.</p>
+                            <div class="dl-box"><span class="safe-badge">🧖 Cilt</span><a href="https://www.thesimsresource.com/downloads/browse/category/sims4-skintones/" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="content-build" class="tab-content">
+                    <div class="section-desc">Mimar ve Tasarımcılar İçin Araçlar</div>
+                    <div class="mod-grid">
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><div class="mod-icon">🔨</div><h4>13. Better BuildBuy</h4></div>
+                            <p><strong>Ne İşe Yarar:</strong> İnşa modunu profesyonel hale getirir. Gizli eşyaları açar, filtrelemeyi kolaylaştırır ve menüyü genişletir.</p>
+                            <div class="dl-box"><span class="safe-badge">🏗️ Sistem</span><a href="https://twistedmexi.com/Mods/" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><div class="mod-icon">🔄</div><h4>14. T.O.O.L. Mod</h4></div>
+                            <p><strong>Ne İşe Yarar:</strong> Eşyaları istediğiniz açıda döndürmenizi, havada asılı bırakmanızı ve iç içe geçirmenizi sağlar.</p>
+                            <div class="dl-box"><span class="safe-badge">📐 Araç</span><a href="https://twistedmexi.com/Mods/" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><div class="mod-icon">🟥</div><h4>15. OMSP (Red Shelf)</h4></div>
+                            <p><strong>Ne İşe Yarar:</strong> Raflara veya masalara normalde koyamadığınız kadar çok süs eşyası koymanızı sağlayan görünmez raf.</p>
+                            <div class="dl-box"><span class="safe-badge">🏺 Dekor</span><a href="https://ravasheen.com/download/omsp-shelf/" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><div class="mod-icon">🛋️</div><h4>16. Peacemaker Furniture</h4></div>
+                            <p><strong>Ne İşe Yarar:</strong> Oyunun kendi eşyalarından çok daha kaliteli, modern ve şık koltuk, yatak ve mutfak setleri.</p>
+                            <div class="dl-box"><span class="safe-badge">🪑 Eşya</span><a href="https://peacemaker-ic.tumblr.com/" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><div class="mod-icon">💵</div><h4>17. Free Real Estate</h4></div>
+                            <p><strong>Ne İşe Yarar:</strong> Herhangi bir mahalleye taşınırken evlerin ücretsiz olmasını sağlar. Hile yazmakla uğraşmazsınız.</p>
+                            <div class="dl-box"><span class="safe-badge">💰 Ekonomi</span><a href="#" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><div class="mod-icon">🎨</div><h4>18. Photographic Memory</h4></div>
+                            <p><strong>Ne İşe Yarar:</strong> Çektiğiniz fotoğrafları çerçeveletip duvara asmanızı veya anı defteri yapmanızı sağlar.</p>
+                            <div class="dl-box"><span class="safe-badge">📸 Foto</span><a href="https://ravasheen.com/download/photographic-memory-2-0/" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="content-real" class="tab-content">
+                    <div class="section-desc">Hayatın Gerçeklerini Oyuna Taşıyanlar</div>
+                    <div class="mod-grid">
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><div class="mod-icon">🍷</div><h4>19. Basemental Alcohol</h4></div>
+                            <p><strong>Ne İşe Yarar:</strong> Oyundaki "Meyve Suyu" saçmalığını kaldırır. Gerçek içki markaları ve sarhoşluk etkileri ekler.</p>
+                            <div class="dl-box"><span class="safe-badge">🍻 Eğlence</span><a href="https://basementalcc.com/" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><div class="mod-icon">🏥</div><h4>20. Private Practice</h4></div>
+                            <p><strong>Ne İşe Yarar:</strong> Sağlık sistemini değiştirir. Check-up, tansiyon, kalp krizi ve detaylı hastalıklar ekler.</p>
+                            <div class="dl-box"><span class="safe-badge">🩺 Sağlık</span><a href="https://simrealist.itch.io/private-practice-public" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><div class="mod-icon">🎒</div><h4>21. Education Overhaul</h4></div>
+                            <p><strong>Ne İşe Yarar:</strong> Okul sistemini geliştirir. Anaokulu, özel okullar, ev ödevleri ve veli toplantıları ekler.</p>
+                            <div class="dl-box"><span class="safe-badge">🎓 Okul</span><a href="https://www.patreon.com/posts/education-v10-0-57959934" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><div class="mod-icon">💼</div><h4>22. Career Overhaul</h4></div>
+                            <p><strong>Ne İşe Yarar:</strong> Mesleklerin maaşlarını ve terfi zorluklarını dengeler. Daha zor veya daha gerçekçi yapar.</p>
+                            <div class="dl-box"><span class="safe-badge">💰 İş</span><a href="#" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><div class="mod-icon">✈️</div><h4>23. Travel Guide</h4></div>
+                            <p><strong>Ne İşe Yarar:</strong> Tatile gitmeyi veya başka kasabaya gitmeyi ücretli yapar (Bilet parası). Pasaport sistemi ekler.</p>
+                            <div class="dl-box"><span class="safe-badge">🌍 Seyahat</span><a href="#" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><div class="mod-icon">👵</div><h4>24. Lifetime Aspirations</h4></div>
+                            <p><strong>Ne İşe Yarar:</strong> Oyundaki sıkıcı hayat amaçlarını (Aspiration) zorlaştırır ve yenilerini ekler.</p>
+                            <div class="dl-box"><span class="safe-badge">🎯 Amaç</span><a href="https://kyrati.itch.io/lifetime-aspirations" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="content-tech" class="tab-content">
+                    <div class="section-desc">Hata Düzeltme ve Kolaylıklar</div>
+                    <div class="mod-grid">
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><div class="mod-icon">🦄</div><h4>25. UI Cheats Extension</h4></div>
+                            <p><strong>Ne İşe Yarar:</strong> Kod yazmadan hile yapmanızı sağlar. Paraya tıkla para gelsin, ihtiyaca tıkla dolsun. Aşırı pratik.</p>
+                            <div class="dl-box"><span class="safe-badge">⚡ Hile</span><a href="https://www.patreon.com/posts/ui-cheats-v1-36-26240068" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><div class="mod-icon">🐌</div><h4>26. Simulation Lag Fix</h4></div>
+                            <p><strong>Ne İşe Yarar:</strong> Simlerin bazen donup kalmasını, kafalarını sallayıp saatlerce beklemesini (Lag) düzeltir.</p>
+                            <div class="dl-box"><span class="safe-badge">🛠️ Fix</span><a href="https://modthesims.info/d/617248/simulation-lag-fix.html" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><div class="mod-icon">🚽</div><h4>27. Simulation Unclogger</h4></div>
+                            <p><strong>Ne İşe Yarar:</strong> Oyun takıldığında veya bir Sim buga girdiğinde oyunu resetlemeden Sim'i kendine getirir.</p>
+                            <div class="dl-box"><span class="safe-badge">🛠️ Fix</span><a href="https://modthesims.info/d/627246/simulation-unclogger.html" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><div class="mod-icon">💉</div><h4>28. XML Injector</h4></div>
+                            <p><strong>Ne İşe Yarar:</strong> Çoğu modun çalışması için gereken bir kütüphane dosyasıdır. (Skyrim'deki SKSE gibi).</p>
+                            <div class="dl-box"><span class="safe-badge">📚 Sistem</span><a href="https://scumbumbomods.com/xml-injector" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><div class="mod-icon">🧹</div><h4>29. No Culling</h4></div>
+                            <p><strong>Ne İşe Yarar:</strong> Oyunun nüfusu artınca eski tanıdığınız Simleri silmesini (hafızadan atmasını) engeller.</p>
+                            <div class="dl-box"><span class="safe-badge">💾 Kayıt</span><a href="#" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><div class="mod-icon">📑</div><h4>30. Better Exceptions</h4></div>
+                            <p><strong>Ne İşe Yarar:</strong> Oyununuz çökerse veya hata verirse, hangi modun buna sebep olduğunu tarayıcıda rapor olarak açar.</p>
+                            <div class="dl-box"><span class="safe-badge">🐞 Hata</span><a href="https://www.patreon.com/posts/better-v2-03-52688481" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="content-guide" class="tab-content">
+                    <div class="guide-box">
+                        <h4 style="margin-top:0; border-bottom:1px solid #444; padding-bottom:10px;">📜 Mod Kurulum Rehberi (Çok Basit)</h4>
+                        
+                        <div class="guide-step">
+                            <div class="step-num">1</div>
+                            <div>
+                                <strong>Belgelerim Klasörüne Git:</strong><br>
+                                Bilgisayarında şu yolu izle: <br>
+                                <code>Belgeler > Electronic Arts > The Sims 4 > Mods</code><br>
+                                <em>(Eğer Mods klasörü yoksa kendin oluştur).</em>
+                            </div>
+                        </div>
+
+                        <div class="guide-step">
+                            <div class="step-num">2</div>
+                            <div>
+                                <strong>Dosya Türlerini Öğren:</strong><br>
+                                İndirdiğin modlar genellikle <strong>.zip</strong> veya <strong>.rar</strong> içinde gelir. Onları klasöre çıkartmalısın.<br>
+                                • <strong>.package</strong> dosyaları: Kıyafet, saç, eşya.<br>
+                                • <strong>.ts4script</strong> dosyaları: Oyunun kodunu değiştiren script modları (MCCC, WhickedWhims gibi).
+                            </div>
+                        </div>
+
+                        <div class="guide-step">
+                            <div class="step-num">3</div>
+                            <div>
+                                <strong>Dosyaları At:</strong><br>
+                                Çıkardığın dosyaları <code>Mods</code> klasörünün içine at. <br>
+                                <span style="color:#e74c3c;">⚠️ DİKKAT:</span> Script modlarını (.ts4script) çok fazla alt klasöre koyma. En fazla 1 klasör derine koyabilirsin. Örnek: <code>Mods > MCCC > dosya.ts4script</code> çalışır ama <code>Mods > Hileler > MCCC > dosya</code> ÇALIŞMAZ.
+                            </div>
+                        </div>
+
+                        <div class="guide-step">
+                            <div class="step-num">4</div>
+                            <div>
+                                <strong>Oyunda Aktif Et:</strong><br>
+                                Oyunu aç. <strong>Ayarlar (Game Options) > Diğer (Other)</strong> sekmesine gel.<br>
+                                ✅ <strong>"Özel İçeriği ve Modları Etkinleştir"</strong> (Enable Custom Content)<br>
+                                ✅ <strong>"Script Modlarına İzin Ver"</strong> (Script Mods Allowed)<br>
+                                Bu iki kutucuğu işaretle ve "Değişiklikleri Uygula" de. <strong>Oyunu kapatıp aç.</strong> Bitti!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Preloader Kapatma
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            if(preloader) {
+                preloader.style.opacity = '0';
+                setTimeout(() => { preloader.style.display = 'none'; }, 500);
+            }
+        });
+
+        // 3D Tilt
+        if (typeof VanillaTilt !== 'undefined') {
+            VanillaTilt.init(document.querySelectorAll(".mod-card"), {
+                max: 10,
+                speed: 400,
+                glare: true,
+                "max-glare": 0.2,
+                scale: 1.02
+            });
+        }
+
+        // Sekme Değiştirme
+        function sekmeDegistir(sekmeAdi) {
+            let icerikler = document.getElementsByClassName('tab-content');
+            for(let i = 0; i < icerikler.length; i++) {
+                icerikler[i].classList.remove('active');
+            }
+            
+            let secilenIcerik = document.getElementById('content-' + sekmeAdi);
+            if(secilenIcerik) {
+                secilenIcerik.classList.add('active');
+            }
+
+            let butonlar = document.getElementsByClassName('menu-btn');
+            for(let i = 0; i < butonlar.length; i++) {
+                butonlar[i].classList.remove('active-btn');
+            }
+
+            let tiklananButon = document.getElementById('btn-' + sekmeAdi);
+            if(tiklananButon) {
+                tiklananButon.classList.add('active-btn');
+            }
+            
+            window.scrollTo({top: 0, behavior: 'smooth'}); 
+        }
+    </script>
+</body>
+</html>
