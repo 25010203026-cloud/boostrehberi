@@ -74,15 +74,17 @@
         .game-card { background-color: rgba(20, 25, 30, 0.8); border: 1px solid #333; border-radius: 12px; padding: 25px; transition: 0.3s; display: flex; flex-direction: column; position: relative; overflow: hidden; transform-style: preserve-3d; transform: perspective(1000px); }
         .game-card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; }
         
-        /* Renkler */
+        /* Renkler - Bannerlord Turuncusu Eklendi */
         .game-card.mc::before { background-color: #2ECC71; }
         .game-card.fm::before { background-color: #6D28D9; }
         .game-card.ac::before { background-color: #E74C3C; }
         .game-card.gta::before { background-color: #F39C12; }
+        .game-card.bl::before { background-color: #d35400; } /* Bannerlord Rengi */
         .game-card.tr-yama::before { background-color: #3498DB; }
 
         .game-card:hover { background-color: rgba(30, 35, 45, 0.9); border-color: #1ABC9C; box-shadow: 0 10px 30px rgba(26, 188, 156, 0.2); }
         .game-card.tr-yama:hover { border-color: #3498DB; box-shadow: 0 10px 30px rgba(52, 152, 219, 0.2); }
+        .game-card.bl:hover { border-color: #d35400; box-shadow: 0 10px 30px rgba(211, 84, 0, 0.3); } /* Bannerlord Hover */
         
         .game-icon { font-size: 35px; margin-bottom: 10px; transform: translateZ(30px); }
         .game-card h3 { color: #FFF; font-size: 20px; margin: 0 0 10px 0; transform: translateZ(25px); }
@@ -91,6 +93,7 @@
         .play-btn { background-color: #1A1A1A; color: #FFF; text-align: center; text-decoration: none; padding: 12px; border-radius: 6px; font-weight: 700; border: 1px solid #444; transition: 0.3s; font-size: 14px; transform: translateZ(25px); }
         .game-card .play-btn:hover { background-color: #1ABC9C; color: #000; border-color: #1ABC9C;}
         .game-card.tr-yama .play-btn:hover { background-color: #3498DB; color: #FFF; border-color: #3498DB;}
+        .game-card.bl .play-btn:hover { background-color: #d35400; color: #FFF; border-color: #d35400;} /* Bannerlord Button Hover */
         
         .badge { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; margin-bottom: 10px; border: 1px solid; transform: translateZ(20px); width: fit-content; }
         .badge.mod { background: rgba(46, 204, 113, 0.1); color: #2ECC71; border-color: #2ECC71; }
@@ -233,6 +236,15 @@
                     <p>FPS uçuran Sodium ayarları ve efsanevi mod paketleri.</p>
                     <a href="minecraft.html" class="play-btn">Kurulum & Rehber</a>
                 </div>
+                
+                <div class="game-card bl" data-tilt>
+                    <div class="badge mod">Savaş Modları</div>
+                    <div class="game-icon">⚔️</div>
+                    <h3>Bannerlord</h3>
+                    <p>Kalabalık savaşlar için FPS ayarı ve Kafa Koparma modu.</p>
+                    <a href="bannerlord.html" class="play-btn">Kurulum & Rehber</a>
+                </div>
+
                 <div class="game-card gta" data-tilt>
                     <div class="badge mod">Optimizasyon</div>
                     <div class="game-icon">🔫</div>
@@ -298,7 +310,7 @@
                     <button class="cat-btn active">🌐 Tümü</button>
                     <button class="cat-btn">💬 Genel Tartışma</button>
                     <button class="cat-btn">⛏️ Minecraft</button>
-                    <button class="cat-btn">⚽ Football Manager</button>
+                    <button class="cat-btn">⚔️ Bannerlord</button> <button class="cat-btn">⚽ Football Manager</button>
                     <button class="cat-btn">🏎️ Assetto Corsa</button>
                     <button class="cat-btn">🔫 GTA 5</button>
                     <button class="cat-btn">🇹🇷 Türkçe Yama Destek</button>
@@ -325,6 +337,7 @@
                 <select id="topicCat">
                     <option value="💬 Genel Tartışma">💬 Genel Tartışma</option>
                     <option value="⛏️ Minecraft">⛏️ Minecraft</option>
+                    <option value="⚔️ Bannerlord">⚔️ Bannerlord</option>
                     <option value="⚽ Football Manager">⚽ Football Manager</option>
                     <option value="🏎️ Assetto Corsa">🏎️ Assetto Corsa</option>
                     <option value="🔫 GTA 5">🔫 GTA 5</option>
