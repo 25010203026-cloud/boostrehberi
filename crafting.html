@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Crafting Kütüphanesi - BoostRehberi</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Fira+Code:wght@600&display=swap');
+        
+        body, a, button, input { cursor: url('https://cdn.custom-cursor.com/db/cursor/32/minecraft_diamond_pickaxe_cursor.png'), auto !important; }
+        body { font-family: 'Montserrat', sans-serif; background: linear-gradient(rgba(15, 20, 25, 0.90), rgba(15, 20, 25, 0.98)), url('arkaplan.jpg') repeat; background-attachment: fixed; color: #E0E0E0; margin: 0; padding: 0; }
+
+        header { background-color: #11151D; padding: 15px 50px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #3498DB; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        .logo { font-size: 24px; font-weight: 800; color: #FFFFFF; text-decoration: none; }
+        .logo span { color: #3498DB; }
+        .back-btn { background: transparent; border: 1px solid #555; color: #AAB7B8; padding: 10px 20px; border-radius: 6px; font-weight: 700; text-decoration: none; transition: 0.3s; }
+        .back-btn:hover { background: #333; color: #FFF; }
+
+        .container { max-width: 1400px; margin: 40px auto; padding: 0 20px; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .header-box { text-align: center; margin-bottom: 40px; }
+        .header-box h1 { font-size: 40px; color: #FFF; margin: 0 0 10px 0; font-weight: 900; text-transform: uppercase; letter-spacing: 1px;}
+        .header-box p { color: #AAB7B8; font-size: 16px; margin: 0; }
+
+        .search-container { max-width: 600px; margin: 0 auto 40px auto; position: relative; }
+        .search-input { width: 100%; padding: 20px 25px; font-size: 18px; border-radius: 30px; border: 2px solid #2C3E50; background-color: rgba(26, 32, 44, 0.8); color: white; box-sizing: border-box; font-family: 'Montserrat', sans-serif; transition: 0.3s; box-shadow: 0 10px 20px rgba(0,0,0,0.3); outline: none;}
+        .search-input:focus { border-color: #3498DB; box-shadow: 0 10px 25px rgba(52, 152, 219, 0.3); }
+
+        .craft-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 25px; }
+        .craft-card { background-color: rgba(22, 27, 34, 0.9); padding: 25px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #2C3E50; transition: 0.2s; box-shadow: 0 5px 15px rgba(0,0,0,0.2); animation: fadeIn 0.3s ease-in;}
+        .craft-card:hover { border-color: #3498DB; transform: translateY(-5px); }
+        .craft-info h3 { margin: 0 0 5px 0; color: #FFF; font-size: 20px; }
+        .craft-info p { margin: 0; font-size: 13px; color: #8892B0; }
+        
+        .mc-ui { background-color: #c6c6c6; border: 2px solid #555; border-top-color: #fff; border-left-color: #fff; padding: 12px; display: flex; align-items: center; border-radius: 3px; }
+        .mc-grid { display: grid; grid-template-columns: repeat(3, 34px); grid-template-rows: repeat(3, 34px); gap: 2px; }
+        .mc-slot { width: 34px; height: 34px; background-color: #8b8b8b; border: 2px solid #373737; border-bottom-color: #fff; border-right-color: #fff; display: flex; justify-content: center; align-items: center; }
+        .mc-slot img { width: 24px; height: 24px; image-rendering: pixelated; }
+        .mc-arrow { margin: 0 15px; font-size: 24px; color: #373737; font-weight: bold; }
+        .mc-result { width: 50px; height: 50px; background-color: #8b8b8b; border: 2px solid #373737; border-bottom-color: #fff; border-right-color: #fff; display: flex; justify-content: center; align-items: center; }
+        .mc-result img { width: 36px; height: 36px; image-rendering: pixelated; }
+
+        .no-result { display: none; text-align: center; color: #E74C3C; font-size: 20px; font-weight: 700; width: 100%; grid-column: 1 / -1; padding: 50px 0; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">Boost<span>Rehberi</span></a>
+        <a href="minecraft.html" class="back-btn">⬅ Minecraft Rehberine Dön</a>
+    </header>
+
+    <div class="container">
+        <div class="header-box">
+            <h1>Devasa Crafting Kütüphanesi</h1>
+            <p>Aradığın eşyanın adını yaz ve yapım tarifini anında öğren. (Mevcut Tarif Sayısı: 100+)</p>
+        </div>
+
+        <div class="search-container">
+            <input type="text" id="craft-ara" class="search-input" placeholder="🔍 Eşya Ara (Örn: Elmas Kılıç, Piston, Altın Elma...)" onkeyup="craftFiltrele()">
+        </div>
+
+        <div id="craft-liste" class="craft-grid"></div>
+        <div id="hata-mesaji" class="no-result">Aradığın eşya bulunamadı!</div>
+
+    </div>
+
+    <script>
+        // CEO'NUN MEGA VERİTABANI MOTORU
+        // Kısaltmalar (Kod şişmesin diye resim yollarını kısalttık)
+        const URL = "https://raw.githubusercontent.com/InventivetalentDev/minecraft-assets/1.20.4/assets/minecraft/textures/";
+        const _ = null; // Boş kutu
+        const T = "block/oak_planks.png"; const C = "item/stick.png"; const D = "item/iron_ingot.png";
+        const E = "item/diamond.png"; const A = "item/gold_ingot.png"; const K = "block/cobblestone.png";
+        const KO = "item/coal.png"; const R = "item/redstone.png"; const KU = "block/sand.png";
+        const BA = "item/gunpowder.png"; const IP = "item/string.png"; const DE = "item/leather.png";
+        const KA = "item/paper.png"; const KI = "item/book.png"; const Y = "block/white_wool.png";
+        const OB = "block/obsidian.png"; const QU = "item/quartz.png"; const BU = "item/wheat.png";
+        const EL = "item/apple.png"; const SH = "item/sugar.png"; const YU = "item/egg.png";
+        const SU = "item/milk_bucket.png"; const CA = "block/glass.png"; const TU = "block/bricks.png";
+        
+        // TAHTA, DEMİR, ALTIN, ELMAS ALETLER
+        const tarifler = [
+            { ad: "Çalışma Masası", aciklama: "4x Tahta", sonuc: "block/crafting_table_top.png", slotlar: [_,_,_, _,T,T, _,T,T] },
+            { ad: "Çubuk", aciklama: "2x Tahta", sonuc: "item/stick.png", slotlar: [_,_,_, _,T,_, _,T,_] },
+            { ad: "Sandık", aciklama: "8x Tahta", sonuc: "block/chest_front.png", slotlar: [T,T,T, T,_,T, T,T,T] },
+            { ad: "Fırın", aciklama: "8x Kırıktaş", sonuc: "block/furnace_front.png", slotlar: [K,K,K, K,_,K, K,K,K] },
+            { ad: "Meşale", aciklama: "1x Kömür, 1x Çubuk", sonuc: "block/torch.png", slotlar: [_,_,_, _,KO,_, _,C,_] },
+            
+            // ELMAS SET
+            { ad: "Elmas Kılıç", aciklama: "2x Elmas, 1x Çubuk", sonuc: "item/diamond_sword.png", slotlar: [_,E,_, _,E,_, _,C,_] },
+            { ad: "Elmas Kazma", aciklama: "3x Elmas, 2x Çubuk", sonuc: "item/diamond_pickaxe.png", slotlar: [E,E,E, _,C,_, _,C,_] },
+            { ad: "Elmas Balta", aciklama: "3x Elmas, 2x Çubuk", sonuc: "item/diamond_axe.png", slotlar: [E,E,_, E,C,_, _,C,_] },
+            { ad: "Elmas Kürek", aciklama: "1x Elmas, 2x Çubuk", sonuc: "item/diamond_shovel.png", slotlar: [_,E,_, _,C,_, _,C,_] },
+            { ad: "Elmas Çapa", aciklama: "2x Elmas, 2x Çubuk", sonuc: "item/diamond_hoe.png", slotlar: [E,E,_, _,C,_, _,C,_] },
+            { ad: "Elmas Kask", aciklama: "5x Elmas", sonuc: "item/diamond_helmet.png", slotlar: [E,E,E, E,_,E, _,_,_] },
+            { ad: "Elmas Göğüslük", aciklama: "8x Elmas", sonuc: "item/diamond_chestplate.png", slotlar: [E,_,E, E,E,E, E,E,E] },
+            { ad: "Elmas Pantolon", aciklama: "7x Elmas", sonuc: "item/diamond_leggings.png", slotlar: [E,E,E, E,_,E, E,_,E] },
+            { ad: "Elmas Bot", aciklama: "4x Elmas", sonuc: "item/diamond_boots.png", slotlar: [_,_,_, E,_,E, E,_,E] },
+
+            // DEMİR SET
+            { ad: "Demir Kılıç", aciklama: "2x Demir, 1x Çubuk", sonuc: "item/iron_sword.png", slotlar: [_,D,_, _,D,_, _,C,_] },
+            { ad: "Demir Kazma", aciklama: "3x Demir, 2x Çubuk", sonuc: "item/iron_pickaxe.png", slotlar: [D,D,D, _,C,_, _,C,_] },
+            { ad: "Demir Balta", aciklama: "3x Demir, 2x Çubuk", sonuc: "item/iron_axe.png", slotlar: [D,D,_, D,C,_, _,C,_] },
+            { ad: "Demir Kürek", aciklama: "1x Demir, 2x Çubuk", sonuc: "item/iron_shovel.png", slotlar: [_,D,_, _,C,_, _,C,_] },
+            { ad: "Demir Çapa", aciklama: "2x Demir, 2x Çubuk", sonuc: "item/iron_hoe.png", slotlar: [D,D,_, _,C,_, _,C,_] },
+            { ad: "Demir Kask", aciklama: "5x Demir", sonuc: "item/iron_helmet.png", slotlar: [D,D,D, D,_,D, _,_,_] },
+            { ad: "Demir Göğüslük", aciklama: "8x Demir", sonuc: "item/iron_chestplate.png", slotlar: [D,_,D, D,D,D, D,D,D] },
+            { ad: "Demir Pantolon", aciklama: "7x Demir", sonuc: "item/iron_leggings.png", slotlar: [D,D,D, D,_,D, D,_,D] },
+            { ad: "Demir Bot", aciklama: "4x Demir", sonuc: "item/iron_boots.png", slotlar: [_,_,_, D,_,D, D,_,D] },
+
+            // ALTIN SET
+            { ad: "Altın Kılıç", aciklama: "2x Altın, 1x Çubuk", sonuc: "item/golden_sword.png", slotlar: [_,A,_, _,A,_, _,C,_] },
+            { ad: "Altın Kazma", aciklama: "3x Altın, 2x Çubuk", sonuc: "item/golden_pickaxe.png", slotlar: [A,A,A, _,C,_, _,C,_] },
+            { ad: "Altın Göğüslük", aciklama: "8x Altın", sonuc: "item/golden_chestplate.png", slotlar: [A,_,A, A,A,A, A,A,A] },
+
+            // TAŞ VE TAHTA
+            { ad: "Taş Kılıç", aciklama: "2x Kırıktaş, 1x Çubuk", sonuc: "item/stone_sword.png", slotlar: [_,K,_, _,K,_, _,C,_] },
+            { ad: "Taş Kazma", aciklama: "3x Kırıktaş, 2x Çubuk", sonuc: "item/stone_pickaxe.png", slotlar: [K,K,K, _,C,_, _,C,_] },
+            { ad: "Tahta Kazma", aciklama: "3x Tahta, 2x Çubuk", sonuc: "item/wooden_pickaxe.png", slotlar: [T,T,T, _,C,_, _,C,_] },
+
+            // SİLAHLAR VE ARAÇLAR
+            { ad: "Yay (Bow)", aciklama: "3x İp, 3x Çubuk", sonuc: "item/bow.png", slotlar: [_,C,IP, C,_,IP, _,C,IP] },
+            { ad: "Kalkan", aciklama: "6x Tahta, 1x Demir", sonuc: "item/shield_base.png", slotlar: [T,D,T, T,T,T, _,T,_] },
+            { ad: "Olta", aciklama: "3x Çubuk, 2x İp", sonuc: "item/fishing_rod.png", slotlar: [_,_,C, _,C,IP, C,_,IP] },
+            { ad: "Makas", aciklama: "2x Demir", sonuc: "item/shears.png", slotlar: [_,_,_, _,D,_, D,_,_] },
+            { ad: "Kova", aciklama: "3x Demir", sonuc: "item/bucket.png", slotlar: [_,_,_, D,_,D, _,D,_] },
+            { ad: "Çakmaktaşı ve Çelik", aciklama: "1x Demir, 1x Çakmaktaşı", sonuc: "item/flint_and_steel.png", slotlar: [_,_,_, D,_,_, _,"item/flint.png",_] },
+            
+            // BLOKLAR VE İNŞAAT
+            { ad: "Demir Blok", aciklama: "9x Demir", sonuc: "block/iron_block.png", slotlar: [D,D,D, D,D,D, D,D,D] },
+            { ad: "Elmas Blok", aciklama: "9x Elmas", sonuc: "block/diamond_block.png", slotlar: [E,E,E, E,E,E, E,E,E] },
+            { ad: "Altın Blok", aciklama: "9x Altın", sonuc: "block/gold_block.png", slotlar: [A,A,A, A,A,A, A,A,A] },
+            { ad: "Kömür Blok", aciklama: "9x Kömür", sonuc: "block/coal_block.png", slotlar: [KO,KO,KO, KO,KO,KO, KO,KO,KO] },
+            { ad: "Cam Panel", aciklama: "6x Cam", sonuc: "block/glass_pane_top.png", slotlar: [CA,CA,CA, CA,CA,CA, _,_,_] },
+            { ad: "Demir Parmaklık", aciklama: "6x Demir", sonuc: "block/iron_bars.png", slotlar: [D,D,D, D,D,D, _,_,_] },
+            { ad: "Merdiven", aciklama: "7x Çubuk", sonuc: "block/ladder.png", slotlar: [C,_,C, C,C,C, C,_,C] },
+            { ad: "Tabela", aciklama: "6x Tahta, 1x Çubuk", sonuc: "item/oak_sign.png", slotlar: [T,T,T, T,T,T, _,C,_] },
+
+            // REDSTONE & MEKANİZMA
+            { ad: "TNT", aciklama: "5x Barut, 4x Kum", sonuc: "block/tnt_side.png", slotlar: [BA,KU,BA, KU,BA,KU, BA,KU,BA] },
+            { ad: "Piston", aciklama: "Tahta, Kırıktaş, Demir, Redstone", sonuc: "block/piston_side.png", slotlar: [T,T,T, K,D,K, K,R,K] },
+            { ad: "Gözlemci (Observer)", aciklama: "Kırıktaş, Redstone, Kuvars", sonuc: "block/observer_front.png", slotlar: [K,K,K, R,R,QU, K,K,K] },
+            { ad: "Huni (Hopper)", aciklama: "5x Demir, 1x Sandık", sonuc: "block/hopper_inside.png", slotlar: [D,_,D, D,"block/chest_front.png",D, _,D,_] },
+            { ad: "Ray", aciklama: "6x Demir, 1x Çubuk", sonuc: "block/rail.png", slotlar: [D,_,D, D,C,D, D,_,D] },
+            { ad: "Kızıltaş Meşalesi", aciklama: "1x Redstone, 1x Çubuk", sonuc: "block/redstone_torch.png", slotlar: [_,_,_, _,R,_, _,C,_] },
+            { ad: "Fırlatıcı (Dispenser)", aciklama: "7x Kırıktaş, Yay, Redstone", sonuc: "block/dispenser_front.png", slotlar: [K,K,K, K,"item/bow.png",K, K,R,K] },
+            
+            // EŞYALAR VE YİYECEK
+            { ad: "Kağıt", aciklama: "3x Şeker Kamışı", sonuc: "item/paper.png", slotlar: [_,_,_, "item/sugar_cane.png","item/sugar_cane.png","item/sugar_cane.png", _,_,_] },
+            { ad: "Kitap", aciklama: "3x Kağıt, 1x Deri", sonuc: "item/book.png", slotlar: [KA,KA,_, KA,DE,_, _,_,_] },
+            { ad: "Kitaplık", aciklama: "6x Tahta, 3x Kitap", sonuc: "block/bookshelf.png", slotlar: [T,T,T, KI,KI,KI, T,T,T] },
+            { ad: "Yatak", aciklama: "3x Yün, 3x Tahta", sonuc: "item/red_bed.png", slotlar: [_,_,_, Y,Y,Y, T,T,T] },
+            { ad: "Büyü Masası", aciklama: "Obsidyen, Elmas, Kitap", sonuc: "block/enchanting_table_top.png", slotlar: [_,KI,_, E,OB,E, OB,OB,OB] },
+            { ad: "Örs", aciklama: "3x Demir Blok, 4x Demir", sonuc: "block/anvil_top.png", slotlar: ["block/iron_block.png","block/iron_block.png","block/iron_block.png", _,D,_, D,D,D] },
+            { ad: "Tekne", aciklama: "5x Tahta", sonuc: "item/oak_boat.png", slotlar: [_,_,_, T,_,T, T,T,T] },
+            { ad: "Vagon", aciklama: "5x Demir", sonuc: "item/minecart.png", slotlar: [_,_,_, D,_,D, D,D,D] },
+            { ad: "Kamp Ateşi", aciklama: "Kömür, Çubuk, Kütük", sonuc: "item/campfire.png", slotlar: [_,C,_, C,KO,C, "block/oak_log.png","block/oak_log.png","block/oak_log.png"] },
+            { ad: "Ekmek", aciklama: "3x Buğday", sonuc: "item/bread.png", slotlar: [_,_,_, BU,BU,BU, _,_,_] },
+            { ad: "Altın Elma", aciklama: "8x Altın, 1x Elma", sonuc: "item/golden_apple.png", slotlar: [A,A,A, A,EL,A, A,A,A] },
+            { ad: "Pasta", aciklama: "Süt, Şeker, Yumurta, Buğday", sonuc: "item/cake.png", slotlar: [SU,SU,SU, SH,YU,SH, BU,BU,BU] },
+            { ad: "Havuçlu Olta", aciklama: "Olta ve Havuç", sonuc: "item/carrot_on_a_stick.png", slotlar: [_,_,_, "item/fishing_rod.png",_,_, _,"item/carrot.png",_] },
+            { ad: "Mantarlı Sote", aciklama: "2 Çeşit Mantar, 1 Kase", sonuc: "item/mushroom_stew.png", slotlar: [_,_,_, "block/red_mushroom.png","block/brown_mushroom.png",_, _,"item/bowl.png",_] }
+        ];
+
+        // SAYFA YÜKLENDİĞİNDE DOM'A (EKRANA) BAS
+        window.onload = function() {
+            let container = document.getElementById('craft-liste');
+            let htmlIskeleti = '';
+            
+            tarifler.forEach(t => {
+                htmlIskeleti += `<div class="craft-card"><div class="craft-info"><h3>${t.ad}</h3><p>${t.aciklama}</p></div><div class="mc-ui"><div class="mc-grid">`;
+                
+                t.slotlar.forEach(s => {
+                    if(s) { htmlIskeleti += `<div class="mc-slot"><img src="${URL}${s}"></div>`; } 
+                    else { htmlIskeleti += `<div class="mc-slot"></div>`; }
+                });
+
+                htmlIskeleti += `</div><div class="mc-arrow">➔</div><div class="mc-result"><img src="${URL}${t.sonuc}"></div></div></div>`;
+            });
+            
+            container.innerHTML = htmlIskeleti;
+        };
+
+        // EFSANEVİ HIZLI ARAMA MOTORU
+        function craftFiltrele() {
+            let input = document.getElementById('craft-ara').value.toLowerCase();
+            let kartlar = document.getElementsByClassName('craft-card');
+            let hataMesaji = document.getElementById('hata-mesaji');
+            let esyaBulundu = false;
+
+            for (let i = 0; i < kartlar.length; i++) {
+                let baslik = kartlar[i].getElementsByTagName("h3")[0].innerText.toLowerCase();
+                if (baslik.includes(input)) {
+                    kartlar[i].style.display = "flex";
+                    esyaBulundu = true;
+                } else {
+                    kartlar[i].style.display = "none";
+                }
+            }
+            hataMesaji.style.display = esyaBulundu ? "none" : "block";
+        }
+    </script>
+</body>
+</html>
