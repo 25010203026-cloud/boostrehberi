@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skyrim SE Mod Koleksiyonu - BoostRehberi</title>
+    
+    <script>
+    (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="BH_QRyI6c8QlBb0uZLNRa";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+    </script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lato:wght@400;700&display=swap');
+        
+        /* Skyrim İmleci */
+        body, a, button, .mod-card, input, details, summary {
+            cursor: url('https://cdn.custom-cursor.com/db/cursor/32/skyrim_cursor.png'), auto !important;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background: #0d0d0d url('https://wallpapers.com/images/hd/skyrim-background-1920-x-1080-87428s89b8d9c8s9.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #c0c0c0; margin: 0; padding: 0; line-height: 1.6;
+        }
+        /* Arkaplanı karartma */
+        body::before { content:""; position:fixed; top:0; left:0; width:100%; height:100%; background: rgba(10, 10, 15, 0.85); z-index:-1; }
+
+        /* HEADER */
+        header { background-color: rgba(20, 20, 25, 0.95); padding: 15px 50px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #7f8c8d; box-shadow: 0 4px 15px rgba(0,0,0,0.8); position: sticky; top: 0; z-index: 100; backdrop-filter: blur(5px);}
+        .logo { font-size: 24px; font-weight: 800; color: #fff; text-decoration: none; font-family: 'Cinzel', serif; letter-spacing: 2px; }
+        .logo span { color: #95a5a6; }
+        .back-btn { color: #95a5a6; text-decoration: none; font-weight: 600; border: 1px solid #95a5a6; padding: 8px 20px; transition: all 0.2s; font-family: 'Cinzel', serif; }
+        .back-btn:hover { background-color: #95a5a6; color: #000; }
+
+        /* LAYOUT */
+        .container { max-width: 1400px; margin: 40px auto; padding: 0 20px; }
+        .page-header { margin-bottom: 30px; border-bottom: 1px solid #444; padding-bottom: 20px; text-align: center; }
+        .page-title { font-family: 'Cinzel', serif; font-size: 40px; color: #fff; text-shadow: 0 0 10px #fff; margin: 0; }
+
+        .layout-grid { display: grid; grid-template-columns: 250px 1fr; gap: 30px; align-items: start; }
+        
+        /* SIDEBAR */
+        .sidebar { display: flex; flex-direction: column; gap: 5px; position: sticky; top: 90px; background: rgba(0,0,0,0.6); padding: 20px; border: 1px solid #555; }
+        .menu-btn { background: transparent; color: #aaa; border: none; padding: 15px; font-size: 16px; font-family: 'Cinzel', serif; text-align: left; transition: 0.2s; cursor: pointer; border-bottom: 1px solid #333; }
+        .menu-btn:hover { color: #fff; padding-left: 20px; }
+        .menu-btn.active-btn { color: #fff; border-left: 3px solid #fff; background: linear-gradient(90deg, rgba(255,255,255,0.1), transparent); }
+
+        /* CONTENT */
+        .tab-content { display: none; animation: fadeIn 0.5s; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .section-desc { font-family: 'Cinzel', serif; color: #fff; font-size: 22px; border-bottom: 1px solid #555; padding-bottom: 10px; margin-bottom: 20px; }
+
+        /* MOD GRID */
+        .mod-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; margin-bottom: 40px; }
+        .mod-card { background: rgba(20, 20, 20, 0.8); border: 1px solid #444; padding: 20px; display: flex; flex-direction: column; transition: 0.3s; position: relative; overflow: hidden; }
+        .mod-card:hover { border-color: #fff; box-shadow: 0 0 15px rgba(255,255,255,0.2); transform: translateY(-5px); }
+        
+        .mod-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+        .mod-icon { font-size: 20px; }
+        .mod-card h4 { margin: 0; color: #e2e2e2; font-family: 'Cinzel', serif; font-size: 18px; font-weight: 700; }
+        .mod-card p { color: #999; font-size: 13px; margin: 0 0 15px 0; flex-grow: 1; }
+
+        .show-more-btn { background: #222; border: 1px solid #555; color: #ccc; padding: 8px; width: 100%; cursor: pointer; font-size: 12px; margin-top: auto; }
+        .show-more-btn:hover { background: #333; color: #fff; }
+        
+        .extra-info { display: none; margin-top: 10px; padding: 10px; background: #000; border: 1px solid #333; color: #888; font-size: 12px; }
+        
+        .dl-box { margin-top: 15px; display: flex; justify-content: space-between; align-items: center; }
+        .dl-btn { background: #fff; color: #000; padding: 8px 15px; text-decoration: none; font-weight: 700; font-family: 'Cinzel', serif; font-size: 14px; transition: 0.3s; }
+        .dl-btn:hover { background: #bdc3c7; box-shadow: 0 0 10px #fff; }
+
+        /* PRELOADER */
+        #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #050505; z-index: 9999; display: flex; justify-content: center; align-items: center; transition: opacity 0.5s; }
+        .spinner { width: 50px; height: 50px; border: 3px solid #333; border-top: 3px solid #fff; border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body>
+
+    <div id="preloader"><div class="spinner"></div></div>
+
+    <header>
+        <a href="index.html" class="logo">Boost<span>Rehberi</span></a>
+        <a href="index.html" class="back-btn">Ana Sayfaya Dön</a>
+    </header>
+
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">The Elder Scrolls V: Skyrim Mod Arşivi</h1>
+            <p style="color:#aaa;">Toplam 30 Seçilmiş Mod | %100 Uyumlu</p>
+        </div>
+
+        <div class="layout-grid">
+            <div class="sidebar">
+                <button class="menu-btn active-btn" onclick="sekmeDegistir('core')">I. Zorunlu Temel (6)</button>
+                <button class="menu-btn" onclick="sekmeDegistir('gfx')">II. Grafik & Atmosfer (6)</button>
+                <button class="menu-btn" onclick="sekmeDegistir('game')">III. Oynanış & Savaş (6)</button>
+                <button class="menu-btn" onclick="sekmeDegistir('ui')">IV. Arayüz & Menü (6)</button>
+                <button class="menu-btn" onclick="sekmeDegistir('char')">V. Karakter & NPC (6)</button>
+            </div>
+
+            <div class="main-panel">
+
+                <div id="content-core" class="tab-content active">
+                    <div class="section-desc">Olmazsa Olmazlar (Oyun Bunlarsız Çalışmaz)</div>
+                    <div class="mod-grid">
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><h4>1. SKSE64 (Script Extender)</h4></div>
+                            <p>Tüm modların babasıdır. Steam'den değil, sitesinden indirip oyunun klasörüne atılır.</p>
+                            <div class="dl-box"><span>✔️ Zorunlu</span><a href="https://skse.silverlock.org/" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><h4>2. SkyUI</h4></div>
+                            <p>Oyunun berbat konsol menüsünü PC için mükemmelleştirir. Mod ayar menüsü (MCM) için şarttır.</p>
+                            <div class="dl-box"><span>✔️ Zorunlu</span><a href="https://www.nexusmods.com/skyrimspecialedition/mods/12604" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><h4>3. USSEP (Unofficial Patch)</h4></div>
+                            <p>Bethesda'nın düzeltmediği binlerce hatayı, bug'ı ve çökme sorununu düzeltir.</p>
+                            <div class="dl-box"><span>✔️ Zorunlu</span><a href="https://www.nexusmods.com/skyrimspecialedition/mods/266" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><h4>4. Address Library</h4></div>
+                            <p>SKSE eklentilerinin versiyon hatası vermeden çalışmasını sağlayan kütüphane.</p>
+                            <div class="dl-box"><span>✔️ Sistem</span><a href="https://www.nexusmods.com/skyrimspecialedition/mods/32444" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><h4>5. SSE Engine Fixes</h4></div>
+                            <p>Oyunun motorundaki FPS düşüren ve save dosyalarını bozan hataları yamalar.</p>
+                            <div class="dl-box"><span>✔️ Performans</span><a href="https://www.nexusmods.com/skyrimspecialedition/mods/17230" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><h4>6. Alternate Start</h4></div>
+                            <p>Oyunun o uzun at arabası girişini atlar. Oyuna istediğiniz hayatı seçerek başlarsınız.</p>
+                            <div class="dl-box"><span>✔️ Başlangıç</span><a href="https://www.nexusmods.com/skyrimspecialedition/mods/272" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="content-gfx" class="tab-content">
+                    <div class="section-desc">Skyrim'i 2024 Standartlarına Taşıyan Grafikler</div>
+                    <div class="mod-grid">
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><h4>7. SMIM (Mesh Düzeltmesi)</h4></div>
+                            <p>Oyundaki köşeli, yamuk yumuk eşyaları (zincirler, masalar, elmalar) pürüzsüz 3D yapar.</p>
+                            <div class="dl-box"><span>🎨 Grafik</span><a href="https://www.nexusmods.com/skyrimspecialedition/mods/659" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><h4>8. Noble Skyrim</h4></div>
+                            <p>Oyunun tüm kaplamalarını HD ve daha modern bir mimari ile değiştirir.</p>
+                            <div class="dl-box"><span>🎨 Doku</span><a href="https://www.nexusmods.com/skyrimspecialedition/mods/21423" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><h4>9. Vivid Weathers</h4></div>
+                            <p>500'den fazla hava durumu, gerçekçi sis, yağmur ve kar efektleri ekler.</p>
+                            <div class="dl-box"><span>☁️ Hava</span><a href="https://www.nexusmods.com/skyrimspecialedition/mods/2187" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><h4>10. ELFX (Işıklandırma)</h4></div>
+                            <p>İç mekanlardaki o yapay ışığı kaldırır. Gerçekçi gölgeler ve mum ışıkları ekler.</p>
+                            <div class="dl-box"><span>💡 Işık</span><a href="https://www.nexusmods.com/skyrimspecialedition/mods/2424" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><h4>11. Water for ENB</h4></div>
+                            <p>Suyu jel gibi görünmekten kurtarır. Akışkan, köpüklü ve yansımalı gerçek su yapar.</p>
+                            <div class="dl-box"><span>💧 Su</span><a href="https://www.nexusmods.com/skyrimspecialedition/mods/37061" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><h4>12. Blended Roads</h4></div>
+                            <p>Yolların zeminle birleştiği o çirkin düz görüntüyü, taşları kabartarak düzeltir.</p>
+                            <div class="dl-box"><span>🛣️ Yol</span><a href="https://www.nexusmods.com/skyrimspecialedition/mods/8834" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="content-game" class="tab-content">
+                    <div class="section-desc">Savaş ve Yetenek Sistemi Devrimi</div>
+                    <div class="mod-grid">
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><h4>13. Ordinator (Perks)</h4></div>
+                            <p>Yetenek ağacını tamamen değiştirir. 400+ yeni özellik ile farklı karakterler yaratın.</p>
+                            <div class="dl-box"><span>⚔️ RPG</span><a href="https://www.nexusmods.com/skyrimspecialedition/mods/1137" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><h4>14. Apocalypse (Magic)</h4></div>
+                            <p>Oyuna 155 tane yeni, dengeli ve efsanevi büyü ekler. Büyücü oynamak zevkli hale gelir.</p>
+                            <div class="dl-box"><span>🔥 Büyü</span><a href="https://www.nexusmods.com/skyrimspecialedition/mods/1090" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><h4>15. Wildcat (Combat)</h4></div>
+                            <p>Savaşı zorlaştırır. Yapay zeka daha agresif olur, yaralanınca hareketleriniz kısıtlanır.</p>
+                            <div class="dl-box"><span>🩸 Savaş</span><a href="https://www.nexusmods.com/skyrimspecialedition/mods/1368" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><h4>16. Imperious (Races)</h4></div>
+                            <p>Her ırkın (Nord, Elf vs.) kendine has, oynanışı değiştiren güçlü özellikleri olur.</p>
+                            <div class="dl-box"><span>🐉 Irk</span><a href="https://www.nexusmods.com/skyrimspecialedition/mods/1315" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><h4>17. Immersive Citizens</h4></div>
+                            <p>NPC yapay zekasını düzeltir. Yağmur yağınca eve kaçarlar, savaşınca saklanırlar.</p>
+                            <div class="dl-box"><span>🧠 AI</span><a href="https://www.nexusmods.com/skyrimspecialedition/mods/173" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><h4>18. Wet and Cold</h4></div>
+                            <p>Karda karakterlerin üstü beyazlar, yağmurda ıslanır, soğukta nefesleri buharlaşır.</p>
+                            <div class="dl-box"><span>❄️ Detay</span><a href="https://www.nexusmods.com/skyrimspecialedition/mods/644" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="content-ui" class="tab-content">
+                    <div class="section-desc">Kullanıcı Dostu Menüler ve Haritalar</div>
+                    <div class="mod-grid">
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><h4>19. A Quality World Map</h4></div>
+                            <p>Oyunun o bulanık haritasını kaldırır. Yolları net gösteren kağıt veya 3D harita ekler.</p>
+                            <div class="dl-box"><span>🗺️ Harita</span><a href="https://www.nexusmods.com/skyrimspecialedition/mods/5804" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><h4>20. Immersive HUD</h4></div>
+                            <p>Ekranda gereksiz can barı, pusula gibi şeyleri gizler. Sadece lazım olunca görünür.</p>
+                            <div class="dl-box"><span>👁️ HUD</span><a href="https://www.nexusmods.com/skyrimspecialedition/mods/12440" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><h4>21. SkyHUD</h4></div>
+                            <p>Pusulayı küçültür, yazı tiplerini modernleştirir. Ekranı ferahlatır.</p>
+                            <div class="dl-box"><span>📏 Arayüz</span><a href="https://www.nexusmods.com/skyrimspecialedition/mods/463" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><h4>22. Quick Loot RE</h4></div>
+                            <p>Fallout 4'teki gibi cesetlerin içini menüyü açmadan hızlıca görmenizi ve almanızı sağlar.</p>
+                            <div class="dl-box"><span>⚡ Hız</span><a href="https://www.nexusmods.com/skyrimspecialedition/mods/21085" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><h4>23. SmoothCam</h4></div>
+                            <p>3. Şahıs kamerasını modern oyunlar (God of War vb.) gibi akıcı ve yumuşak yapar.</p>
+                            <div class="dl-box"><span>🎥 Kamera</span><a href="https://www.nexusmods.com/skyrimspecialedition/mods/41252" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><h4>24. True Directional</h4></div>
+                            <p>Karakterin her yöne (360 derece) akıcı hareket etmesini ve hedef kilitlemeyi sağlar.</p>
+                            <div class="dl-box"><span>🏃 Hareket</span><a href="https://www.nexusmods.com/skyrimspecialedition/mods/51614" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="content-char" class="tab-content">
+                    <div class="section-desc">Daha Güzel Karakterler ve Animasyonlar</div>
+                    <div class="mod-grid">
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><h4>25. XP32 Maximum Skeleton</h4></div>
+                            <p>Tüm karakter animasyonları ve vücut modları için gerekli olan iskelet yapısıdır.</p>
+                            <div class="dl-box"><span>💀 Zorunlu</span><a href="https://www.nexusmods.com/skyrimspecialedition/mods/1988" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><h4>26. CBBE (Body Enhancer)</h4></div>
+                            <p>Kadın karakterlerin vücut modellerini yüksek çözünürlüklü ve daha gerçekçi yapar.</p>
+                            <div class="dl-box"><span>💃 Model</span><a href="https://www.nexusmods.com/skyrimspecialedition/mods/198" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><h4>27. Verolevi Animations</h4></div>
+                            <p>Oyunun kütük gibi olan koşma, yürüme ve büyü yapma animasyonlarını değiştirir.</p>
+                            <div class="dl-box"><span>🏃 Animasyon</span><a href="https://www.nexusmods.com/skyrimspecialedition/users/3812151?tab=user+files" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><h4>28. Immersive Armors</h4></div>
+                            <p>Oyuna yüzlerce yeni, lore'a uygun ve kaliteli zırh seti ekler.</p>
+                            <div class="dl-box"><span>🛡️ Zırh</span><a href="https://www.nexusmods.com/skyrimspecialedition/mods/3479" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><h4>29. Relationship Dialogue</h4></div>
+                            <p>NPC'lerin sizinle olan konuşmalarını çeşitlendirir. Arkadaşlarınız size odun gibi davranmaz.</p>
+                            <div class="dl-box"><span>💬 Diyalog</span><a href="https://www.nexusmods.com/skyrimspecialedition/mods/1187" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                        <div class="mod-card" data-tilt>
+                            <div class="mod-header"><h4>30. Total Character Makeover</h4></div>
+                            <p>Oyundaki tüm NPC'lerin yüzlerini performansı düşürmeden güzelleştirir.</p>
+                            <div class="dl-box"><span>👨 Yüz</span><a href="https://www.nexusmods.com/skyrimspecialedition/mods/1037" target="_blank" class="dl-btn">İndir</a></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Preloader Kapatma
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            preloader.style.opacity = '0';
+            setTimeout(() => { preloader.style.display = 'none'; }, 500);
+        });
+
+        // 3D Tilt
+        VanillaTilt.init(document.querySelectorAll(".mod-card"), {
+            max: 10,
+            speed: 400,
+            glare: true,
+            "max-glare": 0.3
+        });
+
+        // Sekme Değiştirme
+        function sekmeDegistir(sekmeAdi) {
+            let icerikler = document.getElementsByClassName('tab-content');
+            for(let i = 0; i < icerikler.length; i++) { icerikler[i].classList.remove('active'); }
+            document.getElementById('content-' + sekmeAdi).classList.add('active');
+
+            let butonlar = document.getElementsByClassName('menu-btn');
+            for(let i = 0; i < butonlar.length; i++) { butonlar[i].classList.remove('active-btn'); }
+            
+            // Tıklanan butonu bul ve active yap (Event olmadığı için loop ile tarıyoruz veya basitçe class ekliyoruz)
+            // Bu basit yöntemle buton stilini JS'de değil CSS'de hallediyoruz, sadece class değiştiriyoruz.
+            event.target.classList.add('active-btn');
+            window.scrollTo({top: 0, behavior: 'smooth'}); 
+        }
+    </script>
+</body>
+</html>
