@@ -14,128 +14,89 @@
     <title>BoostRehberi - Oyun Performans & Türkçe Yama Merkezi</title>
     
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
-
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap');
-
-        /* İMLEÇ */
         body, a, button, input, textarea, select { cursor: url('https://cdn.custom-cursor.com/db/cursor/32/minecraft_diamond_pickaxe_cursor.png'), auto !important; }
-        
         body { font-family: 'Montserrat', sans-serif; background: linear-gradient(rgba(15, 20, 25, 0.85), rgba(15, 20, 25, 0.95)), url('arkaplan.jpg') center/cover fixed; color: #E0E0E0; margin: 0; padding: 0; overflow-x: hidden; }
-
-        /* --- 1. ÖZEL SCROLLBAR --- */
         ::-webkit-scrollbar { width: 10px; }
         ::-webkit-scrollbar-track { background: #0f1419; }
         ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #1ABC9C, #3498DB); border-radius: 5px; border: 2px solid #0f1419; }
         ::-webkit-scrollbar-thumb:hover { background: #1ABC9C; }
-
-        /* --- 2. PRELOADER --- */
         #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0f1419; z-index: 9999; display: flex; justify-content: center; align-items: center; transition: opacity 0.5s; }
         .loader-content { text-align: center; }
         .loader-content h2 { color: #fff; font-size: 24px; margin-top: 20px; font-weight: 800; letter-spacing: 2px; }
         .loader-content span { color: #1ABC9C; }
         .spinner { width: 60px; height: 60px; border: 5px solid #333; border-top: 5px solid #1ABC9C; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto; box-shadow: 0 0 15px #1abc9c; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
-        /* --- 3. GLITCH EFEKTİ (BAŞLIK İÇİN) --- */
         .glitch-text { position: relative; color: white; font-weight: 900; text-transform: uppercase; display: inline-block; }
         .glitch-text::before, .glitch-text::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 20, 25, 0.85); }
         .glitch-text::before { left: 2px; text-shadow: -1px 0 #ff00c1; clip: rect(44px, 450px, 56px, 0); animation: glitch-anim-1 2s infinite linear alternate-reverse; }
         .glitch-text::after { left: -2px; text-shadow: -1px 0 #00fff9; clip: rect(44px, 450px, 56px, 0); animation: glitch-anim-2 3s infinite linear alternate-reverse; }
         @keyframes glitch-anim-1 { 0% { clip: rect(20px, 9999px, 10px, 0); } 100% { clip: rect(80px, 9999px, 90px, 0); } }
         @keyframes glitch-anim-2 { 0% { clip: rect(90px, 9999px, 100px, 0); } 100% { clip: rect(10px, 9999px, 20px, 0); } }
-
-        /* --- 4. BACK TO TOP BUTTON --- */
         #goTopBtn { display: none; position: fixed; bottom: 30px; right: 30px; z-index: 99; font-size: 24px; border: none; outline: none; background-color: rgba(26, 188, 156, 0.8); color: white; cursor: pointer; padding: 15px; border-radius: 50%; box-shadow: 0 0 15px rgba(26, 188, 156, 0.5); transition: 0.3s; backdrop-filter: blur(5px); }
         #goTopBtn:hover { background-color: #1ABC9C; transform: translateY(-5px); }
-
-        /* HEADER */
         header { background-color: rgba(17, 21, 29, 0.95); padding: 20px 50px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #1ABC9C; position: sticky; top: 0; z-index: 100; backdrop-filter: blur(10px); }
         .logo { font-size: 28px; font-weight: 900; color: #FFFFFF; text-decoration: none; letter-spacing: 1px;}
         .logo span { color: #1ABC9C; text-shadow: 0 0 10px rgba(26, 188, 156, 0.5); }
-        
         .header-right { display: flex; align-items: center; gap: 15px; }
-        /* Discord Butonu */
         .discord-btn { background: #5865F2; color: white; padding: 10px 15px; border-radius: 8px; text-decoration: none; font-weight: 700; display: flex; align-items: center; gap: 8px; font-size: 13px; transition:0.3s; }
         .discord-btn:hover { background: #4752c4; transform: translateY(-2px); }
-        
         .contact-btn { color: #AAB7B8; text-decoration: none; font-size: 14px; font-weight: 700; transition: 0.3s; display: flex; align-items: center; gap: 5px;}
         .contact-btn:hover { color: #FFF; text-shadow: 0 0 5px #FFF; }
-        
         .login-btn { background: transparent; border: 2px solid #1ABC9C; color: #1ABC9C; padding: 10px 20px; border-radius: 8px; font-weight: 700; font-size: 14px; transition: 0.3s; }
         .login-btn:hover { background: #1ABC9C; color: #111; box-shadow: 0 0 15px rgba(26, 188, 156, 0.5); }
-        
         .user-profile { display: none; align-items: center; gap: 10px; color: #2ECC71; font-weight: 700; }
         .logout-btn { background: transparent; border: 1px solid #E74C3C; color: #E74C3C; padding: 5px 10px; border-radius: 4px; font-size: 12px; transition: 0.3s;}
         .logout-btn:hover { background: #E74C3C; color: #FFF; }
         .admin-badge { background: #E74C3C; color: #FFF; font-size: 10px; padding: 2px 6px; border-radius: 4px; margin-left: 5px; display: none;}
-
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px 50px 20px; }
-
-        /* VİTRİN BÖLÜMÜ */
         #showcaseSection { display: block; animation: fadeIn 0.4s; }
         .hero { text-align: center; padding: 80px 20px 40px 20px; }
         .hero h1 { font-size: 50px; color: #FFF; margin-bottom: 15px; font-weight: 900; text-transform: uppercase; text-shadow: 0 5px 15px rgba(0,0,0,0.5); }
         .hero h1 span { color: #1ABC9C; text-shadow: 0 0 20px rgba(26, 188, 156, 0.4); }
         .hero p { font-size: 18px; color: #AAB7B8; max-width: 700px; margin: 0 auto; line-height: 1.6; }
-
-        /* ARAMA ÇUBUĞU */
         .search-container { text-align: center; margin-bottom: 40px; position: relative; z-index: 10; }
         .search-input { padding: 15px 25px; width: 60%; max-width: 500px; border-radius: 50px; border: 2px solid #1ABC9C; background: rgba(0,0,0,0.6); color: white; font-size: 16px; backdrop-filter: blur(5px); outline: none; transition: 0.3s; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
         .search-input:focus { width: 65%; box-shadow: 0 0 20px rgba(26, 188, 156, 0.4); border-color: #3498DB; }
-
-        /* FORUM BANNER (3D) */
         .forum-banner { background: linear-gradient(135deg, rgba(26, 188, 156, 0.1), rgba(109, 40, 217, 0.1)); border: 1px solid rgba(26, 188, 156, 0.3); border-radius: 12px; padding: 30px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 50px; transform-style: preserve-3d; transform: perspective(1000px); }
         .forum-text h2 { margin: 0 0 10px 0; color: #FFF; font-size: 24px; display: flex; align-items: center; gap: 10px; transform: translateZ(20px); }
         .forum-text p { margin: 0; color: #AAB7B8; font-size: 15px; transform: translateZ(20px); }
         .forum-btn { background: linear-gradient(90deg, #1ABC9C, #3498DB); border: none; color: #FFF; padding: 15px 30px; border-radius: 8px; font-size: 16px; font-weight: 800; transition: 0.3s; box-shadow: 0 5px 15px rgba(26, 188, 156, 0.3); transform: translateZ(30px); }
         .forum-btn:hover { transform: translateZ(30px) translateY(-3px); box-shadow: 0 8px 20px rgba(26, 188, 156, 0.5); }
-
-        /* OYUN KARTLARI (3D VE EFEKTLİ) */
         .section-title { font-size: 26px; color: #FFF; border-bottom: 2px solid #333; padding-bottom: 10px; margin-bottom: 25px; display: flex; align-items: center; gap: 10px; }
         .games-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; margin-bottom: 60px; }
-
         .game-card { background-color: rgba(20, 25, 30, 0.8); border: 1px solid #333; border-radius: 12px; padding: 25px; transition: 0.3s; display: flex; flex-direction: column; position: relative; overflow: hidden; transform-style: preserve-3d; transform: perspective(1000px); }
         .game-card::before { content: ""; position: absolute; top: 0; left: 0; width: 4px; height: 100%; }
-        
-        /* Renkler */
         .game-card.mc::before { background-color: #2ECC71; }
         .game-card.fm::before { background-color: #6D28D9; }
         .game-card.ac::before { background-color: #E74C3C; }
         .game-card.gta::before { background-color: #F39C12; }
-        .game-card.bl::before { background-color: #d35400; } 
-        .game-card.sky::before { background-color: #95a5a6; } 
-        .game-card.sims::before { background-color: #00E43C; } /* Sims Yeşili */
+        .game-card.bl::before { background-color: #d35400; }
+        .game-card.sky::before { background-color: #95a5a6; }
+        .game-card.sims::before { background-color: #00E43C; }
         .game-card.tr-yama::before { background-color: #3498DB; }
-
         .game-card:hover { background-color: rgba(30, 35, 45, 0.9); border-color: #1ABC9C; box-shadow: 0 10px 30px rgba(26, 188, 156, 0.2); }
         .game-card.tr-yama:hover { border-color: #3498DB; box-shadow: 0 10px 30px rgba(52, 152, 219, 0.2); }
-        .game-card.bl:hover { border-color: #d35400; box-shadow: 0 10px 30px rgba(211, 84, 0, 0.3); } 
-        .game-card.sky:hover { border-color: #95a5a6; box-shadow: 0 10px 30px rgba(149, 165, 166, 0.3); } 
-        .game-card.sims:hover { border-color: #00E43C; box-shadow: 0 10px 30px rgba(0, 228, 60, 0.2); } /* Sims Hover */
-        
+        .game-card.bl:hover { border-color: #d35400; box-shadow: 0 10px 30px rgba(211, 84, 0, 0.3); }
+        .game-card.sky:hover { border-color: #95a5a6; box-shadow: 0 10px 30px rgba(149, 165, 166, 0.3); }
+        .game-card.sims:hover { border-color: #00E43C; box-shadow: 0 10px 30px rgba(0, 228, 60, 0.2); }
         .game-icon { font-size: 35px; margin-bottom: 10px; transform: translateZ(30px); }
         .game-card h3 { color: #FFF; font-size: 20px; margin: 0 0 10px 0; transform: translateZ(25px); }
         .game-card p { color: #8892B0; font-size: 13px; margin: 0 0 20px 0; flex-grow: 1; line-height: 1.5; transform: translateZ(20px); }
-        
         .play-btn { background-color: #1A1A1A; color: #FFF; text-align: center; text-decoration: none; padding: 12px; border-radius: 6px; font-weight: 700; border: 1px solid #444; transition: 0.3s; font-size: 14px; transform: translateZ(25px); }
         .game-card .play-btn:hover { background-color: #1ABC9C; color: #000; border-color: #1ABC9C;}
         .game-card.tr-yama .play-btn:hover { background-color: #3498DB; color: #FFF; border-color: #3498DB;}
-        .game-card.bl .play-btn:hover { background-color: #d35400; color: #FFF; border-color: #d35400;} 
-        .game-card.sky .play-btn:hover { background-color: #95a5a6; color: #000; border-color: #95a5a6;} 
-        .game-card.sims .play-btn:hover { background-color: #00E43C; color: #0c1821; border-color: #00E43C;} /* Sims Button Hover */
-        
+        .game-card.bl .play-btn:hover { background-color: #d35400; color: #FFF; border-color: #d35400;}
+        .game-card.sky .play-btn:hover { background-color: #95a5a6; color: #000; border-color: #95a5a6;}
+        .game-card.sims .play-btn:hover { background-color: #00E43C; color: #0c1821; border-color: #00E43C;}
         .badge { display: inline-block; padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; margin-bottom: 10px; border: 1px solid; transform: translateZ(20px); width: fit-content; }
         .badge.mod { background: rgba(46, 204, 113, 0.1); color: #2ECC71; border-color: #2ECC71; }
         .badge.yama { background: rgba(52, 152, 219, 0.1); color: #3498DB; border-color: #3498DB; }
-
-        /* RÜTBE SİSTEMİ CSS */
         .rank-badge { font-size: 10px; padding: 2px 8px; border-radius: 4px; margin-left: 5px; font-weight: 800; text-transform: uppercase; display: inline-block; vertical-align: middle; }
         .rank-caylak { background: #95a5a6; color: #fff; border: 1px solid #7f8c8d; }
         .rank-oyuncu { background: #3498db; color: #fff; border: 1px solid #2980b9; }
         .rank-efsane { background: linear-gradient(45deg, #f1c40f, #e67e22); color: #000; box-shadow: 0 0 10px #f1c40f; border: 1px solid #d35400; }
-
-        /* FORUM BÖLÜMÜ */
         #forumSection { display: none; padding-top: 40px; animation: fadeIn 0.4s; }
         .forum-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px; border-bottom: 1px solid #2C3E50; padding-bottom: 20px;}
         .forum-header h1 { font-size: 32px; color: #FFF; margin: 0; font-weight: 800; display: flex; align-items: center; gap: 10px;}
@@ -144,14 +105,12 @@
         .back-to-games-btn:hover { background: #333; color: #FFF; }
         .new-topic-btn { background: #1ABC9C; color: #000; border: none; padding: 12px 25px; border-radius: 6px; font-weight: 800; font-size: 15px; transition: 0.3s; box-shadow: 0 4px 10px rgba(26, 188, 156, 0.3);}
         .new-topic-btn:hover { background: #16A085; transform: translateY(-2px);}
-
         .forum-grid { display: grid; grid-template-columns: 260px 1fr; gap: 30px; align-items: start; }
         .forum-sidebar { background-color: rgba(20, 25, 30, 0.8); padding: 20px; border-radius: 12px; border: 1px solid #2C3E50; position: sticky; top: 90px; }
         .forum-sidebar-title { color: #8892B0; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; font-weight: 700; }
         .cat-btn { background: transparent; color: #AAB7B8; border: none; width: 100%; text-align: left; padding: 12px 15px; border-radius: 8px; font-size: 14px; font-weight: 600; transition: 0.2s; margin-bottom: 5px;}
         .cat-btn:hover { background: rgba(255,255,255,0.05); color: #FFF; }
         .cat-btn.active { background: rgba(26, 188, 156, 0.1); color: #1ABC9C; border-left: 3px solid #1ABC9C; }
-
         .thread-list { display: flex; flex-direction: column; gap: 15px; }
         .thread-card { background: rgba(22, 27, 34, 0.9); border: 1px solid #2C3E50; border-radius: 10px; padding: 20px; display: flex; flex-direction: column; gap: 15px; transition: 0.2s; position: relative;}
         .thread-main { display: flex; gap: 20px; align-items: flex-start; }
@@ -173,8 +132,6 @@
         .reply-content { flex-grow: 1; font-size: 13px; color: #DDD;}
         .reply-author { color: #3498DB; font-weight: 700; font-size: 12px; display: block;}
         .pinned { border-left: 4px solid #F1C40F !important; }
-
-        /* MODALLAR */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); z-index: 1000; justify-content: center; align-items: center; }
         .modal-box { background: #11151D; width: 400px; border-radius: 12px; border: 1px solid #1ABC9C; padding: 30px; position: relative; text-align: center;}
         .modal-box.large { width: 600px; text-align: left;}
@@ -187,8 +144,6 @@
         .input-group input, .input-group select, .input-group textarea { width: 100%; padding: 12px; background: #1A202C; border: 1px solid #333; border-radius: 6px; color: #FFF; font-family: 'Montserrat'; box-sizing: border-box; outline: none;}
         .input-group textarea { height: 120px; resize: none; }
         .submit-btn { background: #1ABC9C; color: #000; font-weight: 800; border: none; padding: 15px; border-radius: 6px; font-size: 16px; margin-top: 10px; width: 100%; cursor: pointer; }
-    
-    /* 📱 MOBİL UYUM */
         @media (max-width: 900px) {
             header { padding: 15px 20px; flex-direction: column; gap: 15px; text-align: center; }
             .header-right { justify-content: center; width: 100%; }
@@ -205,7 +160,6 @@
             .thread-main { flex-direction: column; align-items: flex-start; }
             .thread-avatar { margin-bottom: 10px; }
         }
-
         @media (max-width: 480px) {
             .sidebar { grid-template-columns: 1fr; }
             .hero h1 { font-size: 26px; }
@@ -217,7 +171,6 @@
     </script>
 </head>
 <body>
-
     <div id="preloader">
         <div class="loader-content">
             <div class="spinner"></div>
@@ -225,9 +178,7 @@
             <p>Sistemler Optimize Ediliyor...</p>
         </div>
     </div>
-
     <button onclick="topFunction()" id="goTopBtn" title="Yukarı Git">🚀</button>
-
     <header>
         <a href="index.html" class="logo">Boost<span>Rehberi</span></a>
         <div class="header-right">
@@ -244,7 +195,6 @@
             </div>
         </div>
     </header>
-
     <div class="container">
         <div id="showcaseSection">
             <section class="hero">
@@ -264,6 +214,62 @@
                 <button class="forum-btn" onclick="goToForum()">Forum'a Gir ➔</button>
             </div>
 
+            <!-- ═══════════════════════════════════════════════════════
+                 BoostRehberi Mod Manager — İndirme Bölümü
+                 Bu bölümü kaldırmak veya güncellemek için href'teki
+                 GitHub linkini kendi release linkinizle değiştirin.
+            ════════════════════════════════════════════════════════ -->
+            <div style="background:linear-gradient(135deg,rgba(26,188,156,0.08),rgba(52,152,219,0.08));border:1px solid rgba(26,188,156,0.3);border-radius:16px;padding:40px;margin-bottom:50px;position:relative;overflow:hidden;">
+                <div style="position:absolute;top:-60px;right:-60px;width:250px;height:250px;background:radial-gradient(circle,rgba(26,188,156,0.12),transparent 70%);pointer-events:none;"></div>
+                <div style="position:absolute;bottom:-60px;left:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(52,152,219,0.1),transparent 70%);pointer-events:none;"></div>
+                <div style="display:flex;align-items:center;gap:40px;flex-wrap:wrap;position:relative;z-index:1;">
+                    <div style="flex:1;min-width:260px;">
+                        <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+                            <div style="width:56px;height:56px;background:linear-gradient(135deg,#1ABC9C,#3498DB);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:28px;box-shadow:0 0 20px rgba(26,188,156,0.4);">🚀</div>
+                            <div>
+                                <div style="font-size:22px;font-weight:900;color:#FFF;letter-spacing:1px;">Mod Manager</div>
+                                <div style="font-size:12px;color:#1ABC9C;font-weight:700;letter-spacing:2px;text-transform:uppercase;">BoostRehberi</div>
+                            </div>
+                        </div>
+                        <p style="color:#AAB7B8;font-size:14px;line-height:1.8;margin:0 0 20px 0;">
+                            Modları <strong style="color:#FFF;">tek tıkla</strong> indir — doğru oyun klasörüne <strong style="color:#1ABC9C;">otomatik yüklesin</strong>. Artık hangi klasör diye aramak yok.
+                        </p>
+                        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:24px;">
+                            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#DDD;"><span style="color:#1ABC9C;">✅</span> Minecraft, Skyrim, Sims 4, GTA 5 ve daha fazlası</div>
+                            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#DDD;"><span style="color:#1ABC9C;">✅</span> %100 virüssüz — VirusTotal ile taranmış</div>
+                            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#DDD;"><span style="color:#1ABC9C;">✅</span> Reklam yok, takip yok, kişisel veri toplanmaz</div>
+                            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#DDD;"><span style="color:#1ABC9C;">✅</span> Açık kaynak kodlu — GitHub'da incelenebilir</div>
+                        </div>
+                        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
+                            <!-- ⬇️ BU LİNKİ kendi GitHub Releases .exe linkinle değiştir -->
+                            <a href="https://github.com/boostrehberi/mod-manager/releases/latest/download/BoostRehberi-ModManager-Setup.exe"
+                               style="background:linear-gradient(135deg,#1ABC9C,#3498DB);color:#000;font-weight:900;font-size:15px;padding:14px 28px;border-radius:10px;text-decoration:none;display:flex;align-items:center;gap:10px;box-shadow:0 5px 20px rgba(26,188,156,0.35);transition:0.3s;"
+                               onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 30px rgba(26,188,156,0.5)'"
+                               onmouseout="this.style.transform='';this.style.boxShadow='0 5px 20px rgba(26,188,156,0.35)'">
+                                ⬇️ Ücretsiz İndir
+                            </a>
+                            <div style="font-size:11px;color:#8892B0;line-height:1.6;">
+                                <div>Windows 10/11 • 64-bit</div>
+                                <div>v1.0.0 • ~85 MB</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="flex-shrink:0;background:rgba(0,0,0,0.4);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:20px;min-width:220px;max-width:260px;">
+                        <div style="font-size:11px;color:#8892B0;text-transform:uppercase;letter-spacing:2px;margin-bottom:14px;font-weight:700;">Desteklenen Oyunlar</div>
+                        <div style="display:flex;flex-direction:column;gap:9px;">
+                            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#DDD;"><span>⛏️</span>Minecraft<span style="margin-left:auto;font-size:10px;color:#1ABC9C;background:rgba(26,188,156,0.1);padding:2px 8px;border-radius:4px;border:1px solid rgba(26,188,156,0.2);">Otomatik</span></div>
+                            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#DDD;"><span>🐉</span>Skyrim SE<span style="margin-left:auto;font-size:10px;color:#1ABC9C;background:rgba(26,188,156,0.1);padding:2px 8px;border-radius:4px;border:1px solid rgba(26,188,156,0.2);">Otomatik</span></div>
+                            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#DDD;"><span>💎</span>The Sims 4<span style="margin-left:auto;font-size:10px;color:#1ABC9C;background:rgba(26,188,156,0.1);padding:2px 8px;border-radius:4px;border:1px solid rgba(26,188,156,0.2);">Otomatik</span></div>
+                            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#DDD;"><span>🔫</span>GTA 5<span style="margin-left:auto;font-size:10px;color:#1ABC9C;background:rgba(26,188,156,0.1);padding:2px 8px;border-radius:4px;border:1px solid rgba(26,188,156,0.2);">Otomatik</span></div>
+                            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#DDD;"><span>⚔️</span>Bannerlord<span style="margin-left:auto;font-size:10px;color:#1ABC9C;background:rgba(26,188,156,0.1);padding:2px 8px;border-radius:4px;border:1px solid rgba(26,188,156,0.2);">Otomatik</span></div>
+                            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#DDD;"><span>🏎️</span>Assetto Corsa<span style="margin-left:auto;font-size:10px;color:#1ABC9C;background:rgba(26,188,156,0.1);padding:2px 8px;border-radius:4px;border:1px solid rgba(26,188,156,0.2);">Otomatik</span></div>
+                            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:#DDD;"><span>⚽</span>Football Manager<span style="margin-left:auto;font-size:10px;color:#1ABC9C;background:rgba(26,188,156,0.1);padding:2px 8px;border-radius:4px;border:1px solid rgba(26,188,156,0.2);">Otomatik</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ═══════════════════════════════════════ MOD MANAGER SONU ═══ -->
+
             <h2 class="section-title">🚀 Performans & Modlar</h2>
             <div class="games-grid">
                 <div class="game-card mc" data-tilt>
@@ -273,7 +279,6 @@
                     <p>FPS uçuran Sodium ayarları ve efsanevi mod paketleri.</p>
                     <a href="minecraft.html" class="play-btn">Kurulum & Rehber</a>
                 </div>
-                
                 <div class="game-card bl" data-tilt>
                     <div class="badge mod">Savaş Modları</div>
                     <div class="game-icon">⚔️</div>
@@ -281,7 +286,6 @@
                     <p>Kalabalık savaşlar için FPS ayarı ve Kafa Koparma modu.</p>
                     <a href="bannerlord.html" class="play-btn">Kurulum & Rehber</a>
                 </div>
-
                 <div class="game-card sky" data-tilt>
                     <div class="badge mod">30+ Mod</div>
                     <div class="game-icon">🐉</div>
@@ -289,7 +293,6 @@
                     <p>Grafik, oynanış ve RPG öğelerini baştan yaratan efsanevi mod listesi.</p>
                     <a href="skyrim.html" class="play-btn">Kurulum & Rehber</a>
                 </div>
-
                 <div class="game-card sims" data-tilt>
                     <div class="badge mod">30+ Mod</div>
                     <div class="game-icon">💎</div>
@@ -297,7 +300,6 @@
                     <p>Gerçekçi yaşam, hileler ve CAS modları ile Simlerinize hayat verin.</p>
                     <a href="sims.html" class="play-btn">Kurulum & Rehber</a>
                 </div>
-
                 <div class="game-card gta" data-tilt>
                     <div class="badge mod">Optimizasyon</div>
                     <div class="game-icon">🔫</div>
@@ -320,7 +322,6 @@
                     <a href="assetto.html" class="play-btn">Kurulum & Rehber</a>
                 </div>
             </div>
-
             <h2 class="section-title" style="margin-top: 50px;">🇹🇷 Türkçe Yama Arşivi</h2>
             <div class="games-grid">
                 <div class="game-card tr-yama" data-tilt>
@@ -345,9 +346,7 @@
                     <a href="cp2077-yama.html" class="play-btn">İndirme & Kurulum Rehberi</a>
                 </div>
             </div>
-
         </div>
-
         <div id="forumSection">
             <div class="forum-header">
                 <h1>💬 Topluluk Forumu</h1>
@@ -356,7 +355,6 @@
                     <button class="new-topic-btn" onclick="openTopicModal()">+ Yeni Konu Aç</button>
                 </div>
             </div>
-
             <div class="forum-grid">
                 <div class="forum-sidebar">
                     <div class="forum-sidebar-title">Kategoriler</div>
@@ -375,7 +373,6 @@
             </div>
         </div>
     </div>
-
     <div id="authModal" class="modal-overlay">
         <div class="modal-box">
             <button class="close-btn" onclick="closeAuthModal()">×</button>
@@ -383,7 +380,6 @@
             <button class="google-btn" onclick="loginWithGoogle()"><img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google"> Google ile Giriş Yap</button>
         </div>
     </div>
-
     <div id="topicModal" class="modal-overlay">
         <div class="modal-box large">
             <button class="close-btn" onclick="closeTopicModal()">×</button>
@@ -407,7 +403,6 @@
             <button class="submit-btn" onclick="submitTopicToDatabase()">Foruma Gönder</button>
         </div>
     </div>
-
     <div id="replyModal" class="modal-overlay">
         <div class="modal-box large">
             <button class="close-btn" onclick="closeReplyModal()">×</button>
@@ -417,23 +412,18 @@
             <button class="submit-btn" style="background:#3498DB;" onclick="submitReply()">Yanıtı Gönder</button>
         </div>
     </div>
-
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
         import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
         import { getFirestore, collection, addDoc, onSnapshot, serverTimestamp, query, orderBy, doc, updateDoc, arrayUnion, deleteDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
-
         const firebaseConfig = { apiKey: "AIzaSyC7NhVifwWUaKikHE3QrkKwjhnLdaW48OY", authDomain: "boostrehberi.firebaseapp.com", projectId: "boostrehberi", storageBucket: "boostrehberi.firebasestorage.app", messagingSenderId: "775353055674", appId: "1:775353055674:web:47d8d22d3a5e976b834583" };
-
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
         const provider = new GoogleAuthProvider();
-
         window.isUserLoggedIn = false; window.currentUsername = ""; window.currentUserPhoto = "";
         const ADMIN_EMAIL = "mustafacanyilmazpc@gmail.com"; window.isAdmin = false;
-
-        const yasakliKelimeler = ["salak", "aptal", "gerizekalı", "mal", "kötükelime", "lan"]; 
+        const yasakliKelimeler = ["salak", "aptal", "gerizekalı", "mal", "kötükelime", "lan"];
         window.sansurle = (metin) => {
             let temizMetin = metin;
             yasakliKelimeler.forEach(kelime => {
@@ -442,82 +432,53 @@
             });
             return temizMetin;
         };
-
-        // YÜKLEME EKRANI KAPATMA
         window.addEventListener('load', function() {
             const preloader = document.getElementById('preloader');
             preloader.style.opacity = '0';
             setTimeout(() => { preloader.style.display = 'none'; }, 500);
         });
-
-        // 3D TILT AYARLARI (Vanilla Tilt Manuel Init)
         VanillaTilt.init(document.querySelectorAll(".game-card, .forum-banner"), {
-            max: 15,
-            speed: 400,
-            glare: true,
-            "max-glare": 0.2,
-            scale: 1.05
+            max: 15, speed: 400, glare: true, "max-glare": 0.2, scale: 1.05
         });
-
-        // CANLI ARAMA FONKSİYONU
         window.filterGames = function() {
             let input = document.getElementById('gameSearch');
             let filter = input.value.toUpperCase();
             let cards = document.getElementsByClassName('game-card');
-
             for (let i = 0; i < cards.length; i++) {
                 let h3 = cards[i].getElementsByTagName("h3")[0];
                 let p = cards[i].getElementsByTagName("p")[0];
                 let textValue = h3.textContent || h3.innerText;
                 let pValue = p.textContent || p.innerText;
-                
                 if (textValue.toUpperCase().indexOf(filter) > -1 || pValue.toUpperCase().indexOf(filter) > -1) {
-                    cards[i].style.display = "";
-                    cards[i].style.animation = "fadeIn 0.5s"; 
-                } else {
-                    cards[i].style.display = "none";
-                }
+                    cards[i].style.display = ""; cards[i].style.animation = "fadeIn 0.5s";
+                } else { cards[i].style.display = "none"; }
             }
         };
-
-        // SCROLL TO TOP BUTONU
         window.onscroll = function() {
             let btn = document.getElementById("goTopBtn");
-            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-                btn.style.display = "block";
-            } else {
-                btn.style.display = "none";
-            }
+            if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) { btn.style.display = "block"; } else { btn.style.display = "none"; }
         };
-        window.topFunction = function() {
-            window.scrollTo({top: 0, behavior: 'smooth'});
-        };
-
-        // RÜTBE FONKSİYONU
+        window.topFunction = function() { window.scrollTo({top: 0, behavior: 'smooth'}); };
         window.getRankBadge = function(username) {
-            // İleride buraya veritabanından mesaj sayısına göre kontrol ekleyebiliriz
             if(username === "Admin_Mustafa" || username === "Mustafa Can Yılmaz" || username === "Patron") {
                 return '<span class="rank-badge rank-efsane">KURUCU</span>';
             }
             return '<span class="rank-badge rank-oyuncu">ÜYE</span>';
         };
-
         window.openAuthModal = () => { document.getElementById('authModal').style.display = 'flex'; };
         window.closeAuthModal = () => { document.getElementById('authModal').style.display = 'none'; };
         window.openTopicModal = () => { document.getElementById('topicModal').style.display = 'flex'; };
         window.closeTopicModal = () => { document.getElementById('topicModal').style.display = 'none'; };
         window.openReplyModal = (id) => { if(!window.isUserLoggedIn) { window.openAuthModal(); return; } document.getElementById('replyThreadId').value = id; document.getElementById('replyModal').style.display = 'flex'; };
         window.closeReplyModal = () => { document.getElementById('replyModal').style.display = 'none'; };
-
         window.loginWithGoogle = () => { signInWithPopup(auth, provider).then(() => { window.closeAuthModal(); }); };
         window.logoutFirebase = () => { signOut(auth).then(() => { window.goToGames(); }); };
-
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 window.isUserLoggedIn = true; window.currentUsername = user.displayName; window.currentUserPhoto = user.photoURL;
                 window.isAdmin = (user.email === ADMIN_EMAIL);
                 document.getElementById('adminBadge').style.display = window.isAdmin ? 'inline-block' : 'none';
-                document.getElementById('usernameDisplay').innerText = user.displayName; document.getElementById('userPhoto').src = user.photoURL; 
+                document.getElementById('usernameDisplay').innerText = user.displayName; document.getElementById('userPhoto').src = user.photoURL;
                 document.getElementById('loginBtn').style.display = 'none'; document.getElementById('userProfile').style.display = 'flex';
                 let btns = document.getElementsByClassName('admin-delete-btn'); for(let b of btns) b.style.display = window.isAdmin ? 'block' : 'none';
             } else {
@@ -525,10 +486,8 @@
                 document.getElementById('loginBtn').style.display = 'block'; document.getElementById('userProfile').style.display = 'none';
             }
         });
-
         window.goToForum = () => { if(window.isUserLoggedIn) { document.getElementById('showcaseSection').style.display = 'none'; document.getElementById('forumSection').style.display = 'block'; window.scrollTo(0,0); } else { window.openAuthModal(); } };
         window.goToGames = () => { document.getElementById('forumSection').style.display = 'none'; document.getElementById('showcaseSection').style.display = 'block'; window.scrollTo(0,0); };
-
         window.submitTopicToDatabase = async () => {
             if(!window.isUserLoggedIn) return;
             let t = document.getElementById('topicTitle').value, b = document.getElementById('topicBody').value, c = document.getElementById('topicCat').value;
@@ -537,19 +496,15 @@
             await addDoc(collection(db, "forum_mesajlari"), { baslik: t, icerik: b, kategori: c, yazar: window.currentUsername, fotograf: window.currentUserPhoto, tarih: serverTimestamp(), cevaplar: [] });
             document.getElementById('topicTitle').value = ""; document.getElementById('topicBody').value = ""; window.closeTopicModal();
         };
-
         window.submitReply = async () => {
             let id = document.getElementById('replyThreadId').value, txt = document.getElementById('replyBody').value; if(txt.trim()==="") return;
             txt = window.sansurle(txt);
             await updateDoc(doc(db, "forum_mesajlari", id), { cevaplar: arrayUnion({ yazar: window.currentUsername, fotograf: window.currentUserPhoto, metin: txt }) });
             document.getElementById('replyBody').value = ""; window.closeReplyModal();
         };
-
         window.deleteThread = async (id) => { if(window.isAdmin && confirm("Emin misin patron?")) await deleteDoc(doc(db, "forum_mesajlari", id)); };
-
         onSnapshot(query(collection(db, "forum_mesajlari"), orderBy("tarih", "desc")), (snap) => {
-            let c = document.getElementById('threadContainer'); 
-            
+            let c = document.getElementById('threadContainer');
             let sabitKonu = `
             <div class="thread-card pinned">
                 <div class="thread-main">
@@ -562,11 +517,9 @@
                 </div>
             </div>`;
             c.innerHTML = sabitKonu;
-
             snap.forEach((d) => {
                 let data = d.data(), id = d.id;
-                let userRank = window.getRankBadge(data.yazar); // Rütbeyi al
-
+                let userRank = window.getRankBadge(data.yazar);
                 let html = `<div class="thread-card">
                     <div class="thread-main">
                         <div class="thread-avatar"><img src="${data.fotograf || 'https://via.placeholder.com/50'}"></div>
@@ -590,4 +543,3 @@
     </script>
 </body>
 </html>
-
